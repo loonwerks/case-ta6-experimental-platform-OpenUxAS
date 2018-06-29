@@ -210,5 +210,35 @@
             <Field Name="Speed" Type="real32" Units="mps"/>
         </Struct>
 
+        <!-- ZeroizeCommandMessage
+            C2 message instructing recipients to zeroize sensitive data -->
+        <Struct Name="ZeroizeCommandMessage" >
+            <!-- The identity of the entity to be zeroized -->
+            <Field Name="EntityID" Type="int64" />
+            <!-- Zeroize cryptographic key stores? -->
+            <Field Name="ZeroizeKeys" Type="bool" Default="false" />
+            <!-- Zeroize vehicle log stores? -->
+            <Field Name="ZeroizeLogs" Type="bool" Default="false" />
+            <!-- Zeroize collected data stores? -->
+            <Field Name="ZeroizeData" Type="bool" Default="false" />
+            <!-- Zeroize task queues? -->
+            <Field Name="ZeroizeTasks" Type="bool" Default="false" />
+        </Struct>
+
+        <!-- ZeroizeConditionMessage
+            C2 message instructing recipients to trigger automatic zeroization -->
+        <Struct Name="ZeroizeConditionMessage" >
+            <!-- The identity of the entity to be zeroized -->
+            <Field Name="EntityID" Type="int64" />
+            <!-- Zeroize on aircraft landing? -->
+            <Field Name="ZeroizeOnLanding" Type="bool" Default="false" />
+            <!-- Zeroize on leaving the designated operational area?
+                See CreateNewService message as to how the current operational
+                is defined in terms of KeepInZones and KeepOutZones -->
+            <Field Name="ZeroizeOnExitingOperationalArea" Type="bool" Default="false" />
+            <!-- Zeroize on completion of all pending tasks? -->
+            <Field Name="ZeroizeOnTasksComplete" Type="bool" Default="false" />
+        </Struct>
+
  </StructList>
 </MDM>
