@@ -49,7 +49,6 @@
 #include <cstdint>
 #include <memory>      //int64_t
 
-
 #define STRING_XML_TYPE "Type"
 #define STRING_XML_TASKOPTIONS "TaskOptions"
 #define STRING_XML_TASKID "TaskId"
@@ -75,6 +74,7 @@ TaskManagerService::s_registrar(TaskManagerService::s_registryServiceTypeNames()
 TaskManagerService::TaskManagerService()
     : ServiceBase(TaskManagerService::s_typeName(), TaskManagerService::s_directoryName())
 {
+    m_idVsEntityConfigurationMap.configure("DBTaskManagerService.db3", "idVsEntityConfiguration");
 }
 
 TaskManagerService::~TaskManagerService() { };
@@ -257,7 +257,8 @@ TaskManagerService::processReceivedLmcpMessage(std::unique_ptr<uxas::communicati
                 " <TaskRequest>" + baseTask->toXML() + "</TaskRequest>\n" + xmlTaskOptions);
 
         // add all existing entities for new service initialization
-        for (auto& entityConfiguration : m_idVsEntityConfiguration)
+        auto entityMap = m_idVsEntityConfigurationMap.asStdMap();
+        for (auto& entityConfiguration : *entityMap)
         {
             createNewServiceMessage->getEntityConfigurations().push_back(entityConfiguration.second->clone());
         }
@@ -372,7 +373,7 @@ TaskManagerService::processReceivedLmcpMessage(std::unique_ptr<uxas::communicati
     }
     else if (entityConfiguration)
     {
-        m_idVsEntityConfiguration[entityConfiguration->getID()] = entityConfiguration;
+        m_idVsEntityConfigurationMap.put(entityConfiguration->getID(), entityConfiguration);
     }
     else if (entityState)
     {

@@ -18,6 +18,7 @@
 #define UXAS_SERVICE_TASK_TASK_MANAGER_SERVICE_H
 
 #include "ServiceBase.h"
+#include "UxAS_PersistentMap.h"
 
 #include "afrl/cmasi/EntityConfiguration.h"
 #include "afrl/cmasi/EntityState.h"
@@ -137,7 +138,9 @@ public:
     static std::string GetTaskStringIdFromId(const int64_t& taskId);
 
 private:
-    std::unordered_map<int64_t, std::shared_ptr<afrl::cmasi::EntityConfiguration> > m_idVsEntityConfiguration;
+    // std::unordered_map<int64_t, std::shared_ptr<afrl::cmasi::EntityConfiguration> > m_idVsEntityConfiguration;
+    uxas::common::persistence::PersistentMap<afrl::cmasi::EntityConfiguration> m_idVsEntityConfigurationMap;
+
     std::unordered_map<int64_t, std::shared_ptr<afrl::cmasi::EntityState> > m_idVsEntityState;
     std::unordered_map<int64_t, std::shared_ptr<afrl::impact::AreaOfInterest> > m_idVsAreaOfInterest;
     std::unordered_map<int64_t, std::shared_ptr<afrl::impact::LineOfInterest> > m_idVsLineOfInterest;

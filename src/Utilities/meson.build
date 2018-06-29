@@ -14,6 +14,7 @@ srcs_utilities = [
   'UxAS_FileLogger.cpp',
   'UxAS_HeadLogDataDatabaseLogger.cpp',
   'UxAS_LogManager.cpp',
+  'UxAS_PersistentMapDatabaseHelper.cpp',
   'UxAS_SentinelSerialBuffer.cpp',
   'UxAS_Time.cpp',
   'UxAS_TimerManager.cpp',
