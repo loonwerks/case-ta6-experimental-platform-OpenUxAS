@@ -177,6 +177,34 @@ PersistentMapDatabaseHelper::asStdMap
     return result;
 }
 
+void PersistentMapDatabaseHelper::zeroizeMap()
+{
+    // A completely insecure means of forgetting data
+    try {
+        UXAS_LOG_INFORM("PersistentMapDatabaseHelper::zeroizeMap: Pending zeroization of ", m_dbName, ":", m_mapName);
+
+        std::lock_guard<std::mutex> lock(s_mutex);
+
+        SQLite::Database db(m_dbName, SQLITE_OPEN_READWRITE);
+
+        SQLite::Transaction transaction(db);
+
+        std::ostringstream deleteStmtStringStream;
+        deleteStmtStringStream
+            << "DELETE FROM " << m_mapName << ";";
+
+        SQLite::Statement deleteStmt(db, deleteStmtStringStream.str());
+
+        deleteStmt.exec();
+
+        transaction.commit();
+
+        UXAS_LOG_INFORM("PersistentMapDatabaseHelper::zeroizeMap: Completed zeroization of ", m_dbName, ":", m_mapName);
+    } catch (std::exception &e) {
+        UXAS_LOG_WARN("PersistentMapDatabaseHelper::zeroizeMap: ", e.what());
+    }
+}
+
 std::string
 PersistentMapDatabaseHelper::serializeMessage
 (std::shared_ptr<avtas::lmcp::Object> value)

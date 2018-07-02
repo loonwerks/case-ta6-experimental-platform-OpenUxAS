@@ -80,6 +80,8 @@ public:
 
     std::shared_ptr<std::map<int64_t, std::shared_ptr<avtas::lmcp::Object>>> asStdMap();
 
+    void zeroizeMap();
+
 private:
 
     std::string serializeMessage(std::shared_ptr<avtas::lmcp::Object>);

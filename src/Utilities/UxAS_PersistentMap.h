@@ -117,6 +117,11 @@ public:
         return result;
     };
 
+    void zeroizeMap()
+    {
+        m_helper.zeroizeMap();
+    }
+
 };
 
 } //namespace persistence
