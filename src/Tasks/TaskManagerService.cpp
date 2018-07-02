@@ -166,6 +166,9 @@ TaskManagerService::configure(const pugi::xml_node& ndComponent)
     addSubscriptionAddress(afrl::cmasi::KeepOutZone::Subscription);
     addSubscriptionAddress(afrl::cmasi::OperatingRegion::Subscription);
 
+    // Subscribe to zeroization commands
+    addSubscriptionAddress(uxas::messages::uxnative::ZeroizeCommand::Subscription);
+
     return true;
 }
 
