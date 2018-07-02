@@ -34,7 +34,7 @@
 #include "uxas/messages/uxnative/KillService.h"
 #include "avtas/lmcp/LmcpXMLReader.h"
 #include "afrl/cmasi/FollowPathCommand.h"      
-#include "uxas/messages/uxnative/ZeroizeCommandMessage.h"
+#include "uxas/messages/uxnative/ZeroizeCommand.h"
 
 #include "afrl/impact/PointOfInterest.h"
 #include "afrl/impact/LineOfInterest.h"
@@ -177,7 +177,7 @@ TaskManagerService::processReceivedLmcpMessage(std::unique_ptr<uxas::communicati
     std::stringstream sstrError;
 
     auto baseTask = std::dynamic_pointer_cast<afrl::cmasi::Task>(messageObject);
-    auto zeroizeCommand = std::dynamic_pointer_cast<uxas::messages::uxnative::ZeroizeCommandMessage>(messageObject);
+    auto zeroizeCommand = std::dynamic_pointer_cast<uxas::messages::uxnative::ZeroizeCommand>(messageObject);
     auto entityConfiguration = std::dynamic_pointer_cast<afrl::cmasi::EntityConfiguration>(messageObject);
     auto entityState = std::dynamic_pointer_cast<afrl::cmasi::EntityState>(messageObject);
 

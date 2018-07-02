@@ -210,9 +210,9 @@
             <Field Name="Speed" Type="real32" Units="mps"/>
         </Struct>
 
-        <!-- ZeroizeCommandMessage
+        <!-- ZeroizeCommand
             C2 message instructing recipients to zeroize sensitive data -->
-        <Struct Name="ZeroizeCommandMessage" >
+        <Struct Name="ZeroizeCommand" >
             <!-- The identity of the entity to be zeroized -->
             <Field Name="EntityID" Type="int64" />
             <!-- Zeroize cryptographic key stores? -->
@@ -225,9 +225,9 @@
             <Field Name="ZeroizeTasks" Type="bool" Default="false" />
         </Struct>
 
-        <!-- ZeroizeConditionMessage
+        <!-- ZeroizeCondition
             C2 message instructing recipients to trigger automatic zeroization -->
-        <Struct Name="ZeroizeConditionMessage" >
+        <Struct Name="ZeroizeCondition" >
             <!-- The identity of the entity to be zeroized -->
             <Field Name="EntityID" Type="int64" />
             <!-- Zeroize on aircraft landing? -->
