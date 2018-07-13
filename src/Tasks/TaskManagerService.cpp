@@ -378,7 +378,11 @@ TaskManagerService::processReceivedLmcpMessage(std::unique_ptr<uxas::communicati
     }
     else if (zeroizeCommand)
     {
-        m_idVsEntityConfigurationMap.zeroizeMap();
+        if (m_entityId == zeroizeCommand->getEntityID())
+        {
+            m_idVsEntityConfigurationMap.zeroizeMap();
+            UXAS_LOG_INFORM("Received zeroization command, zeroized entity configuration map.");
+        }
     }
     else if (entityConfiguration)
     {
