@@ -236,8 +236,16 @@
                 See CreateNewService message as to how the current operational
                 is defined in terms of KeepInZones and KeepOutZones -->
             <Field Name="ZeroizeOnExitingOperationalArea" Type="bool" Default="false" />
+            <!-- Selects the ID of the operational area apply -->
+            <Field Name="ActiveOperationalArea" Type="int64" Default="0" />
             <!-- Zeroize on completion of all pending tasks? -->
             <Field Name="ZeroizeOnTasksComplete" Type="bool" Default="false" />
+            <!-- Defined keep in zones -->
+            <Field Name="KeepInZones" Type="CMASI/KeepInZone[]" MaxArrayLength="64" />
+            <!-- Defined keep out zones at -->
+            <Field Name="KeepOutZones" Type="CMASI/KeepOutZone[]" MaxArrayLength="64" />
+            <!-- Defined opearting regions -->
+            <Field Name="OperationalAreas" Type="CMASI/OperatingRegion[]" MaxArrayLength="32" />
         </Struct>
 
  </StructList>
