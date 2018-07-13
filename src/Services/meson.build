@@ -1,4 +1,5 @@
 srcs_services = [
+	'ZeroizeConditionRecognizerService.cpp',
   '00_ServiceTemplate.cpp',
   '01_HelloWorld.cpp',
   'AssignmentTreeBranchBoundBase.cpp',

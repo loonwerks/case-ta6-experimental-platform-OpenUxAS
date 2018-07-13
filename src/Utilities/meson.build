@@ -5,6 +5,7 @@ srcs_utilities = [
   'Permute.cpp',
   'TimeUtilities.cpp',
   'FlatEarth.cpp',
+  'FlatEarthGeometryUtilities.cpp',
   'RouteExtension.cpp',
   'UnitConversions.cpp',
   'UxAS_ConfigurationManager.cpp',

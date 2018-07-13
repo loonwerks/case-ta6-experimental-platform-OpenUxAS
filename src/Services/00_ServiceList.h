@@ -113,6 +113,7 @@
 #include "RoutePlannerVisibilityService.h"
 
 // DO NOT REMOVE - USED TO AUTOMATICALLY ADD NEW SERVICE HEADERS
+#include "ZeroizeConditionRecognizerService.h"
 #include "StatusReportService.h"
 #include "LoiterLeash.h"
 
@@ -188,6 +189,7 @@
 {auto svc = uxas::stduxas::make_unique<uxas::service::RoutePlannerVisibilityService>();}
 
 // DO NOT REMOVE - USED TO AUTOMATICALLY ADD NEW SERVICE DUMMY INSTANCES
+{auto svc = uxas::stduxas::make_unique<uxas::service::ZeroizeConditionRecognizerService>();}
 {auto svc = uxas::stduxas::make_unique<uxas::service::StatusReportService>();}
 {auto svc = uxas::stduxas::make_unique<uxas::service::LoiterLeash>();}
 
