@@ -228,8 +228,8 @@
         <!-- ZeroizeCondition
             C2 message instructing recipients to trigger automatic zeroization -->
         <Struct Name="ZeroizeCondition" >
-            <!-- The identity of the entity to be zeroized -->
-            <Field Name="EntityID" Type="int64" />
+            <!-- The identity of the vehicle to be zeroized -->
+            <Field Name="VehicleID" Type="int64" />
             <!-- Zeroize on aircraft landing? -->
             <Field Name="ZeroizeOnLanding" Type="bool" Default="false" />
             <!-- Zeroize on leaving the designated operational area?

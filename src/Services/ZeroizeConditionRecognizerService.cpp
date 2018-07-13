@@ -50,6 +50,7 @@
 #include "FlatEarthGeometryUtilities.h"
 
 // convenience definitions for the option strings
+#define STRING_XML_VEHICLE_ID "VehicleID"
 #define STRING_XML_ZEROIZE_ON_LANDING "ZeroizeOnLanding"
 #define STRING_XML_ZEROIZE_ON_EXITING_OPERATIONAL_AREA "ZeroizeOnExitingOperationalArea"
 #define STRING_XML_ZEROIZE_DATA "ZeroizeData"
@@ -70,7 +71,7 @@ ZeroizeConditionRecognizerService::ServiceBase::CreationRegistrar<ZeroizeConditi
 // service constructor
 ZeroizeConditionRecognizerService::ZeroizeConditionRecognizerService()
     : ServiceBase(ZeroizeConditionRecognizerService::s_typeName(), ZeroizeConditionRecognizerService::s_directoryName()),
-      m_zeroizeOnLanding(false), m_zeroizeOnExitingOperationalArea(false),
+      m_vehicleID(0), m_zeroizeOnLanding(false), m_zeroizeOnExitingOperationalArea(false),
       m_zeroizeData(true), m_zeroizeKeys(true), m_zeroizeLogs(false), m_zeroizeTasks(false),
       m_accumulationTime(10000), m_holdoffTime(5000), m_state(State::Detect), m_timeOfNextTransition(0) {};
 
@@ -82,6 +83,10 @@ bool ZeroizeConditionRecognizerService::configure(const pugi::xml_node &ndCompon
     bool isSuccess(true);
 
     // process options from the XML configuration node:
+    if (!ndComponent.attribute(STRING_XML_VEHICLE_ID).empty())
+    {
+        m_vehicleID = ndComponent.attribute(STRING_XML_VEHICLE_ID).as_int64();
+    }
     if (!ndComponent.attribute(STRING_XML_ZEROIZE_ON_LANDING).empty())
     {
         m_zeroizeOnLanding = ndComponent.attribute(STRING_XML_ZEROIZE_ON_LANDING).as_bool();
@@ -156,55 +161,67 @@ bool ZeroizeConditionRecognizerService::processReceivedLmcpMessage(std::unique_p
         auto airVehicleState = std::static_pointer_cast<afrl::cmasi::AirVehicleState>(receivedLmcpMessage->m_object);
         int64_t currentTime = airVehicleState->getTime();
 
-        bool conditionViolation = isConditionViolation(airVehicleState);
-
-        switch(m_state) {
-            case State::Detect:
-                if (conditionViolation)
-                {
-                    m_timeOfNextTransition = currentTime + m_accumulationTime;
-                    m_state = State::Accumulate;
-                }
-                break;
-            case State::Accumulate:
-                if (conditionViolation)
-                {
-                    if (timeCompareModular(currentTime, m_timeOfNextTransition) >= 0)
-                    {
-                        sendZeroizeCommand();
-                        m_timeOfNextTransition = currentTime + m_holdoffTime;
-                        m_state = State::Holdoff;
-                    }
-                }
-                else
-                {
-                    m_state = State::Detect;
-                }
-                break;
-            case State::Holdoff:
-                if (conditionViolation)
-                {
-                    if (timeCompareModular(currentTime, m_timeOfNextTransition) >= 0)
-                    {
-                        sendZeroizeCommand();
-                        m_timeOfNextTransition = currentTime + m_holdoffTime;
-                        m_state = State::Holdoff;
-                    }
-                }
-                else
-                {
-                    m_state = State::Detect;
-                }
-                break;
-            default:
-                UXAS_LOG_ERROR("ZeroizeConditionRecognizerService: reached unrecognized state, resetting.");
-                m_state = State::Detect;
-                break;
-        }
-        if (conditionViolation)
+        if (m_vehicleID == airVehicleState->getID())
         {
-            sendZeroizeCommand();
+            bool conditionViolation = isConditionViolation(airVehicleState);
+            UXAS_LOG_DEBUGGING("ZeroizeConditionRecognizerService::processReceivedLmcpMessage: ", m_vehicleID,
+                ": -> ", airVehicleState->getID(), " state ", m_state, " cond ", conditionViolation, " at ", currentTime);
+
+            switch(m_state) {
+                case State::Detect:
+                    if (conditionViolation)
+                    {
+                        m_timeOfNextTransition = currentTime + m_accumulationTime;
+                        m_state = State::Accumulate;
+                        UXAS_LOG_DEBUGGING("ZeroizeConditionRecognizerService::processReceivedLmcpMessage: ", m_vehicleID,
+                            "    --> ", m_state);
+                    }
+                    break;
+                case State::Accumulate:
+                    if (conditionViolation)
+                    {
+                        if (timeCompareModular(currentTime, m_timeOfNextTransition) >= 0)
+                        {
+                            sendZeroizeCommand();
+                            m_timeOfNextTransition = currentTime + m_holdoffTime;
+                            m_state = State::Holdoff;
+                            UXAS_LOG_DEBUGGING("ZeroizeConditionRecognizerService::processReceivedLmcpMessage: ", m_vehicleID,
+                                "    --> ", m_state);
+                        }
+                    }
+                    else
+                    {
+                        m_state = State::Detect;
+                        UXAS_LOG_DEBUGGING("ZeroizeConditionRecognizerService::processReceivedLmcpMessage: ", m_vehicleID,
+                            "    --> ", m_state);
+                    }
+                    break;
+                case State::Holdoff:
+                    if (conditionViolation)
+                    {
+                        if (timeCompareModular(currentTime, m_timeOfNextTransition) >= 0)
+                        {
+                            sendZeroizeCommand();
+                            m_timeOfNextTransition = currentTime + m_holdoffTime;
+                            m_state = State::Holdoff;
+                            UXAS_LOG_DEBUGGING("ZeroizeConditionRecognizerService::processReceivedLmcpMessage: ", m_vehicleID,
+                                "    --> ", m_state);
+                        }
+                    }
+                    else
+                    {
+                        m_state = State::Detect;
+                        UXAS_LOG_DEBUGGING("ZeroizeConditionRecognizerService::processReceivedLmcpMessage: ", m_vehicleID,
+                            "    --> ", m_state);
+                    }
+                    break;
+                default:
+                    UXAS_LOG_ERROR("ZeroizeConditionRecognizerService: reached unrecognized state, resetting.");
+                    m_state = State::Detect;
+                    break;
+            }
         }
+
     }
     else if (afrl::cmasi::isKeepInZone(receivedLmcpMessage->m_object))
     {
@@ -224,25 +241,30 @@ bool ZeroizeConditionRecognizerService::processReceivedLmcpMessage(std::unique_p
     else if (uxas::messages::uxnative::isZeroizeCondition(receivedLmcpMessage->m_object))
     {
         auto zeroizeConditionIn = std::static_pointer_cast<uxas::messages::uxnative::ZeroizeCondition>(receivedLmcpMessage->m_object);
-        m_accumulationTime = zeroizeConditionIn->getZeroizeAccumulationTime();
-        m_holdoffTime = zeroizeConditionIn->getZeroizeHoldoffTime();
-        m_zeroizeOnExitingOperationalArea = zeroizeConditionIn->getZeroizeOnExitingOperationalArea();
-        m_zeroizeOnLanding = zeroizeConditionIn->getZeroizeOnLanding();
-        m_activeOperationalArea = zeroizeConditionIn->getActiveOperationalArea();
-        for (auto keepInZone : zeroizeConditionIn->getKeepInZones())
+        if (m_vehicleID == zeroizeConditionIn->getVehicleID())
         {
-            m_idVsKeepInZone[keepInZone->getZoneID()] = std::make_shared<afrl::cmasi::KeepInZone>(*keepInZone);
+            m_accumulationTime = zeroizeConditionIn->getZeroizeAccumulationTime();
+            m_holdoffTime = zeroizeConditionIn->getZeroizeHoldoffTime();
+            m_zeroizeOnExitingOperationalArea = zeroizeConditionIn->getZeroizeOnExitingOperationalArea();
+            m_zeroizeOnLanding = zeroizeConditionIn->getZeroizeOnLanding();
+            m_activeOperationalArea = zeroizeConditionIn->getActiveOperationalArea();
+            for (auto keepInZone : zeroizeConditionIn->getKeepInZones())
+            {
+                m_idVsKeepInZone[keepInZone->getZoneID()] = std::make_shared<afrl::cmasi::KeepInZone>(*keepInZone);
+            }
+            for (auto &keepOutZone : zeroizeConditionIn->getKeepOutZones())
+            {
+                m_idVsKeepOutZone[keepOutZone->getZoneID()] = std::make_shared<afrl::cmasi::KeepOutZone>(*keepOutZone);
+            }
+            for (auto &operatingRegion : zeroizeConditionIn->getOperationalAreas())
+            {
+                m_idVsOperatingRegion[operatingRegion->getID()] = std::make_shared<afrl::cmasi::OperatingRegion>(*operatingRegion);
+            }
+            UXAS_LOG_INFORM(m_serviceId, "ZeroizeConditionRecognizerService: Received ZeroizeCondition: zeroizeOnLanding=", m_zeroizeOnLanding,
+                ", zeroizeOnExitingOperationalArea=", m_zeroizeOnExitingOperationalArea);
         }
-        for (auto &keepOutZone : zeroizeConditionIn->getKeepOutZones())
-        {
-            m_idVsKeepOutZone[keepOutZone->getZoneID()] = std::make_shared<afrl::cmasi::KeepOutZone>(*keepOutZone);
-        }
-        for (auto &operatingRegion : zeroizeConditionIn->getOperationalAreas())
-        {
-            m_idVsOperatingRegion[operatingRegion->getID()] = std::make_shared<afrl::cmasi::OperatingRegion>(*operatingRegion);
-        }
-        UXAS_LOG_INFORM(m_serviceId, "Received ZeroizeCondition: zeroizeOnLanding=", m_zeroizeOnLanding, ", zeroizeOnExitingOperationalArea=", m_zeroizeOnExitingOperationalArea);
     }
+
     return false;
 }
 
@@ -408,6 +430,46 @@ ZeroizeConditionRecognizerService::timeCompareModular
             return -1;
         }
     }
+}
+
+std::ostream &
+operator<<
+(std::ostream &os, ZeroizeConditionRecognizerService::State state)
+{
+    switch (state)
+    {
+        case ZeroizeConditionRecognizerService::State::Detect:
+            os << "Detect";
+            break;
+        case ZeroizeConditionRecognizerService::State::Accumulate:
+            os << "Accumulate";
+            break;
+        case ZeroizeConditionRecognizerService::State::Holdoff:
+            os << "Holdoff";
+            break;
+        default:
+            os << "ERROR";
+            break;
+    }
+    return os;
+}
+
+std::string
+operator+
+(std::string &str, ZeroizeConditionRecognizerService::State state)
+{
+    switch (state)
+    {
+        case ZeroizeConditionRecognizerService::State::Detect:
+            return str + "Detect";
+        case ZeroizeConditionRecognizerService::State::Accumulate:
+            return str + "Accumulate";
+        case ZeroizeConditionRecognizerService::State::Holdoff:
+            return str + "Holdoff";
+        default:
+            break;
+    }
+    return str + "ERROR";
 }
 
 }; //namespace service

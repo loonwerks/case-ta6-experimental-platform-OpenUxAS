@@ -146,6 +146,7 @@ private:
 
 private:
     // storage for the option entries
+    int64_t m_vehicleID;
     bool m_zeroizeOnLanding;
     bool m_zeroizeOnExitingOperationalArea;
     bool m_zeroizeData;
@@ -177,7 +178,14 @@ private:
 
     static int timeCompareModular(int64_t t1, int64_t t2);
 
+    friend std::ostream &operator<<(std::ostream &os, State state);
+    friend std::string operator+(std::string &str, State state);
+
 };
+
+std::ostream &operator<<(std::ostream &os, ZeroizeConditionRecognizerService::State state);
+
+std::string operator+(std::string &str, ZeroizeConditionRecognizerService::State state);
 
 }; //namespace service
 }; //namespace uxas
