@@ -34,6 +34,7 @@
 #include "TypeDefs/UxAS_TypeDefs_Timer.h"
 
 #include "afrl/cmasi/AbstractZone.h"
+#include "afrl/cmasi/AirVehicleState.h"
 #include "afrl/cmasi/KeepInZone.h"
 #include "afrl/cmasi/KeepOutZone.h"
 #include "afrl/cmasi/Location3D.h"
@@ -152,6 +153,14 @@ private:
     bool m_zeroizeLogs;
     bool m_zeroizeTasks;
     int64_t m_activeOperationalArea;
+    int64_t m_accumulationTime;
+    int64_t m_holdoffTime;
+
+    // state machine
+    enum class State {Detect, Accumulate, Holdoff};
+    State m_state;
+    int64_t m_timeOfNextTransition;
+
 
     // local state
     std::unordered_map<int64_t, std::shared_ptr<afrl::cmasi::KeepInZone> > m_idVsKeepInZone;
@@ -161,6 +170,12 @@ private:
     static bool isWithinKeepInZone(const std::shared_ptr<afrl::cmasi::Location3D>& location, const std::shared_ptr<afrl::cmasi::KeepInZone>& zone);
 
     static bool isWithinKeepOutZone(const std::shared_ptr<afrl::cmasi::Location3D>& location, const std::shared_ptr<afrl::cmasi::KeepOutZone>& zone);
+
+    bool isConditionViolation(const std::shared_ptr<afrl::cmasi::AirVehicleState>& airVehicleState) const;
+
+    void sendZeroizeCommand();
+
+    static int timeCompareModular(int64_t t1, int64_t t2);
 
 };
 

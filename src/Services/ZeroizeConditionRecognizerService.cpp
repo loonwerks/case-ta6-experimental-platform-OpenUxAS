@@ -71,7 +71,8 @@ ZeroizeConditionRecognizerService::ServiceBase::CreationRegistrar<ZeroizeConditi
 ZeroizeConditionRecognizerService::ZeroizeConditionRecognizerService()
     : ServiceBase(ZeroizeConditionRecognizerService::s_typeName(), ZeroizeConditionRecognizerService::s_directoryName()),
       m_zeroizeOnLanding(false), m_zeroizeOnExitingOperationalArea(false),
-      m_zeroizeData(true), m_zeroizeKeys(true), m_zeroizeLogs(false), m_zeroizeTasks(false){};
+      m_zeroizeData(true), m_zeroizeKeys(true), m_zeroizeLogs(false), m_zeroizeTasks(false),
+      m_accumulationTime(10000), m_holdoffTime(5000), m_state(State::Detect), m_timeOfNextTransition(0) {};
 
 // service destructor
 ZeroizeConditionRecognizerService::~ZeroizeConditionRecognizerService(){};
@@ -150,79 +151,59 @@ bool ZeroizeConditionRecognizerService::terminate()
 
 bool ZeroizeConditionRecognizerService::processReceivedLmcpMessage(std::unique_ptr<uxas::communications::data::LmcpMessage> receivedLmcpMessage)
 {
-    // Need to track the most recent RoutePlanResponse for each task Service.  We should be able
-    // to do this by a map (map<serviceId, RoutePlanResponse>) which has rows
-    // added at each RoutePlanResponse and removed at KillService.
-    // The ID of task services in the active state, is also given directly in the
-    // EntityState.  Look up
-    // Then at each Un
     if (afrl::cmasi::isAirVehicleState(receivedLmcpMessage->m_object))
     {
-        // Iterate over active services (by ID):
-        //   For each lookup in m_IdVsTaskService:
-        //   For each determine if in its keep-ins and out of keep-outs
-
-        bool inAllKeepInZones = true;
-        bool inAnyKeepOutZone = false;
-
         auto airVehicleState = std::static_pointer_cast<afrl::cmasi::AirVehicleState>(receivedLmcpMessage->m_object);
-        auto location = std::make_shared<afrl::cmasi::Location3D>(*airVehicleState->getLocation());
+        int64_t currentTime = airVehicleState->getTime();
 
-        if (m_zeroizeOnExitingOperationalArea)
-        {
-                auto operatingRegionIter = m_idVsOperatingRegion.find(m_activeOperationalArea);
-                if (operatingRegionIter != m_idVsOperatingRegion.end())
+        bool conditionViolation = isConditionViolation(airVehicleState);
+
+        switch(m_state) {
+            case State::Detect:
+                if (conditionViolation)
                 {
-                    auto operatingRegion = operatingRegionIter->second;
-                    for (int64_t keepInZoneID : operatingRegion->getKeepInAreas())
+                    m_timeOfNextTransition = currentTime + m_accumulationTime;
+                    m_state = State::Accumulate;
+                }
+                break;
+            case State::Accumulate:
+                if (conditionViolation)
+                {
+                    if (timeCompareModular(currentTime, m_timeOfNextTransition) >= 0)
                     {
-                        auto keepInZoneIter = m_idVsKeepInZone.find(keepInZoneID);
-                        if (keepInZoneIter != m_idVsKeepInZone.end())
-                        {
-                            auto keepInZone = std::static_pointer_cast<afrl::cmasi::KeepInZone>(keepInZoneIter->second);
-                            inAllKeepInZones = inAllKeepInZones && isWithinKeepInZone(location, keepInZone);
-                        }
-                        else
-                        {
-                            UXAS_LOG_WARN("Keep-In Zone id ", keepInZoneID, " not known.");
-                        }
-                    }
-                    for (int64_t keepOutZoneID : operatingRegion->getKeepOutAreas())
-                    {
-                        auto keepOutZoneIter = m_idVsKeepOutZone.find(keepOutZoneID);
-                        if (keepOutZoneIter != m_idVsKeepOutZone.end())
-                        {
-                            auto keepOutZone = std::static_pointer_cast<afrl::cmasi::KeepOutZone>(keepOutZoneIter->second);
-                            inAnyKeepOutZone = inAnyKeepOutZone || isWithinKeepOutZone(location, keepOutZone);
-                        }
-                        else
-                        {
-                            UXAS_LOG_WARN("Keep-Out Zone id ", keepOutZoneID, " not known.");
-                        }
+                        sendZeroizeCommand();
+                        m_timeOfNextTransition = currentTime + m_holdoffTime;
+                        m_state = State::Holdoff;
                     }
                 }
                 else
                 {
-                    UXAS_LOG_WARN("OperatingRegion id ", m_activeOperationalArea, " not known.");
+                    m_state = State::Detect;
                 }
+                break;
+            case State::Holdoff:
+                if (conditionViolation)
+                {
+                    if (timeCompareModular(currentTime, m_timeOfNextTransition) >= 0)
+                    {
+                        sendZeroizeCommand();
+                        m_timeOfNextTransition = currentTime + m_holdoffTime;
+                        m_state = State::Holdoff;
+                    }
+                }
+                else
+                {
+                    m_state = State::Detect;
+                }
+                break;
+            default:
+                UXAS_LOG_ERROR("ZeroizeConditionRecognizerService: reached unrecognized state, resetting.");
+                m_state = State::Detect;
+                break;
         }
-
-        // If inAnyKeepOutZone or not inAllKeepInZones then
-        //   If zeroizeOnExitingOperationalArea send ZeroizeCommand to local services
-        if (inAnyKeepOutZone || !inAllKeepInZones)
+        if (conditionViolation)
         {
-            if (m_zeroizeOnExitingOperationalArea)
-            {
-                auto zeroizeCommandMessage = std::make_shared<uxas::messages::uxnative::ZeroizeCommand>();
-                zeroizeCommandMessage->setEntityID(m_entityId);
-                zeroizeCommandMessage->setZeroizeData(m_zeroizeData);
-                zeroizeCommandMessage->setZeroizeKeys(m_zeroizeKeys);
-                zeroizeCommandMessage->setZeroizeLogs(m_zeroizeLogs);
-                zeroizeCommandMessage->setZeroizeTasks(m_zeroizeTasks);
-                auto lmcpMessage = std::static_pointer_cast<avtas::lmcp::Object>(zeroizeCommandMessage);
-                sendSharedLmcpObjectBroadcastMessage(lmcpMessage);
-                UXAS_LOG_INFORM("Zeroization condition recognized, sent ZeroizeCommand message.");
-            }
+            sendZeroizeCommand();
         }
     }
     else if (afrl::cmasi::isKeepInZone(receivedLmcpMessage->m_object))
@@ -243,6 +224,8 @@ bool ZeroizeConditionRecognizerService::processReceivedLmcpMessage(std::unique_p
     else if (uxas::messages::uxnative::isZeroizeCondition(receivedLmcpMessage->m_object))
     {
         auto zeroizeConditionIn = std::static_pointer_cast<uxas::messages::uxnative::ZeroizeCondition>(receivedLmcpMessage->m_object);
+        m_accumulationTime = zeroizeConditionIn->getZeroizeAccumulationTime();
+        m_holdoffTime = zeroizeConditionIn->getZeroizeHoldoffTime();
         m_zeroizeOnExitingOperationalArea = zeroizeConditionIn->getZeroizeOnExitingOperationalArea();
         m_zeroizeOnLanding = zeroizeConditionIn->getZeroizeOnLanding();
         m_activeOperationalArea = zeroizeConditionIn->getActiveOperationalArea();
@@ -329,6 +312,102 @@ bool ZeroizeConditionRecognizerService::isWithinKeepOutZone(const std::shared_pt
     }
 
     return false;
+}
+
+bool
+ZeroizeConditionRecognizerService::isConditionViolation
+(const std::shared_ptr<afrl::cmasi::AirVehicleState>& airVehicleState) const
+{
+    bool result = false;
+    bool inAllKeepInZones = true;
+    bool inAnyKeepOutZone = false;
+
+    auto location = std::make_shared<afrl::cmasi::Location3D>(*airVehicleState->getLocation());
+
+    if (m_zeroizeOnExitingOperationalArea)
+    {
+        auto operatingRegionIter = m_idVsOperatingRegion.find(m_activeOperationalArea);
+        if (operatingRegionIter != m_idVsOperatingRegion.end())
+        {
+            auto operatingRegion = operatingRegionIter->second;
+            for (int64_t keepInZoneID : operatingRegion->getKeepInAreas())
+            {
+                auto keepInZoneIter = m_idVsKeepInZone.find(keepInZoneID);
+                if (keepInZoneIter != m_idVsKeepInZone.end())
+                {
+                    auto keepInZone = std::static_pointer_cast<afrl::cmasi::KeepInZone>(keepInZoneIter->second);
+                    inAllKeepInZones = inAllKeepInZones && isWithinKeepInZone(location, keepInZone);
+                }
+                else
+                {
+                    UXAS_LOG_WARN("Keep-In Zone id ", keepInZoneID, " not known.");
+                }
+            }
+            for (int64_t keepOutZoneID : operatingRegion->getKeepOutAreas())
+            {
+                auto keepOutZoneIter = m_idVsKeepOutZone.find(keepOutZoneID);
+                if (keepOutZoneIter != m_idVsKeepOutZone.end())
+                {
+                    auto keepOutZone = std::static_pointer_cast<afrl::cmasi::KeepOutZone>(keepOutZoneIter->second);
+                    inAnyKeepOutZone = inAnyKeepOutZone || isWithinKeepOutZone(location, keepOutZone);
+                }
+                else
+                {
+                    UXAS_LOG_WARN("Keep-Out Zone id ", keepOutZoneID, " not known.");
+                }
+            }
+        }
+        else
+        {
+            UXAS_LOG_WARN("OperatingRegion id ", m_activeOperationalArea, " not known.");
+        }
+    }
+
+    if (inAnyKeepOutZone || !inAllKeepInZones)
+    {
+        if (m_zeroizeOnExitingOperationalArea)
+        {
+            result = true;
+        }
+    }
+
+    return result;
+}
+
+void
+ZeroizeConditionRecognizerService::sendZeroizeCommand
+()
+{
+    auto zeroizeCommandMessage = std::make_shared<uxas::messages::uxnative::ZeroizeCommand>();
+    zeroizeCommandMessage->setEntityID(m_entityId);
+    zeroizeCommandMessage->setZeroizeData(m_zeroizeData);
+    zeroizeCommandMessage->setZeroizeKeys(m_zeroizeKeys);
+    zeroizeCommandMessage->setZeroizeLogs(m_zeroizeLogs);
+    zeroizeCommandMessage->setZeroizeTasks(m_zeroizeTasks);
+    auto lmcpMessage = std::static_pointer_cast<avtas::lmcp::Object>(zeroizeCommandMessage);
+    sendSharedLmcpObjectBroadcastMessage(lmcpMessage);
+    UXAS_LOG_INFORM("Zeroization condition recognized, sent ZeroizeCommand message.");
+}
+
+int
+ZeroizeConditionRecognizerService::timeCompareModular
+(int64_t t1, int64_t t2)
+{
+    if (t1 == t2)
+    {
+        return 0;
+    }
+    else
+    {
+        if ((t1 - t2) > 0)
+        {
+            return 1;
+        }
+        else
+        {
+            return -1;
+        }
+    }
 }
 
 }; //namespace service

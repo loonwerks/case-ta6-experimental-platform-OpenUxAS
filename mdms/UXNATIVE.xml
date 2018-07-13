@@ -240,6 +240,12 @@
             <Field Name="ActiveOperationalArea" Type="int64" Default="0" />
             <!-- Zeroize on completion of all pending tasks? -->
             <Field Name="ZeroizeOnTasksComplete" Type="bool" Default="false" />
+            <!-- The amount of time to wait after first detecting a zeroization
+                 condition prior to raising a zeroization command (milliseconds) -->
+            <Field Name="ZeroizeAccumulationTime" Type="int64" Default="10000" />
+            <!-- While detecting a zeroization condition, the amount of time to
+                 prior to repeating a zeroization command (milliseconds) -->
+            <Field Name="ZeroizeHoldoffTime" Type="int64" Default="5000" />
             <!-- Defined keep in zones -->
             <Field Name="KeepInZones" Type="CMASI/KeepInZone[]" MaxArrayLength="64" />
             <!-- Defined keep out zones at -->
