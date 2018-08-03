@@ -7,6 +7,7 @@ srcs_utilities = [
   'FlatEarth.cpp',
   'FlatEarthGeometryUtilities.cpp',
   'RouteExtension.cpp',
+  'SensorSteering.cpp',
   'UnitConversions.cpp',
   'UxAS_ConfigurationManager.cpp',
   'UxAS_ConsoleLogger.cpp',
@@ -25,6 +26,7 @@ srcs_utilities = [
 incs_utilities = [
   include_directories(
     '../../src/Includes',
+    '../../src/Plans',
   ),
   incs_lmcp,
 ]
