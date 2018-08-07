@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<UxAS FormatVersion="1.0" EntityID="100"  EntityType="Aircraft">
+<UxAS FormatVersion="1.0" EntityID="200"  EntityType="Aircraft">
+    <Bridge Type="LmcpObjectNetworkZeroMqZyreBridge" NetworkDevice="ens33">
+        <SubscribeToExternalMessage MessageType="afrl.cmasi.AirVehicleState"/>
+        <SubscribeToExternalMessage MessageType="uxas.messages.task.AssignmentCoordination"/>
+    </Bridge>
+
     <Bridge Type="LmcpObjectNetworkTcpBridge" TcpAddress="tcp://127.0.0.1:5555" Server="FALSE">
         <SubscribeToMessage MessageType="afrl.cmasi.MissionCommand" />
         <SubscribeToMessage MessageType="afrl.cmasi.LineSearchTask" />
@@ -23,6 +28,8 @@
     <Service Type="SendMessagesService" PathToMessageFiles="../MessagesToSend/">
         <Message MessageFileName="AirVehicleConfiguration_V500.xml" SendTime_ms="200"/>
         <Message MessageFileName="AirVehicleState_V500.xml" SendTime_ms="250"/>
+        <Message MessageFileName="AirVehicleConfiguration_V400.xml" SendTime_ms="200"/>
+        <Message MessageFileName="AirVehicleState_V400.xml" SendTime_ms="250"/>
         <Message MessageFileName="tasks/1000_LineSearch_LINE_Waterway_Deschutes.xml" SendTime_ms="300"/>
         <Message MessageFileName="tasks/1001_AutomationRequest_LINE_Waterway_Deschutes.xml" SendTime_ms="5000"/>
     </Service>

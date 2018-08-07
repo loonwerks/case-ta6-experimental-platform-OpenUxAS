@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <UxAS FormatVersion="1.0" EntityID="100"  EntityType="Aircraft">
+    <!--  -->
+    <Bridge Type="LmcpObjectNetworkZeroMqZyreBridge" NetworkDevice="eth0">
+        <SubscribeToExternalMessage MessageType="afrl.cmasi.AirVehicleState"/>
+        <SubscribeToExternalMessage MessageType="uxas.messages.task.AssignmentCoordination"/>
+    </Bridge>
+
     <!-- Bridge to OpenAMASE (sends messages to which the bridge is subscribed) -->
     <Bridge Type="LmcpObjectNetworkTcpBridge" TcpAddress="tcp://192.168.118.155:5555" Server="FALSE">
         <SubscribeToMessage MessageType="afrl.cmasi.MissionCommand" />
@@ -7,6 +13,7 @@
         <SubscribeToMessage MessageType="afrl.cmasi.VehicleActionCommand" />
     </Bridge>
 
+    <Service Type="Test_SimulationTime" />
     <Service Type="StatusReportService" VehicleID="400" />
     <Service Type="TaskManagerService"/>
     <Service Type="AutomationRequestValidatorService"/>
@@ -24,6 +31,10 @@
     <Service Type="SendMessagesService" PathToMessageFiles="../MessagesToSend/">
         <Message MessageFileName="AirVehicleConfiguration_V400.xml" SendTime_ms="200"/>
         <Message MessageFileName="AirVehicleState_V400.xml" SendTime_ms="250"/>
+        <Message MessageFileName="AirVehicleConfiguration_V500.xml" SendTime_ms="200"/>
+        <Message MessageFileName="AirVehicleState_V500.xml" SendTime_ms="250"/>
+        <Message MessageFileName="tasks/1000_LineSearch_LINE_Waterway_Deschutes.xml" SendTime_ms="300"/>
+        <Message MessageFileName="tasks/1001_AutomationRequest_LINE_Waterway_Deschutes.xml" SendTime_ms="5000"/>
     </Service>
     <Service Type="MessageLoggerDataService" LogFileMessageCountLimit="1000" FilesPerSubDirectory="1000">
         <LogMessage MessageType="uxas" NumberMessagesToSkip="0"/>

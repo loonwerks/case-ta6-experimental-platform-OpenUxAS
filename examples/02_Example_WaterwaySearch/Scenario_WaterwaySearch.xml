@@ -160,7 +160,6 @@
         <MinAltAboveGround>0</MinAltAboveGround>
       </AirVehicleConfiguration>
 
-
       <AirVehicleState Series="CMASI" Time="1.4">
         <ID>400</ID>
          <Location>
@@ -385,7 +384,7 @@
             <ZoneID>334</ZoneID>
             <MinAltitude>50</MinAltitude>
             <MinAltitudeType>AGL</MinAltitudeType>
-            <MaxAltitude>5000</MaxAltitude>
+            <MaxAltitude>20000</MaxAltitude>
             <MaxAltitudeType>MSL</MaxAltitudeType>
             <AffectedAircraft/>
             <StartTime>0</StartTime>
@@ -401,7 +400,7 @@
                     <Longitude>-120.9402</Longitude>
                   </Location3D>
                 </CenterPoint>
-                <Radius>500.0</Radius>
+                <Radius>50000.0</Radius>
               </Circle>
             </Boundary>
           </KeepInZone>
