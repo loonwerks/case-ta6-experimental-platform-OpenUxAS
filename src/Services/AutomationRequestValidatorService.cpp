@@ -24,6 +24,8 @@
 #include "uxas/messages/task/TaskAutomationRequest.h"
 #include "uxas/messages/task/TaskAutomationResponse.h"
 #include "uxas/messages/task/UniqueAutomationResponse.h"
+#include "uxas/messages/uxnative/DownloadRequest.h"
+#include "uxas/messages/uxnative/DownloadReply.h"
 #include "afrl/cmasi/AutomationRequest.h"
 #include "afrl/cmasi/AutomationResponse.h"
 #include "afrl/impact/ImpactAutomationRequest.h"
@@ -229,6 +231,30 @@ AutomationRequestValidatorService::processReceivedLmcpMessage(std::unique_ptr<ux
     else if (uxas::messages::task::isUniqueAutomationResponse(receivedLmcpMessage->m_object.get()))
     {
         HandleAutomationResponse(receivedLmcpMessage->m_object);
+    }
+    else if (uxas::messages::uxnative::isDownloadRequest(receivedLmcpMessage->m_object.get()))
+    {
+        auto downloadReply = std::make_shared<uxas::messages::uxnative::DownloadReply>();
+        auto downloadRequest = std::static_pointer_cast<uxas::messages::uxnative::DownloadRequest>(receivedLmcpMessage->m_object);
+        if (uxas::messages::task::UniqueAutomationRequest::Subscription.compare(downloadRequest->getRequestedLmcpTypeName()) == 0)
+        {
+            for (auto req : m_pendingRequests)
+            {
+                downloadReply->getContents().push_back(req->clone());
+            }
+            for (auto req : m_requestsWaitingForTasks)
+            {
+                downloadReply->getContents().push_back(req->clone());
+            }
+        }
+        else if (afrl::cmasi::Task::Subscription.compare(downloadRequest->getRequestedLmcpTypeName()) == 0)
+        {
+            for (auto iter = m_availableTasks.begin(); iter != m_availableTasks.end(); ++iter)
+            {
+                downloadReply->getContents().push_back(iter->second->clone());
+            }
+        }
+        sendSharedLmcpObjectLimitedCastMessage(receivedLmcpMessage->m_attributes->getSourceEntityId(), downloadReply);
     }
     
     return false; // always false unless terminating
