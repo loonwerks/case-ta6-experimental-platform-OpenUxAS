@@ -7,7 +7,7 @@ SUFFIX="-Vehicle400"
 RM_DATAWORK="rm -R ./datawork${SUFFIX}"
 RM_LOG="rm -R ./log${SUFFIX}"
 
-BIN="../../../build/uxas"
+BIN="../../../../../build/uxas"
 
 mkdir -p RUNDIR_WaterwaySearch${SUFFIX}
 cd RUNDIR_WaterwaySearch${SUFFIX}
