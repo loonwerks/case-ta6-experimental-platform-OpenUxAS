@@ -147,6 +147,9 @@ AutomationRequestValidatorService::configure(const pugi::xml_node & ndComponent)
     // track errors during automation request pipeline
     addSubscriptionAddress(afrl::cmasi::ServiceStatus::Subscription);
 
+    // respond to download requests
+    addSubscriptionAddress(uxas::messages::uxnative::DownloadRequest::Subscription);
+
     return true;
 }
 
