@@ -1,0 +1,38 @@
+<project name="OpenUxAS">
+    <property name="build-armhf.dir" value="build-armhf" />
+    <property name="build-armhf.cross-file" value="arm-linux-gnueabihf-cross-file.txt" />
+
+    <target name="clean">
+        <delete dir="${build-armhf.dir}" />
+        <exec executable="python3" failonerror="true">
+            <arg value="rm-external" />
+        </exec>
+    </target>
+
+    <target name="prepare">
+        <exec executable="python3" failonerror="true">
+            <arg value="prepare" />
+        </exec>
+    </target>
+
+    <target name="lmcp-defs">
+        <exec executable="bash" failonerror="true">
+            <arg value="RunLmcpGen.sh" />
+        </exec>
+    </target>
+
+    <target name="configure">
+        <exec executable="meson" failonerror="true">
+            <arg value="${build-armhf.dir}" />
+            <arg value="--cross-file=${build-armhf.cross-file}" />
+            <arg value="--buildtype=release" />
+        </exec>
+    </target>
+
+    <target name="compile" depends="prepare, lmcp-defs, configure">
+        <exec executable="ninja" failonerror="true">
+            <arg value="-C" />
+            <arg value="${build-armhf.dir}" />
+        </exec>
+    </target>
+</project>
