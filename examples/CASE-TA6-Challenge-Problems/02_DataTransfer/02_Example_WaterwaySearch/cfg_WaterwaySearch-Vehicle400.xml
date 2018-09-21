@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <UxAS FormatVersion="1.0" EntityID="100"  EntityType="Aircraft">
     <!--  -->
-    <Bridge Type="LmcpObjectNetworkZeroMqZyreBridge" NetworkDevice="ens33">
+    <Bridge Type="LmcpObjectNetworkZeroMqZyreBridge" NetworkDevice="wlan0">
         <SubscribeToExternalMessage MessageType="afrl.cmasi.AirVehicleState"/>
         <SubscribeToExternalMessage MessageType="uxas.messages.task.AssignmentCoordination"/>
+        <SubscribeToExternalMessage MessageType="uxas.messages.uxnative.DownloadRequest" />
         <SubscribeToExternalMessage MessageType="uxas.messages.uxnative.DownloadReply" />
     </Bridge>
 
     <!-- Bridge to OpenAMASE (sends messages to which the bridge is subscribed) -->
-    <Bridge Type="LmcpObjectNetworkTcpBridge" TcpAddress="tcp://127.0.0.1:5555" Server="FALSE">
+    <Bridge Type="LmcpObjectNetworkTcpBridge" TcpAddress="tcp://10.42.0.1:5555" Server="FALSE">
         <SubscribeToMessage MessageType="afrl.cmasi.MissionCommand" />
         <SubscribeToMessage MessageType="afrl.cmasi.LineSearchTask" />
         <SubscribeToMessage MessageType="afrl.cmasi.VehicleActionCommand" />

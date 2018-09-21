@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <UxAS FormatVersion="1.0" EntityID="200"  EntityType="Aircraft">
-    <Bridge Type="LmcpObjectNetworkZeroMqZyreBridge" NetworkDevice="ens33">
+    <Bridge Type="LmcpObjectNetworkZeroMqZyreBridge" NetworkDevice="wlx7cdd90ebfe24">
         <SubscribeToExternalMessage MessageType="afrl.cmasi.AirVehicleState"/>
         <SubscribeToExternalMessage MessageType="uxas.messages.task.AssignmentCoordination"/>
+        <SubscribeToExternalMessage MessageType="uxas.messages.uxnative.DownloadRequest" />
         <SubscribeToExternalMessage MessageType="uxas.messages.uxnative.DownloadReply" />
     </Bridge>
 
