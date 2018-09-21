@@ -254,5 +254,21 @@
             <Field Name="OperationalAreas" Type="CMASI/OperatingRegion[]" MaxArrayLength="32" />
         </Struct>
 
+        <!-- DownloadRequest
+            Download state of the requested type.
+            But what if the target has multiple state fields of the same type?  Likely need
+            a specialized protocol for that for each subject of the request. -->
+        <Struct Name="DownloadRequest" >
+            <!-- The LMCP type id of the requested data -->
+            <Field Name="RequestedLmcpTypeName" Type="string" />
+        </Struct>
+
+        <!-- DownloadReply
+            Response to DownloadRequest. -->
+        <Struct Name="DownloadReply" >
+            <!-- Array of response data, empty if not satisfied. -->
+            <Field Name="Contents" Type="LmcpObject[]" />
+        </Struct>
+
  </StructList>
 </MDM>
