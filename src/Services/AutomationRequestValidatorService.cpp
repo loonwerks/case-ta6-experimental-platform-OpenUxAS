@@ -239,6 +239,8 @@ AutomationRequestValidatorService::processReceivedLmcpMessage(std::unique_ptr<ux
     {
         auto downloadReply = std::make_shared<uxas::messages::uxnative::DownloadReply>();
         auto downloadRequest = std::static_pointer_cast<uxas::messages::uxnative::DownloadRequest>(receivedLmcpMessage->m_object);
+        UXAS_LOG_WARN(m_serviceId, "AutomationRequestValidatorService: Received DownloadRequest: requestedType=",
+                downloadRequest->getRequestedLmcpTypeName());
         if (uxas::messages::task::UniqueAutomationRequest::Subscription.compare(downloadRequest->getRequestedLmcpTypeName()) == 0)
         {
             for (auto req : m_pendingRequests)
@@ -256,6 +258,9 @@ AutomationRequestValidatorService::processReceivedLmcpMessage(std::unique_ptr<ux
             {
                 downloadReply->getContents().push_back(iter->second->clone());
             }
+        }
+        for (auto dlElement : downloadReply->getContents()) {
+            UXAS_LOG_WARN(m_serviceId, "AutomationRequestValidatorService: Downloading ", dlElement);        
         }
         sendSharedLmcpObjectLimitedCastMessage(receivedLmcpMessage->m_attributes->getSourceEntityId(), downloadReply);
     }
