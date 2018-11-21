@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <UxAS FormatVersion="1.0" EntityID="200"  EntityType="Aircraft">
+    <!-- NOTE:: "NetworkDevice" must be set equal to an active network interface device, e.g. wlan0 -->
+    <!-- on Linux and Mac, type 'ifconfig' to find interface name -->
+    <!-- on Windows, type 'ipconfig' to find interface name (name is after adapter type)	
+	     Windows example name: Wireless Network Connection
+	-->
     <Bridge Type="LmcpObjectNetworkZeroMqZyreBridge" NetworkDevice="wlx7cdd90ebfe24">
         <SubscribeToExternalMessage MessageType="afrl.cmasi.AirVehicleState"/>
         <SubscribeToExternalMessage MessageType="uxas.messages.task.AssignmentCoordination"/>
         <SubscribeToExternalMessage MessageType="uxas.messages.uxnative.DownloadRequest" />
         <SubscribeToExternalMessage MessageType="uxas.messages.uxnative.DownloadReply" />
+        <SubscribeToExternalMessage MessageType="uxas.messages.uxnative.FileTransfer" />
     </Bridge>
-
+    <!-- Connect to AMASE using the default TCP port -->
     <Bridge Type="LmcpObjectNetworkTcpBridge" TcpAddress="tcp://127.0.0.1:5555" Server="FALSE">
         <SubscribeToMessage MessageType="afrl.cmasi.MissionCommand" />
         <SubscribeToMessage MessageType="afrl.cmasi.LineSearchTask" />
@@ -40,6 +46,7 @@
         <LogMessage MessageType="uxas" NumberMessagesToSkip="0"/>
         <LogMessage MessageType="afrl" NumberMessagesToSkip="0"/>    
     </Service>
+    <Service Type="FileTransferService" />
     
     <!-- Send every message from zeromq bus to an external program using TCP -->
     <Bridge Type="LmcpObjectNetworkTcpBridge" TcpAddress="tcp://127.0.0.1:9999" Server="TRUE">

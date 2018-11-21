@@ -117,6 +117,8 @@
 #include "ZeroizeConditionRecognizerService.h"
 #include "StatusReportService.h"
 #include "LoiterLeash.h"
+#include "FileWriterService.h"
+#include "FileTransferService.h"
 
 
 #endif  //UXAS_SERVICE_LIST_CODE_HEADERS
@@ -194,6 +196,8 @@
 {auto svc = uxas::stduxas::make_unique<uxas::service::ZeroizeConditionRecognizerService>();}
 {auto svc = uxas::stduxas::make_unique<uxas::service::StatusReportService>();}
 {auto svc = uxas::stduxas::make_unique<uxas::service::LoiterLeash>();}
+{auto svc = uxas::stduxas::make_unique<uxas::service::FileWriterService>();}
+{auto svc = uxas::stduxas::make_unique<uxas::service::FileTransferService>();}
 
 
 #endif  //REGISTER_SERVICE_CODE

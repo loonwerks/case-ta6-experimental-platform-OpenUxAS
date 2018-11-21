@@ -269,6 +269,37 @@
             <!-- Array of response data, empty if not satisfied. -->
             <Field Name="Contents" Type="LmcpObject[]" />
         </Struct>
+        
+        <!-- FileTransferRequest - Request an entity to send you a file -->
+        <Struct Name="FileTransferRequest" >
+          <!-- Nonce identifier (used to identify the FileTransfer associated with this request) -->
+          <Field Name="Nonce" Type="int64" />
+          <!-- The Entity to send the file -->
+          <Field Name="SourceEntityID" Type="int64" />
+          <!-- Intended recipient Entity ID-->
+          <Field Name="DestinationEntityID" Type="int64" />
+          <!-- The name of the file (on Source Entity) that should be sent -->
+          <Field Name="FileNames" Type="string[]" />
+        </Struct>
 
+        <!-- File - MDM for communicating a file via LMCP -->
+        <!-- Limitation: File size is assumed to be small enough to fit a string type. MDMs
+                         are designed to be lightweight communications, not big data -->
+        <Struct Name="File">
+          <!-- The name of the file being sent -->
+          <Field Name="FileName" Type="string" />
+          <!-- The contents of the file -->
+          <Field Name="FileContents" Type="byte[]" />
+        </Struct>
+
+        <!-- FileTransfer - MDM to transfer file(s) from this entity -->
+        <Struct Name="FileTransfer">
+          <!-- Nonce identifier (used to identify the FileTransferRequest associated with this transfer) -->
+          <Field Name="Nonce" Type="int64" />
+          <!-- Entity ID for the intended recipient -->
+          <Field Name="DestinationEntityID" Type="int64" />
+          <!-- The Files being transferred -->
+          <Field Name="Files" Type="UXNATIVE/File[]" />
+        </Struct>
  </StructList>
 </MDM>

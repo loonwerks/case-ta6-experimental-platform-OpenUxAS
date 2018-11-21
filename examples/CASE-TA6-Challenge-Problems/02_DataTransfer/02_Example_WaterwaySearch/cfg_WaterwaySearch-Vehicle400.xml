@@ -6,9 +6,11 @@
         <SubscribeToExternalMessage MessageType="uxas.messages.task.AssignmentCoordination"/>
         <SubscribeToExternalMessage MessageType="uxas.messages.uxnative.DownloadRequest" />
         <SubscribeToExternalMessage MessageType="uxas.messages.uxnative.DownloadReply" />
+        <SubscribeToExternalMessage MessageType="uxas.messages.uxnative.FileTransfer" />
     </Bridge>
 
     <!-- Bridge to OpenAMASE (sends messages to which the bridge is subscribed) -->
+    <!-- Connect to AMASE on the default TCP port -->
     <Bridge Type="LmcpObjectNetworkTcpBridge" TcpAddress="tcp://10.42.0.1:5555" Server="FALSE">
         <SubscribeToMessage MessageType="afrl.cmasi.MissionCommand" />
         <SubscribeToMessage MessageType="afrl.cmasi.LineSearchTask" />
@@ -25,6 +27,8 @@
     <Service Type="AssignmentTreeBranchBoundService" NumberNodesMaximum="0" CostFunction="MINMAX" />   
     <Service Type="AutomationDiagramDataService"/>
     <Service Type="ZeroizeConditionRecognizerService" VehicleID="400" />
+    <Service Type="FileWriterService" FileName="Vehicle-" FileExtension="txt" Period="2000" HistoryTracking="TRUE"/>
+    <Service Type="FileTransferService" />
 
     <Service Type="WaypointPlanManagerService" VehicleID="400" NumberWaypointsToServe="15" NumberWaypointsOverlap="5"
              DefaultLoiterRadius_m="250"  param.turnType="FlyOver" AddLoiterToEndOfSegments="FALSE"

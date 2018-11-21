@@ -38,12 +38,14 @@ should be changed to match the IP address of the host interface of the IP subnet
 ### What Happens?
 
 * When the Amase simulation starts, two UAVs will be initialized and begin loitering about to different loactions. Note: Amase uses NASA Worldwind for background imagery. If no imagery is available, Amase's background will be black.
+* Vehice-400 UxAS instance (running on the experimental target platform) will periodically write aircraft state LMCP messages for connected UAVs (Vehicles 400 and 500) to files: Vehicle-400.txt and Vehicle-500.txt respectively (tracking the aircraft state history for each vehicle on the experimental platform).
 * .3 seconds after UxAS starts a line representing the LineSearchTask will appear in Amase
 * 2 seconds after the simulation starts, a DownloadRequest message is sent to the UxAS instance on the target
 * Shortly after this the target should respond with a DownloadReply message
 * 5 seconds after UxAS start an AutomationRequest is sent to UxAS which kick off the mission
 * Once the plans have been calculated and a UAV is assigned to perform the LineSearchTask, waypoints will be displayed in Amase and the UAV will start following them.
 * When the UAV reaches the first waypoint of the LineSearchTask, its sensor will move to follow the river.
-* As the search progresses, the UAV will cross throug a KeepOutZone identified in the ZeroizeCondition and at this point ZeroizationCommands will be issued.
+* As the search progresses, the UAV will cross through a KeepOutZone identified in the ZeroizeCondition and at this point ZeroizationCommands will be issued.
+* 10 seconds after UxAS simulation begins a file transfer will automatically transfer Vehicle-400.txt and Vehicle-500.txt files from the Vehicle 400 instance of UxAS running on the experimental platform to the ground instance of UxAS running on the host platform.  As a result, a copy of the files (Vehicle-400.txt and Vehicle-500.txt) should appear in the run directory for the ground instance of UxAS on the host platform.
 
 

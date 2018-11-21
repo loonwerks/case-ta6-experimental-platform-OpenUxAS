@@ -1,4 +1,6 @@
 srcs_services = [
+  'FileWriterService.cpp',
+  'FileTransferService.cpp',
 	'ZeroizeConditionRecognizerService.cpp',
   '00_ServiceTemplate.cpp',
   '01_HelloWorld.cpp',

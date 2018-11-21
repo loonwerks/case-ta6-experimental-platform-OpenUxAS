@@ -353,6 +353,15 @@
         <RequestedLmcpTypeName>afrl.cmasi.Task</RequestedLmcpTypeName>
       </DownloadRequest>
 
+      <FileTransferRequest Series="UXNATIVE" Time="10.0">
+        <Nonce>101</Nonce>
+        <SourceEntityID>100</SourceEntityID>
+        <DestinationEntityID>200</DestinationEntityID>
+        <FileNames>
+          <string>Vehicle-400.txt</string>
+          <string>Vehicle-500.txt</string>
+        </FileNames>
+      </FileTransferRequest>
 <!-- ///////////////////////////////////////////////////////////////////////////////////////////// -->
 
 <!-- ////////////////////////////////////////////////////////////////////////////////////////////// -->
