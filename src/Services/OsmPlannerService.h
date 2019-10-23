@@ -22,6 +22,7 @@
 
 
 #include "VisibilityGraph.h"
+#include "FlatEarth.h"
 
 #include "ServiceBase.h"
 #include "Constants/Constants_Control.h"
@@ -33,9 +34,9 @@
 #include "uxas/messages/route/RoadPointsRequest.h"
 #include "uxas/messages/route/RoadPointsResponse.h"
 
-#include <boost/graph/astar_search.hpp>
-#include <boost/graph/graph_traits.hpp>
-#include <boost/graph/adjacency_list.hpp>
+#include "boost/graph/astar_search.hpp"
+#include "boost/graph/graph_traits.hpp"
+#include "boost/graph/adjacency_list.hpp"
 
 #include <unordered_map>
 
@@ -219,6 +220,7 @@ public:
     {
         std::deque<int64_t> m_nodeIds;
         int64_t m_highwayId = -1;
+        double m_distance_m = 0;
     };
 
 
@@ -276,7 +278,7 @@ protected:
 
 private:
     bool isBuildFullPlot(const std::vector<int64_t>& highWayIds);
-
+    uxas::common::utilities::FlatEarth m_flatEarth;
 
 
 };

@@ -12,7 +12,9 @@
 
 #include "ServiceBase.h"
 
+#include "afrl/cmasi/Waypoint.h"
 #include "Constants/Constant_Strings.h"
+#include "visilibity.h"
 
 #include <memory>
 #include <unordered_map>
@@ -74,6 +76,9 @@ private:
     static ServiceBase::CreationRegistrar<SteeringService> s_registrar;
 
     void reset(const afrl::cmasi::MissionCommand* pMissionCmd);
+    bool withinDistance(const VisiLibity::Point& point1, const VisiLibity::Point& point2, double threshold);
+    bool CheckProximity(VisiLibity::Point position, VisiLibity::Point current, afrl::cmasi::Waypoint* wp);
+
 
     int64_t m_vehicleID;
 
@@ -90,6 +95,11 @@ private:
     double m_loiterRadius_m{250.0};
     int64_t m_acceptanceTimeToArrive_ms{0};
     double m_acceptanceDistance{0.0};
+    
+    bool m_useSafeHeadingAction{false};
+    double m_overrideSpeed{0.0};
+    bool m_isSpeedOverridden{false};
+    bool m_isHeadingControlledByTask{false};
 
     std::unique_ptr<afrl::cmasi::Location3D> m_previousLocation;
 
