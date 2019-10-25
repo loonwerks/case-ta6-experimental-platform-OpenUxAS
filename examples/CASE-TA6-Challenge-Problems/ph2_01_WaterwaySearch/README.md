@@ -6,30 +6,29 @@ This is an example of running UxAS service that communicates to the AMASE simula
 ## To Do:
 
 1. Modify configuration to have a single UAV and a single ground station.
-2. Modify the CPP source code for the services to utilize persistent storage (i.e. UxAS::PersistentMap) to maintain data elements AirVehicleConfiguration, (initial) AirVehicleState, Task, and ZeroizeCondition in the persistent maps.  The following services may be affected StatusReportService, Test_SimulationTime, TaskManagerService, AutomationRequestValidatorService, RoutePlannerVisibilityService, RouteAggregatorService, AssignmentTreeBranchBoundService, AutomationDiagramDataService, WaypointPlanManagerService, PlanBuilderService, and ZeroizeConditionRecognizer.
-3. Construct an initialized database containing necessary values for AirVehicleConfiguration, AirVehicleState, ZeroizeCondition, KeepInZones, KeepOutZones, and a LineSearchTask.
-4. Configure the ground station instance of UxAS to send a single AutomationRequest message requesting the line search task.
-5. Update the AMASE configuration to illustrate this scenario.
-6. Integrate onto target ODROID XU4 target.
-7. Update this README.md again (sections files, running the example, what happens, things to try).
+2. Modify the CPP source code for the services to utilize persistent storage (i.e. UxAS::PersistentMap) to maintain data elements AirVehicleConfiguration, (initial) AirVehicleState, (initial) MissionCommand, Task, and ZeroizeCondition in the persistent maps.  The following services may be affected StatusReportService, Test_SimulationTime, TaskManagerService, AutomationRequestValidatorService, RoutePlannerVisibilityService, RouteAggregatorService, AssignmentTreeBranchBoundService, AutomationDiagramDataService, WaypointPlanManagerService, PlanBuilderService, and ZeroizeConditionRecognizer.
+3. A potential difficulty is that the WaypointPlanManagerService can be initialized to the initial loiter waypoint only by receiving a MissionCommand message.  It may be difficult to have this initialized from a data store.
+4. Construct an initialized database containing necessary values for AirVehicleConfiguration, AirVehicleState, ZeroizeCondition, KeepInZones, KeepOutZones, and a LineSearchTask.
+5. Configure the ground station instance of UxAS to send a single AutomationRequest message requesting the line search task.
+6. Update the AMASE configuration to illustrate this scenario.
+7. Integrate onto target ODROID XU4 target.
+8. Update this README.md again (sections files, running the example, what happens, things to try).
 
 
 ## Files:
 
 * `cfg_WaterwaySearch_UAV.xml` - Configuration file for services to be run on the UAV instance of UxAS
-* `cfg_WaterwaySearch_UAV.xml` - Configuration file for services to be run on the ground station instance of UxAS
+* `cfg_WaterwaySearch_GS.xml` - Configuration file for services to be run on the ground station instance of UxAS
 * `runUxAS_WaterwaySearch_UAV.sh` - Bash shell script to run the UAV instance of UxAS
 * `runUxAS_WaterwaySearch_GS.sh` - Bash shell script to run the ground station instance of UxAS
 * `runAMASE_WaterwaySearch.sh` - Bash shell script to run the OpenAMASE simulation environment
 * `Scenario_WaterwaySearch.xml` - Configuration file for the OpenAMASE simulation environment
-* `MessagesToSend/` - most of the messages in this directory are explained in the document, `WaterwayExample_MessageFLow.pdf`. A few are explained below:
-* `MessagesToSend/LINE_Waterway_Deschutes.kml` - a 'kml' file from Google Earth, used to define the line search task.
-* `MessagesToSend/KmlToBoundariesTasks.WaterwaySearch.py` - a python script that process the kml file and generates LMCP messages for the example. 
+* `MessagesToSend/` - most of the messages in this directory are explained in the document, `WaterwayExample_MessageFLow.pdf`. A few are explained below
 
 
 ## The 'MessagesToSend' directory contains files with xml encoded LMCP messages that are sent in to UxAS using the 'MessagesToSend' service. ##
 
-* `MessagesToSend/Tasks/AutomationRequest.xml` - the operating region, i.e. set of keep-in and keep-out tasks, to be used in the assignment.
+* `MessagesToSend/Tasks/AutomationRequest.xml` - request by ID the line search task
 
 
 ## Running the Example:
