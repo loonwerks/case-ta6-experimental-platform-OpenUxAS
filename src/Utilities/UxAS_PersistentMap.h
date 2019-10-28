@@ -72,6 +72,11 @@ public:
         m_helper.configure(dbName, mapName);
     };
 
+    size_t size() const
+    {
+        return m_helper.size();
+    }
+
     std::shared_ptr<T> lookup(int64_t key)
     {
         std::shared_ptr<T> result = nullptr;

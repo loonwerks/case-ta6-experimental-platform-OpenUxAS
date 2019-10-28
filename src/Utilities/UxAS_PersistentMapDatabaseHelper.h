@@ -74,6 +74,8 @@ public:
 
     void configure(const std::string& dbName, const std::string& mapName);
 
+    size_t size() const;
+
     std::shared_ptr<avtas::lmcp::Object> lookup(int64_t key);
 
     void put(int64_t key, std::shared_ptr<avtas::lmcp::Object>);

@@ -80,6 +80,32 @@ PersistentMapDatabaseHelper::configure
     }
 }
 
+size_t
+PersistentMapDatabaseHelper::size
+() const
+{
+    size_t result = 0;
+    try {
+        std::lock_guard<std::mutex> lock(s_mutex);
+
+        SQLite::Database db(m_dbName);
+
+        std::ostringstream selectStmtStringStream;
+        selectStmtStringStream
+            << "SELECT COUNT(*) FROM " << m_mapName << ";";
+
+        SQLite::Statement selectStmt(db, selectStmtStringStream.str());
+
+        while (selectStmt.executeStep()) {
+            result = (size_t) selectStmt.getColumn(0).getInt64();
+        }
+
+    } catch (std::exception& e) {
+        UXAS_LOG_WARN("PersistentMapDatabaseHelper::size: ", e.what());
+    }
+    return result;
+}
+
 std::shared_ptr<avtas::lmcp::Object>
 PersistentMapDatabaseHelper::lookup
 (int64_t key)

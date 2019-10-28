@@ -58,6 +58,8 @@
 #define STRING_XML_OPTIONNAME "OptionName"
 #define STRING_XML_VALUE "Value"
 
+#define STRING_DATABASE_FILENAME "UxASTaskManagerServicePersistence.db3"
+
 #define COUT_INFO_MSG(MESSAGE) std::cout << "<>TaskManager::" << MESSAGE << std::endl;std::cout.flush();
 #define COUT_FILE_LINE_MSG(MESSAGE) std::cout << "<>TaskManager::" << __FILE__ << ":" << __LINE__ << ":" << MESSAGE << std::endl;std::cout.flush();
 #define CERR_FILE_LINE_MSG(MESSAGE) std::cerr << "<>TaskManager::" << __FILE__ << ":" << __LINE__ << ":" << MESSAGE << std::endl;std::cerr.flush();
@@ -75,7 +77,15 @@ TaskManagerService::s_registrar(TaskManagerService::s_registryServiceTypeNames()
 TaskManagerService::TaskManagerService()
     : ServiceBase(TaskManagerService::s_typeName(), TaskManagerService::s_directoryName())
 {
-    m_idVsEntityConfigurationMap.configure("DBTaskManagerService.db3", "idVsEntityConfiguration");
+    m_idVsEntityConfigurationMap.configure(STRING_DATABASE_FILENAME, "idVsEntityConfiguration");
+    m_idVsEntityStateMap.configure(STRING_DATABASE_FILENAME, "idVsEntityState");
+    m_idVsAreaOfInterestMap.configure(STRING_DATABASE_FILENAME, "idVsAreaOfInterest");
+    m_idVsLineOfInterestMap.configure(STRING_DATABASE_FILENAME, "idVsLineOfInterest");
+    m_idVsPointOfInterestMap.configure(STRING_DATABASE_FILENAME, "idVsPointOfInterest");
+    m_vehicleIdVsCurrentMissionMap.configure(STRING_DATABASE_FILENAME, "idVsCurrentMission");
+    m_idVsKeepInZoneMap.configure(STRING_DATABASE_FILENAME, "idVsKeepInZone");
+    m_idVsKeepOutZoneMap.configure(STRING_DATABASE_FILENAME, "idVsKeepOutZone");
+    m_idVsOperatingRegionMap.configure(STRING_DATABASE_FILENAME, "idVsOperatingRegion");
 }
 
 TaskManagerService::~TaskManagerService() { };
@@ -265,27 +275,26 @@ TaskManagerService::processReceivedLmcpMessage(std::unique_ptr<uxas::communicati
         createNewServiceMessage->setXmlConfiguration(xmlConfigStr);
 
         // add all existing entities for new service initialization
-        auto entityMap = m_idVsEntityConfigurationMap.asStdMap();
-        for (auto& entityConfiguration : *entityMap)
+        for (auto& entityConfiguration : *(m_idVsEntityConfigurationMap.asStdMap()))
         {
             createNewServiceMessage->getEntityConfigurations().push_back(entityConfiguration.second->clone());
         }
         
         // add all existing entities for new service initialization
-        for (auto& entityState : m_idVsEntityState)
+        for (auto& entityState : *(m_idVsEntityStateMap.asStdMap()))
         {
             createNewServiceMessage->getEntityStates().push_back(entityState.second->clone());
         }
 
-        for (auto kiz : m_idVsKeepInZone)
+        for (auto& kiz : *(m_idVsKeepInZoneMap.asStdMap()))
         {
           createNewServiceMessage->getKeepInZones().push_back(kiz.second->clone());
         }
-        for (auto koz : m_idVsKeepOutZone)
+        for (auto& koz : *(m_idVsKeepOutZoneMap.asStdMap()))
         {
           createNewServiceMessage->getKeepOutZones().push_back(koz.second->clone());
         }
-        for (auto opr : m_idVsOperatingRegion)
+        for (auto& opr : *(m_idVsOperatingRegionMap.asStdMap()))
         {
           createNewServiceMessage->getOperatingRegions().push_back(opr .second->clone());
         }
@@ -295,10 +304,10 @@ TaskManagerService::processReceivedLmcpMessage(std::unique_ptr<uxas::communicati
         if (afrl::impact::isAngledAreaSearchTask(messageObject.get()))
         {
             auto angledAreaSearchTask = std::static_pointer_cast<afrl::impact::AngledAreaSearchTask>(messageObject);
-            auto itAreaOfInterest = m_idVsAreaOfInterest.find(angledAreaSearchTask->getSearchAreaID());
-            if (itAreaOfInterest != m_idVsAreaOfInterest.end())
+            auto itAreaOfInterest = m_idVsAreaOfInterestMap.lookup(angledAreaSearchTask->getSearchAreaID());
+            if (itAreaOfInterest != nullptr)
             {
-                createNewServiceMessage->getAreas().push_back(itAreaOfInterest->second->clone());
+                createNewServiceMessage->getAreas().push_back(itAreaOfInterest->clone());
             }
             else
             {
@@ -310,10 +319,10 @@ TaskManagerService::processReceivedLmcpMessage(std::unique_ptr<uxas::communicati
         else if (afrl::impact::isImpactLineSearchTask(messageObject.get()))
         {
             auto impactLineSearchTask = std::static_pointer_cast<afrl::impact::ImpactLineSearchTask>(messageObject);
-            auto itLine = m_idVsLineOfInterest.find(impactLineSearchTask->getLineID());
-            if (itLine != m_idVsLineOfInterest.end())
+            auto itLine = m_idVsLineOfInterestMap.lookup(impactLineSearchTask->getLineID());
+            if (itLine != nullptr)
             {
-                createNewServiceMessage->getLines().push_back(itLine->second->clone());
+                createNewServiceMessage->getLines().push_back(itLine->clone());
             }
             else
             {
@@ -327,10 +336,10 @@ TaskManagerService::processReceivedLmcpMessage(std::unique_ptr<uxas::communicati
             auto impactPointSearchTask = std::static_pointer_cast<afrl::impact::ImpactPointSearchTask>(messageObject);
             if (impactPointSearchTask->getSearchLocationID() > 0)
             {
-                auto itPoint = m_idVsPointOfInterest.find(impactPointSearchTask->getSearchLocationID());
-                if (itPoint != m_idVsPointOfInterest.end())
+                auto itPoint = m_idVsPointOfInterestMap.lookup(impactPointSearchTask->getSearchLocationID());
+                if (itPoint != nullptr)
                 {
-                    createNewServiceMessage->getPoints().push_back(itPoint->second->clone());
+                    createNewServiceMessage->getPoints().push_back(itPoint->clone());
                 }
                 else
                 {
@@ -345,10 +354,10 @@ TaskManagerService::processReceivedLmcpMessage(std::unique_ptr<uxas::communicati
             auto patternSearchTask = std::static_pointer_cast<afrl::impact::PatternSearchTask>(messageObject);
             if (patternSearchTask->getSearchLocationID() > 0)
             {
-                auto itPoint = m_idVsPointOfInterest.find(patternSearchTask->getSearchLocationID());
-                if (itPoint != m_idVsPointOfInterest.end())
+                auto itPoint = m_idVsPointOfInterestMap.lookup(patternSearchTask->getSearchLocationID());
+                if (itPoint != nullptr)
                 {
-                    createNewServiceMessage->getPoints().push_back(itPoint->second->clone());
+                    createNewServiceMessage->getPoints().push_back(itPoint->clone());
                 }
                 else
                 {
@@ -361,11 +370,11 @@ TaskManagerService::processReceivedLmcpMessage(std::unique_ptr<uxas::communicati
         else if (afrl::impact::isEscortTask(messageObject.get()))
         {
             // escort attempts to determine 'supported entity' route from all lines of interest or mission commands
-            for (auto line : m_idVsLineOfInterest)
+            for (auto& line : *(m_idVsLineOfInterestMap.asStdMap()))
             {
                 createNewServiceMessage->getLines().push_back(line.second->clone());
             }
-            for (auto missionCommand : m_vehicleIdVsCurrentMission)
+            for (auto& missionCommand : *(m_vehicleIdVsCurrentMissionMap.asStdMap()))
             {
                 createNewServiceMessage->getMissionCommands().push_back(missionCommand.second->clone());
             }
@@ -384,6 +393,14 @@ TaskManagerService::processReceivedLmcpMessage(std::unique_ptr<uxas::communicati
         if (m_entityId == zeroizeCommand->getEntityID())
         {
             m_idVsEntityConfigurationMap.zeroizeMap();
+            m_idVsEntityStateMap.zeroizeMap();
+            m_idVsAreaOfInterestMap.zeroizeMap();
+            m_idVsLineOfInterestMap.zeroizeMap();
+            m_idVsPointOfInterestMap.zeroizeMap();
+            m_vehicleIdVsCurrentMissionMap.zeroizeMap();
+            m_idVsKeepInZoneMap.zeroizeMap();
+            m_idVsKeepOutZoneMap.zeroizeMap();
+            m_idVsOperatingRegionMap.zeroizeMap();
             UXAS_LOG_WARN("Received zeroization command, zeroized entity configuration map.");
         }
     }
@@ -393,22 +410,22 @@ TaskManagerService::processReceivedLmcpMessage(std::unique_ptr<uxas::communicati
     }
     else if (entityState)
     {
-        m_idVsEntityState[entityState->getID()] = entityState;
+        m_idVsEntityStateMap.put(entityState->getID(), entityState);
     }
     else if (afrl::impact::isAreaOfInterest(messageObject.get()))
     {
         auto areaOfInterest = std::static_pointer_cast<afrl::impact::AreaOfInterest>(messageObject);
-        m_idVsAreaOfInterest[areaOfInterest->getAreaID()] = areaOfInterest;
+        m_idVsAreaOfInterestMap.put(areaOfInterest->getAreaID(), areaOfInterest);
     }
     else if (afrl::impact::isLineOfInterest(messageObject.get()))
     {
         auto lineOfInterest = std::static_pointer_cast<afrl::impact::LineOfInterest>(messageObject);
-        m_idVsLineOfInterest[lineOfInterest->getLineID()] = lineOfInterest;
+        m_idVsLineOfInterestMap.put(lineOfInterest->getLineID(), lineOfInterest);
     }
     else if (afrl::impact::isPointOfInterest(messageObject.get()))
     {
         auto pointOfInterest = std::static_pointer_cast<afrl::impact::PointOfInterest>(messageObject);
-        m_idVsPointOfInterest[pointOfInterest->getPointID()] = pointOfInterest;
+        m_idVsPointOfInterestMap.put(pointOfInterest->getPointID(), pointOfInterest);
     }
     else if (afrl::cmasi::isAutomationRequest(messageObject.get()))
     {
@@ -425,28 +442,28 @@ TaskManagerService::processReceivedLmcpMessage(std::unique_ptr<uxas::communicati
         auto ares = std::static_pointer_cast<afrl::cmasi::AutomationResponse>(messageObject);
         for (auto v : ares->getMissionCommandList())
         {
-            m_vehicleIdVsCurrentMission[v->getVehicleID()] = std::shared_ptr<afrl::cmasi::MissionCommand>(v->clone());
+            m_vehicleIdVsCurrentMissionMap.put(v->getVehicleID(), std::shared_ptr<afrl::cmasi::MissionCommand>(v->clone()));
         }
     }
     else if (afrl::cmasi::isMissionCommand(messageObject.get()))
     {
         auto mish = std::static_pointer_cast<afrl::cmasi::MissionCommand>(messageObject);
-        m_vehicleIdVsCurrentMission[mish->getVehicleID()] = mish;
+        m_vehicleIdVsCurrentMissionMap.put(mish->getVehicleID(), mish);
     }
     else if (afrl::cmasi::isKeepInZone(messageObject.get()))
     {
         auto kiz = std::static_pointer_cast<afrl::cmasi::KeepInZone>(messageObject);
-        m_idVsKeepInZone[kiz->getZoneID()] = kiz;
+        m_idVsKeepInZoneMap.put(kiz->getZoneID(), kiz);
     }
     else if (afrl::cmasi::isKeepOutZone(messageObject.get()))
     {
         auto koz = std::static_pointer_cast<afrl::cmasi::KeepOutZone>(messageObject);
-        m_idVsKeepOutZone[koz->getZoneID()] = koz;
+        m_idVsKeepOutZoneMap.put(koz->getZoneID(), koz);
     }
     else if (afrl::cmasi::isOperatingRegion(messageObject.get()))
     {
         auto opr = std::static_pointer_cast<afrl::cmasi::OperatingRegion>(messageObject);
-        m_idVsOperatingRegion[opr ->getID()] = opr ;
+        m_idVsOperatingRegionMap.put(opr ->getID(), opr);
     }
     else if (afrl::cmasi::isFollowPathCommand(messageObject.get()))
     {
@@ -456,7 +473,7 @@ TaskManagerService::processReceivedLmcpMessage(std::unique_ptr<uxas::communicati
         {
             path->getWaypointList().push_back(wp->clone());
         }
-        m_vehicleIdVsCurrentMission[fpc->getVehicleID()] = path;
+        m_vehicleIdVsCurrentMissionMap.put(fpc->getVehicleID(), path);
     }
     else if (afrl::cmasi::isRemoveTasks(messageObject.get()))
     {

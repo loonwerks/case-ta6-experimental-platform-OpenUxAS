@@ -5,7 +5,7 @@ This is an example of running UxAS service that communicates to the AMASE simula
 
 ## To Do:
 
-1. Modify configuration to have a single UAV and a single ground station.
+1. (complete) Modify configuration to have a single UAV and a single ground station.
 2. Modify the CPP source code for the services to utilize persistent storage (i.e. UxAS::PersistentMap) to maintain data elements AirVehicleConfiguration, (initial) AirVehicleState, (initial) MissionCommand, Task, and ZeroizeCondition in the persistent maps.  The following services may be affected StatusReportService, Test_SimulationTime, TaskManagerService, AutomationRequestValidatorService, RoutePlannerVisibilityService, RouteAggregatorService, AssignmentTreeBranchBoundService, AutomationDiagramDataService, WaypointPlanManagerService, PlanBuilderService, and ZeroizeConditionRecognizer.
 3. A potential difficulty is that the WaypointPlanManagerService can be initialized to the initial loiter waypoint only by receiving a MissionCommand message.  It may be difficult to have this initialized from a data store.
 4. Construct an initialized database containing necessary values for AirVehicleConfiguration, AirVehicleState, ZeroizeCondition, KeepInZones, KeepOutZones, and a LineSearchTask.

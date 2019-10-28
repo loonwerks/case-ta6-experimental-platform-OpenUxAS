@@ -141,14 +141,30 @@ private:
     // std::unordered_map<int64_t, std::shared_ptr<afrl::cmasi::EntityConfiguration> > m_idVsEntityConfiguration;
     uxas::common::persistence::PersistentMap<afrl::cmasi::EntityConfiguration> m_idVsEntityConfigurationMap;
 
-    std::unordered_map<int64_t, std::shared_ptr<afrl::cmasi::EntityState> > m_idVsEntityState;
-    std::unordered_map<int64_t, std::shared_ptr<afrl::impact::AreaOfInterest> > m_idVsAreaOfInterest;
-    std::unordered_map<int64_t, std::shared_ptr<afrl::impact::LineOfInterest> > m_idVsLineOfInterest;
-    std::unordered_map<int64_t, std::shared_ptr<afrl::impact::PointOfInterest> > m_idVsPointOfInterest;
-    std::unordered_map<int64_t, std::shared_ptr<afrl::cmasi::MissionCommand> > m_vehicleIdVsCurrentMission;
-    std::unordered_map<int64_t, std::shared_ptr<afrl::cmasi::KeepInZone> > m_idVsKeepInZone;
-    std::unordered_map<int64_t, std::shared_ptr<afrl::cmasi::KeepOutZone> > m_idVsKeepOutZone;
-    std::unordered_map<int64_t, std::shared_ptr<afrl::cmasi::OperatingRegion> > m_idVsOperatingRegion;
+    // std::unordered_map<int64_t, std::shared_ptr<afrl::cmasi::EntityState> > m_idVsEntityState;
+    uxas::common::persistence::PersistentMap<afrl::cmasi::EntityState> m_idVsEntityStateMap;
+
+    // std::unordered_map<int64_t, std::shared_ptr<afrl::impact::AreaOfInterest> > m_idVsAreaOfInterest;
+    uxas::common::persistence::PersistentMap<afrl::impact::AreaOfInterest> m_idVsAreaOfInterestMap;
+
+    // std::unordered_map<int64_t, std::shared_ptr<afrl::impact::LineOfInterest> > m_idVsLineOfInterest;
+    uxas::common::persistence::PersistentMap<afrl::impact::LineOfInterest> m_idVsLineOfInterestMap;
+
+    // std::unordered_map<int64_t, std::shared_ptr<afrl::impact::PointOfInterest> > m_idVsPointOfInterest;
+    uxas::common::persistence::PersistentMap<afrl::impact::PointOfInterest> m_idVsPointOfInterestMap;
+
+    // std::unordered_map<int64_t, std::shared_ptr<afrl::cmasi::MissionCommand> > m_vehicleIdVsCurrentMission;
+    uxas::common::persistence::PersistentMap<afrl::cmasi::MissionCommand> m_vehicleIdVsCurrentMissionMap;
+
+    // std::unordered_map<int64_t, std::shared_ptr<afrl::cmasi::KeepInZone> > m_idVsKeepInZone;
+    uxas::common::persistence::PersistentMap<afrl::cmasi::KeepInZone> m_idVsKeepInZoneMap;
+
+    // std::unordered_map<int64_t, std::shared_ptr<afrl::cmasi::KeepOutZone> > m_idVsKeepOutZone;
+    uxas::common::persistence::PersistentMap<afrl::cmasi::KeepOutZone> m_idVsKeepOutZoneMap;
+
+    // std::unordered_map<int64_t, std::shared_ptr<afrl::cmasi::OperatingRegion> > m_idVsOperatingRegion;
+    uxas::common::persistence::PersistentMap<afrl::cmasi::OperatingRegion> m_idVsOperatingRegionMap;
+
     /*! \brief container for managing task options read in from the XML configuration file.
      *  If there is no TaskId, then 0 is used. If there is no TaskType, then the string "NoTaskType" is used.
      * 
