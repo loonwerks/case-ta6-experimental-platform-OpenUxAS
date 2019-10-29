@@ -2,7 +2,7 @@
 <UxAS FormatVersion="1.0" EntityID="500"  EntityType="Ground">
     <Bridge Type="LmcpObjectNetworkZeroMqZyreBridge" NetworkDevice="ens33">
         <SubscribeToMessage MessageType="afrl.cmasi.LineSearchTask"/>
-        <SubscribeToMessage MessageType="uxas.cmasi.AutomationRequest"/>
+        <SubscribeToMessage MessageType="afrl.cmasi.AutomationRequest"/>
     </Bridge>
 
     <!-- Connect to AMASE (see config folder in OpenAMASE) -->
