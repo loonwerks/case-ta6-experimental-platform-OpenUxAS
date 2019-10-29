@@ -1,0 +1,44 @@
+      <KeepInZone Series="CMASI" Time="3.0e-15">
+        <ZoneID>334</ZoneID>
+        <MinAltitude>50</MinAltitude>
+        <MinAltitudeType>AGL</MinAltitudeType>
+        <MaxAltitude>5000</MaxAltitude>
+        <MaxAltitudeType>MSL</MaxAltitudeType>
+        <AffectedAircraft/>
+        <StartTime>0</StartTime>
+        <EndTime>0</EndTime>
+        <Padding>0.0</Padding>
+        <Label/>
+        <Boundary>
+          <Polygon Series="CMASI">
+            <BoundaryPoints>
+              <Location3D Series="CMASI">
+                <Altitude>1000</Altitude><AltitudeType>MSL</AltitudeType>
+                <Latitude>45.348115</Latitude>
+                <Longitude>-120.949248</Longitude>
+              </Location3D>
+              <Location3D Series="CMASI">
+                <Altitude>1000</Altitude><AltitudeType>MSL</AltitudeType>
+                <Latitude>45.325200</Latitude>
+                <Longitude>-121.016</Longitude>
+              </Location3D>
+              <Location3D Series="CMASI">
+                <Altitude>1000</Altitude><AltitudeType>MSL</AltitudeType>
+                <Latitude>45.301221</Latitude>
+                <Longitude>-121.016</Longitude>
+              </Location3D>
+              <Location3D Series="CMASI">
+                <Altitude>1000</Altitude><AltitudeType>MSL</AltitudeType>
+                <Latitude>45.297623</Latitude>
+                <Longitude>-120.954656</Longitude>
+              </Location3D>
+              <Location3D Series="CMASI">
+                <Altitude>1000</Altitude><AltitudeType>MSL</AltitudeType>
+                <Latitude>45.339628</Latitude>
+                <Longitude>-120.911290</Longitude>
+              </Location3D>
+            </BoundaryPoints>
+          </Polygon>
+        </Boundary>
+      </KeepInZone>
+
