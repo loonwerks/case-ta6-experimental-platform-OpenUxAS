@@ -14,6 +14,11 @@
             <BoundaryPoints>
               <Location3D Series="CMASI">
                 <Altitude>1000</Altitude><AltitudeType>MSL</AltitudeType>
+                <Latitude>45.339628</Latitude>
+                <Longitude>-120.911290</Longitude>
+              </Location3D>
+              <Location3D Series="CMASI">
+                <Altitude>1000</Altitude><AltitudeType>MSL</AltitudeType>
                 <Latitude>45.348115</Latitude>
                 <Longitude>-120.949248</Longitude>
               </Location3D>
@@ -31,11 +36,6 @@
                 <Altitude>1000</Altitude><AltitudeType>MSL</AltitudeType>
                 <Latitude>45.297623</Latitude>
                 <Longitude>-120.954656</Longitude>
-              </Location3D>
-              <Location3D Series="CMASI">
-                <Altitude>1000</Altitude><AltitudeType>MSL</AltitudeType>
-                <Latitude>45.339628</Latitude>
-                <Longitude>-120.911290</Longitude>
               </Location3D>
             </BoundaryPoints>
           </Polygon>
