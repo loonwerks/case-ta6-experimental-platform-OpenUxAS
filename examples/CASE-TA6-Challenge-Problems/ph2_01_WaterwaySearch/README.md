@@ -3,18 +3,6 @@
 This is an example of running UxAS service that communicates to the AMASE simulation in order to generate plans and an assignment for one of one UAVs to survay a waterway as commanded from a ground station. For more background see the file 'doc/UxAS_UserManual.pdf'
 
 
-## To Do:
-
-1. Modify configuration to have a single UAV and a single ground station.
-2. Modify the CPP source code for the services to utilize persistent storage (i.e. UxAS::PersistentMap) to maintain data elements AirVehicleConfiguration, (initial) AirVehicleState, (initial) MissionCommand, Task, and ZeroizeCondition in the persistent maps.  The following services may be affected StatusReportService, Test_SimulationTime, TaskManagerService, AutomationRequestValidatorService, RoutePlannerVisibilityService, RouteAggregatorService, AssignmentTreeBranchBoundService, AutomationDiagramDataService, WaypointPlanManagerService, PlanBuilderService, and ZeroizeConditionRecognizer.
-3. A potential difficulty is that the WaypointPlanManagerService can be initialized to the initial loiter waypoint only by receiving a MissionCommand message.  It may be difficult to have this initialized from a data store.
-4. Construct an initialized database containing necessary values for AirVehicleConfiguration, AirVehicleState, ZeroizeCondition, KeepInZones, KeepOutZones, and a LineSearchTask.
-5. Configure the ground station instance of UxAS to send a single AutomationRequest message requesting the line search task.
-6. Update the AMASE configuration to illustrate this scenario.
-7. Integrate onto target ODROID XU4 target.
-8. Update this README.md again (sections files, running the example, what happens, things to try).
-
-
 ## Files:
 
 * `cfg_WaterwaySearch_UAV.xml` - Configuration file for services to be run on the UAV instance of UxAS
@@ -24,11 +12,15 @@ This is an example of running UxAS service that communicates to the AMASE simula
 * `runAMASE_WaterwaySearch.sh` - Bash shell script to run the OpenAMASE simulation environment
 * `Scenario_WaterwaySearch.xml` - Configuration file for the OpenAMASE simulation environment
 * `MessagesToSend/` - most of the messages in this directory are explained in the document, `WaterwayExample_MessageFLow.pdf`. A few are explained below
+* `InitializationMessages/` - Messages sent internally at the UAV to establish initial operating state
 
 
 ## The 'MessagesToSend' directory contains files with xml encoded LMCP messages that are sent in to UxAS using the 'MessagesToSend' service. ##
 
-* `MessagesToSend/Tasks/AutomationRequest.xml` - request by ID the line search task
+* `MessagesToSend/KeepInZone_334.xml` - defines polygon containing the search area
+* `MessagesToSend/KeepOutZone_335.xml` - defines circular region in river bend UAV should avoid
+* `MessagesToSend/ZeroizeCondition_V400.xml` - defines conditions on which UAV should zeroize with respect to keep-in and keep-out zones
+* `MessagesToSend/tasks/AutomationRequest.xml` - request by ID the line search task
 
 
 ## Running the Example:
@@ -39,6 +31,7 @@ This is an example of running UxAS service that communicates to the AMASE simula
 5. enter the command: `./runUxAS_WaterwaySearch_UAV.sh`
 6. open another terminal window in the directory: "examples/CASE-TA6-Challenge-Problems/ph2_01_WaterwaySearch/"
 7. enter the command: `./runUxAS_WaterwaySearch_GS.sh`
+8. click the "play" button on the AMASE simulation window
 
 
 ### What Happens?
@@ -53,5 +46,11 @@ This is an example of running UxAS service that communicates to the AMASE simula
 1. Inject malformed AutomationRequest message to attempt to distrupt the UAV.
 2. Attack network interfaces to UAV or ground station via radio.
 3. Other???
+
+
+## To Do:
+
+1. Integrate onto target ODROID XU4 target.
+
 
 
