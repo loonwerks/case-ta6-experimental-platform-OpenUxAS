@@ -3,6 +3,7 @@
     <Bridge Type="LmcpObjectNetworkZeroMqZyreBridge" NetworkDevice="ens33">
         <SubscribeToExternalMessage MessageType="afrl.cmasi.KeepInZone"/>
         <SubscribeToExternalMessage MessageType="afrl.cmasi.KeepOutZone"/>
+        <SubscribeToExternalMessage MessageType="uxas.messages.uxnative.ZeroizeCondition"/>
         <SubscribeToExternalMessage MessageType="afrl.cmasi.LineSearchTask"/>
         <SubscribeToExternalMessage MessageType="afrl.cmasi.AutomationRequest"/>
     </Bridge>
@@ -35,8 +36,7 @@
     <Service Type="SendMessagesService" PathToMessageFiles="../InitializationMessages/">
         <Message MessageFileName="AirVehicleConfiguration_V400.xml" SendTime_ms="10"/>
         <Message MessageFileName="AirVehicleState_V400.xml" SendTime_ms="20"/>
-        <Message MessageFileName="ZeroizeCondition_V400.xml" SendTime_ms="30"/>
-        <Message MessageFileName="MissionCommand_V400.xml" SendTime_ms="40"/>
+        <Message MessageFileName="MissionCommand_V400.xml" SendTime_ms="30"/>
     </Service>
 
 </UxAS>

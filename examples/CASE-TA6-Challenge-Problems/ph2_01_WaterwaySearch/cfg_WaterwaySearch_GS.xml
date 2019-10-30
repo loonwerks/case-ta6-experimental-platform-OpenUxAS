@@ -3,6 +3,7 @@
     <Bridge Type="LmcpObjectNetworkZeroMqZyreBridge" NetworkDevice="ens33">
         <SubscribeToMessage MessageType="afrl.cmasi.KeepInZone"/>
         <SubscribeToMessage MessageType="afrl.cmasi.KeepOutZone"/>
+        <SubscribeToMessage MessageType="uxas.messages.uxnative.ZeroizeCondition"/>
         <SubscribeToMessage MessageType="afrl.cmasi.LineSearchTask"/>
         <SubscribeToMessage MessageType="afrl.cmasi.AutomationRequest"/>
     </Bridge>
@@ -21,6 +22,7 @@
     <Service Type="SendMessagesService" PathToMessageFiles="../MessagesToSend/">
         <Message MessageFileName="KeepInZone_334.xml" SendTime_ms="1000"/>
         <Message MessageFileName="KeepOutZone_335.xml" SendTime_ms="1500"/>
+        <Message MessageFileName="ZeroizeCondition_V400.xml" SendTime_ms="2000"/>
         <Message MessageFileName="tasks/1000_LineSearch_LINE_Waterway_Deschutes.xml" SendTime_ms="3000"/>
         <Message MessageFileName="tasks/1001_AutomationRequest_LINE_Waterway_Deschutes.xml" SendTime_ms="5000"/>
     </Service>
