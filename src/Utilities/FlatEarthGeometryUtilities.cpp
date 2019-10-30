@@ -39,6 +39,8 @@
 #include "afrl/cmasi/Polygon.h"
 #include "afrl/cmasi/Rectangle.h"
 
+#include "Constants/Convert.h"
+
 #include "FlatEarth.h"
 
 #include "UxAS_Log.h"
@@ -84,7 +86,7 @@ FlatEarthGeometryUtilities::locationWithinCircle
  const std::shared_ptr<afrl::cmasi::Circle>& circle)
 {
     auto flatEarth = new FlatEarth();
-    flatEarth->Initialize(location->getLatitude(), location->getLongitude());
+    flatEarth->Initialize(location->getLatitude() * n_Const::c_Convert::dDegreesToRadians(), location->getLongitude() * n_Const::c_Convert::dDegreesToRadians());
 
     afrl::cmasi::Location3D* const centerPoint = circle->getCenterPoint();
     double radius = (double) circle->getRadius();
@@ -106,13 +108,14 @@ FlatEarthGeometryUtilities::locationWithinPolygon
 
     // Count the number of times a ray from the location intersects a side of
     // the polygon where a side is defined as an adjacent pair of points.
+    // We ray cast along the positive y axis and count the intersections.
     unsigned intersections = 0;
 
     // Manufacture the ray by making its points be along a horizontal line.
     // The location is (0 easting, 0 northing) after initializing our flat
     // earth calculator at the location;
     auto flatEarth = new FlatEarth();
-    flatEarth->Initialize(location->getLatitude(), location->getLongitude());
+    flatEarth->Initialize(location->getLatitude() * n_Const::c_Convert::dDegreesToRadians(), location->getLongitude() * n_Const::c_Convert::dDegreesToRadians());
 
     // To remember to consider the final side as the last and first points,
     // prime the pump with the last point in the list.
@@ -129,10 +132,18 @@ FlatEarthGeometryUtilities::locationWithinPolygon
         double currentNorthing = 0.0;
         double currentEasting = 0.0;
         flatEarth->ConvertLatLong_degToNorthEast_m(currentLatitude, currentLongitude, currentNorthing, currentEasting);
-        if (linesIntersect(0.0, 0.0, 1.0, 0.0, previousEasting, previousNorthing, currentEasting, currentNorthing))
+        // Need the ray from the current location to extend beyond the maximal
+        // distance the line segment defined by the current and previous
+        // eastings and northings.  A sum of the absolute values is
+        // inexpensive computationally and of the similar order of magnitude.
+        double maxAxis = abs(previousEasting) + abs(previousNorthing) + abs(currentEasting) + abs(currentNorthing);
+        bool currentLinesIntersect = linesIntersect(0.0, 0.0, maxAxis, 0.0, previousEasting, previousNorthing, currentEasting, currentNorthing);
+        if (currentLinesIntersect)
         {
             ++intersections;
         }
+        previousEasting = currentEasting;
+        previousNorthing = currentNorthing;
     }
     
     // If the number of intersections is even, the location is outside the
@@ -148,7 +159,7 @@ FlatEarthGeometryUtilities::locationWithinRectangle
     // First generate a flat earth calculator centered at the rectangle center
     auto rectangleCenter = rectangle->getCenterPoint();
     auto flatEarth = new FlatEarth();
-    flatEarth->Initialize(rectangleCenter->getLatitude(), rectangleCenter->getLongitude());
+    flatEarth->Initialize(rectangleCenter->getLatitude() * n_Const::c_Convert::dDegreesToRadians(), rectangleCenter->getLongitude() * n_Const::c_Convert::dDegreesToRadians());
 
     // And find the easting and northing of the location from the rectangle center
     double locationEasting = 0.0;
