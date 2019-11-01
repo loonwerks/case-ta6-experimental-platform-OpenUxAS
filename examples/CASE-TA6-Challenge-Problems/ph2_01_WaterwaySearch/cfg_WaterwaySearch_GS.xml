@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <UxAS FormatVersion="1.0" EntityID="500"  EntityType="Ground">
     <Bridge Type="LmcpObjectNetworkZeroMqZyreBridge" NetworkDevice="ens33">
-        <SubscribeToMessage MessageType="uxas.messages.uxnative.ZeroizeCondition"/>
+        <SubscribeToMessage MessageType="afrl.cmasi.OperatingRegion"/>
         <SubscribeToMessage MessageType="afrl.cmasi.LineSearchTask"/>
         <SubscribeToMessage MessageType="afrl.cmasi.AutomationRequest"/>
     </Bridge>
@@ -14,7 +14,6 @@
 
     <Service Type="Test_SimulationTime"/>
     <Service Type="SendMessagesService" PathToMessageFiles="../MessagesToSend/">
-        <Message MessageFileName="ZeroizeCondition_V400.xml" SendTime_ms="2000"/>
         <Message MessageFileName="OperatingRegion_336.xml" SendTime_ms="2500"/>
         <Message MessageFileName="tasks/1000_LineSearch_LINE_Waterway_Deschutes.xml" SendTime_ms="3000"/>
         <Message MessageFileName="tasks/1001_AutomationRequest_LINE_Waterway_Deschutes.xml" SendTime_ms="5000"/>

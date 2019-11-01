@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <UxAS FormatVersion="1.0" EntityID="400"  EntityType="Aircraft">
     <Bridge Type="LmcpObjectNetworkZeroMqZyreBridge" NetworkDevice="ens33">
-        <SubscribeToExternalMessage MessageType="uxas.messages.uxnative.ZeroizeCondition"/>
+        <SubscribeToExternalMessage MessageType="afrl.cmasi.OperatingRegion"/>
         <SubscribeToExternalMessage MessageType="afrl.cmasi.LineSearchTask"/>
         <SubscribeToExternalMessage MessageType="afrl.cmasi.AutomationRequest"/>
     </Bridge>
