@@ -2,6 +2,15 @@
 
 This is an example of running UxAS service that communicates to the AMASE simulation in order to generate plans and an assignment for one of one UAVs to survay a waterway as commanded from a ground station. For more background see the file 'doc/UxAS_UserManual.pdf'
 
+## Mapping AADL model to OpenUxAS implementation
+
+The AADL model maps to the implementation very much in one-to-one manner.  However, the following implementation details are observed:
+
+* The OpenUxAS executable contains all services implemented to date.  Services listed in the architectural model are present in the binary code but are not activated.
+* The ground station is a second instance of the OpenUxAS executable is used to implement the ground station.  Only the "SendMessagesService" is active, transmitting the operating region, line search task, and automation request messages to drive the scenario.
+* The LmcpObjectNetworkZeroMqZyreBridge service implements the radio in the architectural model.  For these, the "SubscribeToMessage" configurations implement the input ports to the radio and the "SubscribeToExternalMessage" configurations implement the output ports from the radio.
+* The output of the UxAS to via serial to the flight control computer is implemented by the LmcpObjectNetworkTcpBridge service to the AMASE simulation front end.
+
 
 ## Files:
 
