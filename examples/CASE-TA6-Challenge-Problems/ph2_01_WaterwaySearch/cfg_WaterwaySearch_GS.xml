@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <UxAS FormatVersion="1.0" EntityID="500"  EntityType="Ground">
     <Bridge Type="LmcpObjectNetworkZeroMqZyreBridge" NetworkDevice="ens33">
-        <SubscribeToMessage MessageType="afrl.cmasi.KeepInZone"/>
-        <SubscribeToMessage MessageType="afrl.cmasi.KeepOutZone"/>
         <SubscribeToMessage MessageType="uxas.messages.uxnative.ZeroizeCondition"/>
         <SubscribeToMessage MessageType="afrl.cmasi.LineSearchTask"/>
         <SubscribeToMessage MessageType="afrl.cmasi.AutomationRequest"/>
@@ -10,18 +8,12 @@
 
     <!-- Connect to AMASE (see config folder in OpenAMASE) -->
     <Bridge Type="LmcpObjectNetworkTcpBridge" TcpAddress="tcp://127.0.0.1:5555" Server="FALSE">
-        <SubscribeToMessage MessageType="afrl.cmasi.KeepInZone"/>
-        <SubscribeToMessage MessageType="afrl.cmasi.KeepOutZone"/>
-        <SubscribeToMessage MessageType="afrl.cmasi.MissionCommand" />
         <SubscribeToMessage MessageType="afrl.cmasi.LineSearchTask" />
         <SubscribeToMessage MessageType="afrl.cmasi.AutomationRequest" />
-        <SubscribeToMessage MessageType="afrl.cmasi.VehicleActionCommand" />
     </Bridge>
 
     <Service Type="Test_SimulationTime"/>
     <Service Type="SendMessagesService" PathToMessageFiles="../MessagesToSend/">
-        <Message MessageFileName="KeepInZone_334.xml" SendTime_ms="1000"/>
-        <Message MessageFileName="KeepOutZone_335.xml" SendTime_ms="1500"/>
         <Message MessageFileName="ZeroizeCondition_V400.xml" SendTime_ms="2000"/>
         <Message MessageFileName="tasks/1000_LineSearch_LINE_Waterway_Deschutes.xml" SendTime_ms="3000"/>
         <Message MessageFileName="tasks/1001_AutomationRequest_LINE_Waterway_Deschutes.xml" SendTime_ms="5000"/>
