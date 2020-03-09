@@ -10,35 +10,18 @@
         <Padding>0.0</Padding>
         <Label/>
         <Boundary>
-          <Polygon Series="CMASI">
-            <BoundaryPoints>
+          <Rectangle Series="CMASI">
+            <CenterPoint>
               <Location3D Series="CMASI">
                 <Altitude>1000</Altitude><AltitudeType>MSL</AltitudeType>
-                <Latitude>45.339628</Latitude>
-                <Longitude>-120.911290</Longitude>
+                <Latitude>45.322869</Latitude>
+                <Longitude>-120.963645</Longitude>
               </Location3D>
-              <Location3D Series="CMASI">
-                <Altitude>1000</Altitude><AltitudeType>MSL</AltitudeType>
-                <Latitude>45.348115</Latitude>
-                <Longitude>-120.949248</Longitude>
-              </Location3D>
-              <Location3D Series="CMASI">
-                <Altitude>1000</Altitude><AltitudeType>MSL</AltitudeType>
-                <Latitude>45.325200</Latitude>
-                <Longitude>-121.016</Longitude>
-              </Location3D>
-              <Location3D Series="CMASI">
-                <Altitude>1000</Altitude><AltitudeType>MSL</AltitudeType>
-                <Latitude>45.301221</Latitude>
-                <Longitude>-121.016</Longitude>
-              </Location3D>
-              <Location3D Series="CMASI">
-                <Altitude>1000</Altitude><AltitudeType>MSL</AltitudeType>
-                <Latitude>45.297623</Latitude>
-                <Longitude>-120.954656</Longitude>
-              </Location3D>
-            </BoundaryPoints>
-          </Polygon>
+            </CenterPoint>
+            <Width>8000.0</Width>
+            <Height>5000.0</Height>
+            <Rotation>0.0</Rotation>
+          </Rectangle>
         </Boundary>
       </KeepInZone>
 

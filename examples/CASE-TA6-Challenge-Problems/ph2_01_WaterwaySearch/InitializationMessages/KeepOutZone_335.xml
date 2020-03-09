@@ -10,7 +10,7 @@
         <Padding>0.0</Padding>
         <Label/>
         <Boundary>
-          <Circle Series="CMASI">
+          <Rectangle Series="CMASI">
             <CenterPoint>
               <Location3D Series="CMASI">
                 <Altitude>1000</Altitude><AltitudeType>MSL</AltitudeType>           
@@ -18,7 +18,9 @@
                 <Longitude>-120.936179</Longitude>
               </Location3D>
             </CenterPoint>
-            <Radius>450.0</Radius>
-          </Circle>
+            <Width>300.0</Width>
+            <Height>300.0</Height>
+            <Rotation>0.0</Rotation>
+          </Rectangle>
         </Boundary>
       </KeepOutZone>
