@@ -1,0 +1,1361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{00546D7D-4291-4E7D-ADB1-FCCC4CFE15D8}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{673AD14C-AAA7-4E96-AADF-A2261CFFE85E}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files\lmcp">
+     <UniqueIdentifier>{EE59C185-3B44-48D5-A78C-F5F6D2B34374}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\lmcp">
+     <UniqueIdentifier>{57399760-5094-445D-923A-5A2DDD5D3D74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\uxas%255cmessages%255cuxnative">
+     <UniqueIdentifier>{755EABD7-58E2-478C-AE0E-7124BC2816C6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\uxas%255cmessages%255cuxnative">
+     <UniqueIdentifier>{60554E47-1D45-49E2-B0C7-FABE712F3722}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\uxas%255cmessages%255ctask">
+     <UniqueIdentifier>{11A7C02D-754C-41E2-AE9A-1F23568296C6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\uxas%255cmessages%255ctask">
+     <UniqueIdentifier>{2056C71D-A2BB-4FCB-9B15-6520E4649740}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\uxas%255cmessages%255croute">
+     <UniqueIdentifier>{631B2F64-4C36-4220-94A3-C8327835BABB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\uxas%255cmessages%255croute">
+     <UniqueIdentifier>{71B2ED2B-6738-496F-AF25-2332CC7E3530}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\afrl%255ccmasi%255cperceive">
+     <UniqueIdentifier>{13628AC9-34A5-4620-A258-F5AFBA49C136}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\afrl%255ccmasi%255cperceive">
+     <UniqueIdentifier>{967AC6A4-F7F5-47BA-94EC-551A7D71225F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\afrl%255cvehicles">
+     <UniqueIdentifier>{3B3C089A-60CA-4DF7-9E49-E87FA636CFED}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\afrl%255cvehicles">
+     <UniqueIdentifier>{990C22EC-1027-484D-919E-1958EA6EF026}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\afrl%255cimpact">
+     <UniqueIdentifier>{1A30402A-0911-4DB5-89EC-16333CBEA8A0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\afrl%255cimpact">
+     <UniqueIdentifier>{4AA6B822-95AB-4626-8CFE-BCB03245528A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\afrl%255ccmasi">
+     <UniqueIdentifier>{477BD7BE-9BFB-4564-8C00-30C1E6956739}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\afrl%255ccmasi">
+     <UniqueIdentifier>{78392EC7-636F-42F3-8095-78F63A173895}</UniqueIdentifier>
+    </Filter>
+
+  </ItemGroup>
+  <ItemGroup>
+       <ClInclude Include="avtas\lmcp\ByteBuffer.h">
+       <Filter>Header Files\lmcp</Filter>
+</ClInclude>
+       <ClInclude Include="avtas\lmcp\Factory.h">
+       <Filter>Header Files\lmcp</Filter>
+</ClInclude>
+       <ClInclude Include="avtas\lmcp\LmcpXMLReader.h">
+       <Filter>Header Files\lmcp</Filter>
+</ClInclude>
+       <ClInclude Include="avtas\lmcp\Node.h">
+       <Filter>Header Files\lmcp</Filter>
+</ClInclude>
+       <ClInclude Include="avtas\lmcp\NodeUtil.h">
+       <Filter>Header Files\lmcp</Filter>
+</ClInclude>
+       <ClInclude Include="avtas\lmcp\Object.h">
+       <Filter>Header Files\lmcp</Filter>
+</ClInclude>
+       <ClInclude Include="avtas\lmcp\XMLParser.h">
+       <Filter>Header Files\lmcp</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\uxnative\VideoRecord.h">
+ <Filter>Header Files\uxas%255cmessages%255cuxnative</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\uxnative\StartupComplete.h">
+ <Filter>Header Files\uxas%255cmessages%255cuxnative</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\uxnative\CreateNewService.h">
+ <Filter>Header Files\uxas%255cmessages%255cuxnative</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\uxnative\KillService.h">
+ <Filter>Header Files\uxas%255cmessages%255cuxnative</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\uxnative\IncrementWaypoint.h">
+ <Filter>Header Files\uxas%255cmessages%255cuxnative</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\uxnative\SafeHeadingAction.h">
+ <Filter>Header Files\uxas%255cmessages%255cuxnative</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\uxnative\EntityLocation.h">
+ <Filter>Header Files\uxas%255cmessages%255cuxnative</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\uxnative\BandwidthTest.h">
+ <Filter>Header Files\uxas%255cmessages%255cuxnative</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\uxnative\BandwidthReceiveReport.h">
+ <Filter>Header Files\uxas%255cmessages%255cuxnative</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\uxnative\SubTaskExecution.h">
+ <Filter>Header Files\uxas%255cmessages%255cuxnative</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\uxnative\SubTaskAssignment.h">
+ <Filter>Header Files\uxas%255cmessages%255cuxnative</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\uxnative\AutopilotKeepAlive.h">
+ <Filter>Header Files\uxas%255cmessages%255cuxnative</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\uxnative\OnboardStatusReport.h">
+ <Filter>Header Files\uxas%255cmessages%255cuxnative</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\uxnative\EntityJoin.h">
+ <Filter>Header Files\uxas%255cmessages%255cuxnative</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\uxnative\EntityExit.h">
+ <Filter>Header Files\uxas%255cmessages%255cuxnative</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\uxnative\SimulationTimeStepAcknowledgement.h">
+ <Filter>Header Files\uxas%255cmessages%255cuxnative</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\uxnative\SpeedOverrideAction.h">
+ <Filter>Header Files\uxas%255cmessages%255cuxnative</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\uxnative\ZeroizeCommand.h">
+ <Filter>Header Files\uxas%255cmessages%255cuxnative</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\uxnative\ZeroizeCondition.h">
+ <Filter>Header Files\uxas%255cmessages%255cuxnative</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\uxnative\DownloadRequest.h">
+ <Filter>Header Files\uxas%255cmessages%255cuxnative</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\uxnative\DownloadReply.h">
+ <Filter>Header Files\uxas%255cmessages%255cuxnative</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\uxnative\FileTransferRequest.h">
+ <Filter>Header Files\uxas%255cmessages%255cuxnative</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\uxnative\File.h">
+ <Filter>Header Files\uxas%255cmessages%255cuxnative</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\uxnative\FileTransfer.h">
+ <Filter>Header Files\uxas%255cmessages%255cuxnative</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\uxnative\UXNATIVEXMLReader.h">
+ <Filter>Header Files\uxas%255cmessages%255cuxnative</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\uxnative\UXNATIVEFactory.h">
+ <Filter>Header Files\uxas%255cmessages%255cuxnative</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\uxnative\UXNATIVEEnum.h">
+ <Filter>Header Files\uxas%255cmessages%255cuxnative</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\uxnative\UXNATIVE.h">
+ <Filter>Header Files\uxas%255cmessages%255cuxnative</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\AssignmentCoordinatorTask.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\RendezvousTask.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\PlanningState.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\AssignmentCoordination.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\CoordinatedAutomationRequest.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\TaskAutomationRequest.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\TaskAutomationResponse.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\UniqueAutomationRequest.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\UniqueAutomationResponse.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\SensorFootprintRequests.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\FootprintRequest.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\SensorFootprint.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\SensorFootprintResponse.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\TaskImplementationRequest.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\TaskImplementationResponse.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\AssignmentCostMatrix.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\TaskOptionCost.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\TaskAssignment.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\TaskAssignmentSummary.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\TaskOption.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\TaskPlanOptions.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\TaskPause.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\TaskResume.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\TaskProgress.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\TaskProgressRequest.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\TaskInitialized.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\TaskActive.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\TaskComplete.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\CancelTask.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\UXTASKXMLReader.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\UXTASKFactory.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\UXTASKEnum.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\task\UXTASK.h">
+ <Filter>Header Files\uxas%255cmessages%255ctask</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\route\GraphNode.h">
+ <Filter>Header Files\uxas%255cmessages%255croute</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\route\GraphEdge.h">
+ <Filter>Header Files\uxas%255cmessages%255croute</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\route\GraphRegion.h">
+ <Filter>Header Files\uxas%255cmessages%255croute</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\route\RouteConstraints.h">
+ <Filter>Header Files\uxas%255cmessages%255croute</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\route\RouteRequest.h">
+ <Filter>Header Files\uxas%255cmessages%255croute</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\route\RoutePlanRequest.h">
+ <Filter>Header Files\uxas%255cmessages%255croute</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\route\RoutePlan.h">
+ <Filter>Header Files\uxas%255cmessages%255croute</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\route\RoutePlanResponse.h">
+ <Filter>Header Files\uxas%255cmessages%255croute</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\route\RouteResponse.h">
+ <Filter>Header Files\uxas%255cmessages%255croute</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\route\EgressRouteRequest.h">
+ <Filter>Header Files\uxas%255cmessages%255croute</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\route\EgressRouteResponse.h">
+ <Filter>Header Files\uxas%255cmessages%255croute</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\route\RoadPointsConstraints.h">
+ <Filter>Header Files\uxas%255cmessages%255croute</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\route\RoadPointsRequest.h">
+ <Filter>Header Files\uxas%255cmessages%255croute</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\route\RoadPointsResponse.h">
+ <Filter>Header Files\uxas%255cmessages%255croute</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\route\ROUTEXMLReader.h">
+ <Filter>Header Files\uxas%255cmessages%255croute</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\route\ROUTEFactory.h">
+ <Filter>Header Files\uxas%255cmessages%255croute</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\route\ROUTEEnum.h">
+ <Filter>Header Files\uxas%255cmessages%255croute</Filter>
+</ClInclude>
+       <ClInclude Include="uxas\messages\route\ROUTE.h">
+ <Filter>Header Files\uxas%255cmessages%255croute</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\perceive\EntityPerception.h">
+ <Filter>Header Files\afrl%255ccmasi%255cperceive</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\perceive\TrackEntityAction.h">
+ <Filter>Header Files\afrl%255ccmasi%255cperceive</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\perceive\TrackEntityTask.h">
+ <Filter>Header Files\afrl%255ccmasi%255cperceive</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\perceive\PERCEIVEXMLReader.h">
+ <Filter>Header Files\afrl%255ccmasi%255cperceive</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\perceive\PERCEIVEFactory.h">
+ <Filter>Header Files\afrl%255ccmasi%255cperceive</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\perceive\PERCEIVEEnum.h">
+ <Filter>Header Files\afrl%255ccmasi%255cperceive</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\perceive\PERCEIVE.h">
+ <Filter>Header Files\afrl%255ccmasi%255cperceive</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\vehicles\GroundVehicleConfiguration.h">
+ <Filter>Header Files\afrl%255cvehicles</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\vehicles\GroundVehicleState.h">
+ <Filter>Header Files\afrl%255cvehicles</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\vehicles\SurfaceVehicleConfiguration.h">
+ <Filter>Header Files\afrl%255cvehicles</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\vehicles\SurfaceVehicleState.h">
+ <Filter>Header Files\afrl%255cvehicles</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\vehicles\StationarySensorConfiguration.h">
+ <Filter>Header Files\afrl%255cvehicles</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\vehicles\StationarySensorState.h">
+ <Filter>Header Files\afrl%255cvehicles</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\vehicles\VEHICLESXMLReader.h">
+ <Filter>Header Files\afrl%255cvehicles</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\vehicles\VEHICLESFactory.h">
+ <Filter>Header Files\afrl%255cvehicles</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\vehicles\VEHICLESEnum.h">
+ <Filter>Header Files\afrl%255cvehicles</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\vehicles\VEHICLES.h">
+ <Filter>Header Files\afrl%255cvehicles</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\PowerConfiguration.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\RadioConfiguration.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\RadioTowerConfiguration.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\RadioState.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\RadioTowerState.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\ImpactPayloadConfiguration.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\DeployImpactPayload.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\PowerPlantState.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\BatchRoutePlanRequest.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\BatchRoutePlanResponse.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\TaskTimingPair.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\BatchSummaryRequest.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\BatchSummaryResponse.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\TaskSummary.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\VehicleSummary.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\SpeedAltPair.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\ImpactAutomationRequest.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\ImpactAutomationResponse.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\PointOfInterest.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\LineOfInterest.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\AreaOfInterest.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\ImpactPointSearchTask.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\PatternSearchTask.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\AngledAreaSearchTask.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\ImpactLineSearchTask.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\WatchTask.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\MultiVehicleWatchTask.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\CommRelayTask.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\CordonTask.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\BlockadeTask.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\EscortTask.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\ConfigurationRequest.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\WaterReport.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\WaterZone.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\PayloadDropTask.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\AreaSearchPattern.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\PowerPlant.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\AreaActionOptions.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\ImpactPayloadType.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\IMPACTXMLReader.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\IMPACTFactory.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\IMPACTEnum.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\impact\IMPACT.h">
+ <Filter>Header Files\afrl%255cimpact</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\AbstractGeometry.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\KeyValuePair.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\Location3D.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\PayloadAction.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\PayloadConfiguration.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\PayloadState.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\VehicleAction.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\Task.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\SearchTask.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\AbstractZone.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\EntityConfiguration.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\FlightProfile.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\AirVehicleConfiguration.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\EntityState.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\AirVehicleState.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\Wedge.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\AreaSearchTask.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\CameraAction.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\CameraConfiguration.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\GimballedPayloadState.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\CameraState.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\Circle.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\GimbalAngleAction.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\GimbalConfiguration.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\GimbalScanAction.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\GimbalStareAction.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\GimbalState.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\GoToWaypointAction.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\KeepInZone.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\KeepOutZone.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\LineSearchTask.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\NavigationAction.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\LoiterAction.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\LoiterTask.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\Waypoint.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\MissionCommand.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\MustFlyTask.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\OperatorSignal.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\OperatingRegion.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\AutomationRequest.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\PointSearchTask.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\Polygon.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\Rectangle.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\RemoveTasks.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\ServiceStatus.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\SessionStatus.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\VehicleActionCommand.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\VideoStreamAction.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\VideoStreamConfiguration.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\VideoStreamState.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\AutomationResponse.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\RemoveZones.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\RemoveEntities.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\FlightDirectorAction.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\WeatherReport.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\FollowPathCommand.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\PathWaypoint.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\StopMovementAction.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\WaypointTransfer.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\PayloadStowAction.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\WavelengthBand.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\NavigationMode.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\FOVOperationMode.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\GimbalPointingMode.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\ZoneAvoidanceType.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\LoiterType.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\LoiterDirection.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\ServiceStatusType.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\SimulationStatusType.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\SpeedType.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\TurnType.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\CommandStatusType.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\AltitudeType.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\TravelMode.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\WaypointTransferMode.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\CMASIXMLReader.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\CMASIFactory.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\CMASIEnum.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+       <ClInclude Include="afrl\cmasi\CMASI.h">
+ <Filter>Header Files\afrl%255ccmasi</Filter>
+</ClInclude>
+
+  </ItemGroup>
+  <ItemGroup>
+       <ClCompile Include="avtas\lmcp\ByteBuffer.cpp">
+       <Filter>Source Files\lmcp</Filter>
+</ClCompile>
+       <ClCompile Include="avtas\lmcp\Factory.cpp">
+       <Filter>Source Files\lmcp</Filter>
+</ClCompile>
+       <ClCompile Include="avtas\lmcp\LmcpXMLReader.cpp">
+       <Filter>Source Files\lmcp</Filter>
+</ClCompile>
+       <ClCompile Include="avtas\lmcp\Node.cpp">
+       <Filter>Source Files\lmcp</Filter>
+</ClCompile>
+       <ClCompile Include="avtas\lmcp\NodeUtil.cpp">
+       <Filter>Source Files\lmcp</Filter>
+</ClCompile>
+       <ClCompile Include="avtas\lmcp\Object.cpp">
+       <Filter>Source Files\lmcp</Filter>
+</ClCompile>
+       <ClCompile Include="avtas\lmcp\XMLParser.cpp">
+       <Filter>Source Files\lmcp</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeVideoRecord.cpp">
+ <Filter>Source Files\uxas%255cmessages%255cuxnative</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeStartupComplete.cpp">
+ <Filter>Source Files\uxas%255cmessages%255cuxnative</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeCreateNewService.cpp">
+ <Filter>Source Files\uxas%255cmessages%255cuxnative</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeKillService.cpp">
+ <Filter>Source Files\uxas%255cmessages%255cuxnative</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeIncrementWaypoint.cpp">
+ <Filter>Source Files\uxas%255cmessages%255cuxnative</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeSafeHeadingAction.cpp">
+ <Filter>Source Files\uxas%255cmessages%255cuxnative</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeEntityLocation.cpp">
+ <Filter>Source Files\uxas%255cmessages%255cuxnative</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeBandwidthTest.cpp">
+ <Filter>Source Files\uxas%255cmessages%255cuxnative</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeBandwidthReceiveReport.cpp">
+ <Filter>Source Files\uxas%255cmessages%255cuxnative</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeSubTaskExecution.cpp">
+ <Filter>Source Files\uxas%255cmessages%255cuxnative</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeSubTaskAssignment.cpp">
+ <Filter>Source Files\uxas%255cmessages%255cuxnative</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeAutopilotKeepAlive.cpp">
+ <Filter>Source Files\uxas%255cmessages%255cuxnative</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeOnboardStatusReport.cpp">
+ <Filter>Source Files\uxas%255cmessages%255cuxnative</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeEntityJoin.cpp">
+ <Filter>Source Files\uxas%255cmessages%255cuxnative</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeEntityExit.cpp">
+ <Filter>Source Files\uxas%255cmessages%255cuxnative</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeSimulationTimeStepAcknowledgement.cpp">
+ <Filter>Source Files\uxas%255cmessages%255cuxnative</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeSpeedOverrideAction.cpp">
+ <Filter>Source Files\uxas%255cmessages%255cuxnative</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeZeroizeCommand.cpp">
+ <Filter>Source Files\uxas%255cmessages%255cuxnative</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeZeroizeCondition.cpp">
+ <Filter>Source Files\uxas%255cmessages%255cuxnative</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeDownloadRequest.cpp">
+ <Filter>Source Files\uxas%255cmessages%255cuxnative</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeDownloadReply.cpp">
+ <Filter>Source Files\uxas%255cmessages%255cuxnative</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeFileTransferRequest.cpp">
+ <Filter>Source Files\uxas%255cmessages%255cuxnative</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeFile.cpp">
+ <Filter>Source Files\uxas%255cmessages%255cuxnative</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeFileTransfer.cpp">
+ <Filter>Source Files\uxas%255cmessages%255cuxnative</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\uxnative\UXNATIVEXMLReader.cpp">
+ <Filter>Source Files\uxas%255cmessages%255cuxnative</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\uxnative\UXNATIVEFactory.cpp">
+ <Filter>Source Files\uxas%255cmessages%255cuxnative</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\uxnative\UXNATIVEEnum.cpp">
+ <Filter>Source Files\uxas%255cmessages%255cuxnative</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\uxnative\UXNATIVE.cpp">
+ <Filter>Source Files\uxas%255cmessages%255cuxnative</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskAssignmentCoordinatorTask.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskRendezvousTask.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskPlanningState.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskAssignmentCoordination.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskCoordinatedAutomationRequest.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskTaskAutomationRequest.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskTaskAutomationResponse.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskUniqueAutomationRequest.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskUniqueAutomationResponse.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskSensorFootprintRequests.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskFootprintRequest.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskSensorFootprint.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskSensorFootprintResponse.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskTaskImplementationRequest.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskTaskImplementationResponse.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskAssignmentCostMatrix.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskTaskOptionCost.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskTaskAssignment.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskTaskAssignmentSummary.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskTaskOption.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskTaskPlanOptions.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskTaskPause.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskTaskResume.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskTaskProgress.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskTaskProgressRequest.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskTaskInitialized.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskTaskActive.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskTaskComplete.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskCancelTask.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\UXTASKXMLReader.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\UXTASKFactory.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\UXTASKEnum.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\task\UXTASK.cpp">
+ <Filter>Source Files\uxas%255cmessages%255ctask</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\route\uxasmessagesrouteGraphNode.cpp">
+ <Filter>Source Files\uxas%255cmessages%255croute</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\route\uxasmessagesrouteGraphEdge.cpp">
+ <Filter>Source Files\uxas%255cmessages%255croute</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\route\uxasmessagesrouteGraphRegion.cpp">
+ <Filter>Source Files\uxas%255cmessages%255croute</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\route\uxasmessagesrouteRouteConstraints.cpp">
+ <Filter>Source Files\uxas%255cmessages%255croute</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\route\uxasmessagesrouteRouteRequest.cpp">
+ <Filter>Source Files\uxas%255cmessages%255croute</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\route\uxasmessagesrouteRoutePlanRequest.cpp">
+ <Filter>Source Files\uxas%255cmessages%255croute</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\route\uxasmessagesrouteRoutePlan.cpp">
+ <Filter>Source Files\uxas%255cmessages%255croute</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\route\uxasmessagesrouteRoutePlanResponse.cpp">
+ <Filter>Source Files\uxas%255cmessages%255croute</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\route\uxasmessagesrouteRouteResponse.cpp">
+ <Filter>Source Files\uxas%255cmessages%255croute</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\route\uxasmessagesrouteEgressRouteRequest.cpp">
+ <Filter>Source Files\uxas%255cmessages%255croute</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\route\uxasmessagesrouteEgressRouteResponse.cpp">
+ <Filter>Source Files\uxas%255cmessages%255croute</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\route\uxasmessagesrouteRoadPointsConstraints.cpp">
+ <Filter>Source Files\uxas%255cmessages%255croute</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\route\uxasmessagesrouteRoadPointsRequest.cpp">
+ <Filter>Source Files\uxas%255cmessages%255croute</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\route\uxasmessagesrouteRoadPointsResponse.cpp">
+ <Filter>Source Files\uxas%255cmessages%255croute</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\route\ROUTEXMLReader.cpp">
+ <Filter>Source Files\uxas%255cmessages%255croute</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\route\ROUTEFactory.cpp">
+ <Filter>Source Files\uxas%255cmessages%255croute</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\route\ROUTEEnum.cpp">
+ <Filter>Source Files\uxas%255cmessages%255croute</Filter>
+</ClCompile>
+       <ClCompile Include="uxas\messages\route\ROUTE.cpp">
+ <Filter>Source Files\uxas%255cmessages%255croute</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\perceive\afrlcmasiperceiveEntityPerception.cpp">
+ <Filter>Source Files\afrl%255ccmasi%255cperceive</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\perceive\afrlcmasiperceiveTrackEntityAction.cpp">
+ <Filter>Source Files\afrl%255ccmasi%255cperceive</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\perceive\afrlcmasiperceiveTrackEntityTask.cpp">
+ <Filter>Source Files\afrl%255ccmasi%255cperceive</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\perceive\PERCEIVEXMLReader.cpp">
+ <Filter>Source Files\afrl%255ccmasi%255cperceive</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\perceive\PERCEIVEFactory.cpp">
+ <Filter>Source Files\afrl%255ccmasi%255cperceive</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\perceive\PERCEIVEEnum.cpp">
+ <Filter>Source Files\afrl%255ccmasi%255cperceive</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\perceive\PERCEIVE.cpp">
+ <Filter>Source Files\afrl%255ccmasi%255cperceive</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\vehicles\afrlvehiclesGroundVehicleConfiguration.cpp">
+ <Filter>Source Files\afrl%255cvehicles</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\vehicles\afrlvehiclesGroundVehicleState.cpp">
+ <Filter>Source Files\afrl%255cvehicles</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\vehicles\afrlvehiclesSurfaceVehicleConfiguration.cpp">
+ <Filter>Source Files\afrl%255cvehicles</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\vehicles\afrlvehiclesSurfaceVehicleState.cpp">
+ <Filter>Source Files\afrl%255cvehicles</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\vehicles\afrlvehiclesStationarySensorConfiguration.cpp">
+ <Filter>Source Files\afrl%255cvehicles</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\vehicles\afrlvehiclesStationarySensorState.cpp">
+ <Filter>Source Files\afrl%255cvehicles</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\vehicles\VEHICLESXMLReader.cpp">
+ <Filter>Source Files\afrl%255cvehicles</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\vehicles\VEHICLESFactory.cpp">
+ <Filter>Source Files\afrl%255cvehicles</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\vehicles\VEHICLESEnum.cpp">
+ <Filter>Source Files\afrl%255cvehicles</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\vehicles\VEHICLES.cpp">
+ <Filter>Source Files\afrl%255cvehicles</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactPowerConfiguration.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactRadioConfiguration.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactRadioTowerConfiguration.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactRadioState.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactRadioTowerState.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactImpactPayloadConfiguration.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactDeployImpactPayload.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactPowerPlantState.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactBatchRoutePlanRequest.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactBatchRoutePlanResponse.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactTaskTimingPair.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactBatchSummaryRequest.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactBatchSummaryResponse.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactTaskSummary.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactVehicleSummary.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactSpeedAltPair.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactImpactAutomationRequest.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactImpactAutomationResponse.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactPointOfInterest.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactLineOfInterest.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactAreaOfInterest.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactImpactPointSearchTask.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactPatternSearchTask.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactAngledAreaSearchTask.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactImpactLineSearchTask.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactWatchTask.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactMultiVehicleWatchTask.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactCommRelayTask.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactCordonTask.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactBlockadeTask.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactEscortTask.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactConfigurationRequest.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactWaterReport.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactWaterZone.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\afrlimpactPayloadDropTask.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\IMPACTXMLReader.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\IMPACTFactory.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\IMPACTEnum.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\impact\IMPACT.cpp">
+ <Filter>Source Files\afrl%255cimpact</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiAbstractGeometry.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiKeyValuePair.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiLocation3D.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiPayloadAction.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiPayloadConfiguration.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiPayloadState.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiVehicleAction.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiTask.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiSearchTask.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiAbstractZone.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiEntityConfiguration.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiFlightProfile.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiAirVehicleConfiguration.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiEntityState.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiAirVehicleState.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiWedge.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiAreaSearchTask.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiCameraAction.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiCameraConfiguration.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiGimballedPayloadState.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiCameraState.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiCircle.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiGimbalAngleAction.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiGimbalConfiguration.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiGimbalScanAction.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiGimbalStareAction.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiGimbalState.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiGoToWaypointAction.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiKeepInZone.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiKeepOutZone.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiLineSearchTask.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiNavigationAction.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiLoiterAction.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiLoiterTask.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiWaypoint.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiMissionCommand.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiMustFlyTask.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiOperatorSignal.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiOperatingRegion.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiAutomationRequest.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiPointSearchTask.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiPolygon.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiRectangle.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiRemoveTasks.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiServiceStatus.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiSessionStatus.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiVehicleActionCommand.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiVideoStreamAction.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiVideoStreamConfiguration.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiVideoStreamState.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiAutomationResponse.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiRemoveZones.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiRemoveEntities.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiFlightDirectorAction.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiWeatherReport.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiFollowPathCommand.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiPathWaypoint.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiStopMovementAction.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiWaypointTransfer.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\afrlcmasiPayloadStowAction.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\CMASIXMLReader.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\CMASIFactory.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\CMASIEnum.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+       <ClCompile Include="afrl\cmasi\CMASI.cpp">
+ <Filter>Source Files\afrl%255ccmasi</Filter>
+</ClCompile>
+
+  </ItemGroup>
+</Project>

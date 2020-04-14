@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>LMCPBuild</ProjectName>
+    <ProjectGuid>{B3E2F922-F546-4DC1-BFDD-F648DE0EF66B}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Debug\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Release\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>Full</Optimization>
+      <AdditionalIncludeDirectories>./;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+           <ClInclude Include="avtas\lmcp\ByteBuffer.h"/>
+       <ClInclude Include="avtas\lmcp\Factory.h"/>
+       <ClInclude Include="avtas\lmcp\LmcpXMLReader.h"/>
+       <ClInclude Include="avtas\lmcp\Node.h"/>
+       <ClInclude Include="avtas\lmcp\NodeUtil.h"/>
+       <ClInclude Include="avtas\lmcp\Object.h"/>
+       <ClInclude Include="avtas\lmcp\XMLParser.h"/>
+       <ClInclude Include="uxas\messages\uxnative\VideoRecord.h"/>
+       <ClInclude Include="uxas\messages\uxnative\StartupComplete.h"/>
+       <ClInclude Include="uxas\messages\uxnative\CreateNewService.h"/>
+       <ClInclude Include="uxas\messages\uxnative\KillService.h"/>
+       <ClInclude Include="uxas\messages\uxnative\IncrementWaypoint.h"/>
+       <ClInclude Include="uxas\messages\uxnative\SafeHeadingAction.h"/>
+       <ClInclude Include="uxas\messages\uxnative\EntityLocation.h"/>
+       <ClInclude Include="uxas\messages\uxnative\BandwidthTest.h"/>
+       <ClInclude Include="uxas\messages\uxnative\BandwidthReceiveReport.h"/>
+       <ClInclude Include="uxas\messages\uxnative\SubTaskExecution.h"/>
+       <ClInclude Include="uxas\messages\uxnative\SubTaskAssignment.h"/>
+       <ClInclude Include="uxas\messages\uxnative\AutopilotKeepAlive.h"/>
+       <ClInclude Include="uxas\messages\uxnative\OnboardStatusReport.h"/>
+       <ClInclude Include="uxas\messages\uxnative\EntityJoin.h"/>
+       <ClInclude Include="uxas\messages\uxnative\EntityExit.h"/>
+       <ClInclude Include="uxas\messages\uxnative\SimulationTimeStepAcknowledgement.h"/>
+       <ClInclude Include="uxas\messages\uxnative\SpeedOverrideAction.h"/>
+       <ClInclude Include="uxas\messages\uxnative\ZeroizeCommand.h"/>
+       <ClInclude Include="uxas\messages\uxnative\ZeroizeCondition.h"/>
+       <ClInclude Include="uxas\messages\uxnative\DownloadRequest.h"/>
+       <ClInclude Include="uxas\messages\uxnative\DownloadReply.h"/>
+       <ClInclude Include="uxas\messages\uxnative\FileTransferRequest.h"/>
+       <ClInclude Include="uxas\messages\uxnative\File.h"/>
+       <ClInclude Include="uxas\messages\uxnative\FileTransfer.h"/>
+       <ClInclude Include="uxas\messages\uxnative\UXNATIVEXMLReader.h"/>
+       <ClInclude Include="uxas\messages\uxnative\UXNATIVEFactory.h"/>
+       <ClInclude Include="uxas\messages\uxnative\UXNATIVEEnum.h"/>
+       <ClInclude Include="uxas\messages\uxnative\UXNATIVE.h"/>
+       <ClInclude Include="uxas\messages\task\AssignmentCoordinatorTask.h"/>
+       <ClInclude Include="uxas\messages\task\RendezvousTask.h"/>
+       <ClInclude Include="uxas\messages\task\PlanningState.h"/>
+       <ClInclude Include="uxas\messages\task\AssignmentCoordination.h"/>
+       <ClInclude Include="uxas\messages\task\CoordinatedAutomationRequest.h"/>
+       <ClInclude Include="uxas\messages\task\TaskAutomationRequest.h"/>
+       <ClInclude Include="uxas\messages\task\TaskAutomationResponse.h"/>
+       <ClInclude Include="uxas\messages\task\UniqueAutomationRequest.h"/>
+       <ClInclude Include="uxas\messages\task\UniqueAutomationResponse.h"/>
+       <ClInclude Include="uxas\messages\task\SensorFootprintRequests.h"/>
+       <ClInclude Include="uxas\messages\task\FootprintRequest.h"/>
+       <ClInclude Include="uxas\messages\task\SensorFootprint.h"/>
+       <ClInclude Include="uxas\messages\task\SensorFootprintResponse.h"/>
+       <ClInclude Include="uxas\messages\task\TaskImplementationRequest.h"/>
+       <ClInclude Include="uxas\messages\task\TaskImplementationResponse.h"/>
+       <ClInclude Include="uxas\messages\task\AssignmentCostMatrix.h"/>
+       <ClInclude Include="uxas\messages\task\TaskOptionCost.h"/>
+       <ClInclude Include="uxas\messages\task\TaskAssignment.h"/>
+       <ClInclude Include="uxas\messages\task\TaskAssignmentSummary.h"/>
+       <ClInclude Include="uxas\messages\task\TaskOption.h"/>
+       <ClInclude Include="uxas\messages\task\TaskPlanOptions.h"/>
+       <ClInclude Include="uxas\messages\task\TaskPause.h"/>
+       <ClInclude Include="uxas\messages\task\TaskResume.h"/>
+       <ClInclude Include="uxas\messages\task\TaskProgress.h"/>
+       <ClInclude Include="uxas\messages\task\TaskProgressRequest.h"/>
+       <ClInclude Include="uxas\messages\task\TaskInitialized.h"/>
+       <ClInclude Include="uxas\messages\task\TaskActive.h"/>
+       <ClInclude Include="uxas\messages\task\TaskComplete.h"/>
+       <ClInclude Include="uxas\messages\task\CancelTask.h"/>
+       <ClInclude Include="uxas\messages\task\UXTASKXMLReader.h"/>
+       <ClInclude Include="uxas\messages\task\UXTASKFactory.h"/>
+       <ClInclude Include="uxas\messages\task\UXTASKEnum.h"/>
+       <ClInclude Include="uxas\messages\task\UXTASK.h"/>
+       <ClInclude Include="uxas\messages\route\GraphNode.h"/>
+       <ClInclude Include="uxas\messages\route\GraphEdge.h"/>
+       <ClInclude Include="uxas\messages\route\GraphRegion.h"/>
+       <ClInclude Include="uxas\messages\route\RouteConstraints.h"/>
+       <ClInclude Include="uxas\messages\route\RouteRequest.h"/>
+       <ClInclude Include="uxas\messages\route\RoutePlanRequest.h"/>
+       <ClInclude Include="uxas\messages\route\RoutePlan.h"/>
+       <ClInclude Include="uxas\messages\route\RoutePlanResponse.h"/>
+       <ClInclude Include="uxas\messages\route\RouteResponse.h"/>
+       <ClInclude Include="uxas\messages\route\EgressRouteRequest.h"/>
+       <ClInclude Include="uxas\messages\route\EgressRouteResponse.h"/>
+       <ClInclude Include="uxas\messages\route\RoadPointsConstraints.h"/>
+       <ClInclude Include="uxas\messages\route\RoadPointsRequest.h"/>
+       <ClInclude Include="uxas\messages\route\RoadPointsResponse.h"/>
+       <ClInclude Include="uxas\messages\route\ROUTEXMLReader.h"/>
+       <ClInclude Include="uxas\messages\route\ROUTEFactory.h"/>
+       <ClInclude Include="uxas\messages\route\ROUTEEnum.h"/>
+       <ClInclude Include="uxas\messages\route\ROUTE.h"/>
+       <ClInclude Include="afrl\cmasi\perceive\EntityPerception.h"/>
+       <ClInclude Include="afrl\cmasi\perceive\TrackEntityAction.h"/>
+       <ClInclude Include="afrl\cmasi\perceive\TrackEntityTask.h"/>
+       <ClInclude Include="afrl\cmasi\perceive\PERCEIVEXMLReader.h"/>
+       <ClInclude Include="afrl\cmasi\perceive\PERCEIVEFactory.h"/>
+       <ClInclude Include="afrl\cmasi\perceive\PERCEIVEEnum.h"/>
+       <ClInclude Include="afrl\cmasi\perceive\PERCEIVE.h"/>
+       <ClInclude Include="afrl\vehicles\GroundVehicleConfiguration.h"/>
+       <ClInclude Include="afrl\vehicles\GroundVehicleState.h"/>
+       <ClInclude Include="afrl\vehicles\SurfaceVehicleConfiguration.h"/>
+       <ClInclude Include="afrl\vehicles\SurfaceVehicleState.h"/>
+       <ClInclude Include="afrl\vehicles\StationarySensorConfiguration.h"/>
+       <ClInclude Include="afrl\vehicles\StationarySensorState.h"/>
+       <ClInclude Include="afrl\vehicles\VEHICLESXMLReader.h"/>
+       <ClInclude Include="afrl\vehicles\VEHICLESFactory.h"/>
+       <ClInclude Include="afrl\vehicles\VEHICLESEnum.h"/>
+       <ClInclude Include="afrl\vehicles\VEHICLES.h"/>
+       <ClInclude Include="afrl\impact\PowerConfiguration.h"/>
+       <ClInclude Include="afrl\impact\RadioConfiguration.h"/>
+       <ClInclude Include="afrl\impact\RadioTowerConfiguration.h"/>
+       <ClInclude Include="afrl\impact\RadioState.h"/>
+       <ClInclude Include="afrl\impact\RadioTowerState.h"/>
+       <ClInclude Include="afrl\impact\ImpactPayloadConfiguration.h"/>
+       <ClInclude Include="afrl\impact\DeployImpactPayload.h"/>
+       <ClInclude Include="afrl\impact\PowerPlantState.h"/>
+       <ClInclude Include="afrl\impact\BatchRoutePlanRequest.h"/>
+       <ClInclude Include="afrl\impact\BatchRoutePlanResponse.h"/>
+       <ClInclude Include="afrl\impact\TaskTimingPair.h"/>
+       <ClInclude Include="afrl\impact\BatchSummaryRequest.h"/>
+       <ClInclude Include="afrl\impact\BatchSummaryResponse.h"/>
+       <ClInclude Include="afrl\impact\TaskSummary.h"/>
+       <ClInclude Include="afrl\impact\VehicleSummary.h"/>
+       <ClInclude Include="afrl\impact\SpeedAltPair.h"/>
+       <ClInclude Include="afrl\impact\ImpactAutomationRequest.h"/>
+       <ClInclude Include="afrl\impact\ImpactAutomationResponse.h"/>
+       <ClInclude Include="afrl\impact\PointOfInterest.h"/>
+       <ClInclude Include="afrl\impact\LineOfInterest.h"/>
+       <ClInclude Include="afrl\impact\AreaOfInterest.h"/>
+       <ClInclude Include="afrl\impact\ImpactPointSearchTask.h"/>
+       <ClInclude Include="afrl\impact\PatternSearchTask.h"/>
+       <ClInclude Include="afrl\impact\AngledAreaSearchTask.h"/>
+       <ClInclude Include="afrl\impact\ImpactLineSearchTask.h"/>
+       <ClInclude Include="afrl\impact\WatchTask.h"/>
+       <ClInclude Include="afrl\impact\MultiVehicleWatchTask.h"/>
+       <ClInclude Include="afrl\impact\CommRelayTask.h"/>
+       <ClInclude Include="afrl\impact\CordonTask.h"/>
+       <ClInclude Include="afrl\impact\BlockadeTask.h"/>
+       <ClInclude Include="afrl\impact\EscortTask.h"/>
+       <ClInclude Include="afrl\impact\ConfigurationRequest.h"/>
+       <ClInclude Include="afrl\impact\WaterReport.h"/>
+       <ClInclude Include="afrl\impact\WaterZone.h"/>
+       <ClInclude Include="afrl\impact\PayloadDropTask.h"/>
+       <ClInclude Include="afrl\impact\AreaSearchPattern.h"/>
+       <ClInclude Include="afrl\impact\PowerPlant.h"/>
+       <ClInclude Include="afrl\impact\AreaActionOptions.h"/>
+       <ClInclude Include="afrl\impact\ImpactPayloadType.h"/>
+       <ClInclude Include="afrl\impact\IMPACTXMLReader.h"/>
+       <ClInclude Include="afrl\impact\IMPACTFactory.h"/>
+       <ClInclude Include="afrl\impact\IMPACTEnum.h"/>
+       <ClInclude Include="afrl\impact\IMPACT.h"/>
+       <ClInclude Include="afrl\cmasi\AbstractGeometry.h"/>
+       <ClInclude Include="afrl\cmasi\KeyValuePair.h"/>
+       <ClInclude Include="afrl\cmasi\Location3D.h"/>
+       <ClInclude Include="afrl\cmasi\PayloadAction.h"/>
+       <ClInclude Include="afrl\cmasi\PayloadConfiguration.h"/>
+       <ClInclude Include="afrl\cmasi\PayloadState.h"/>
+       <ClInclude Include="afrl\cmasi\VehicleAction.h"/>
+       <ClInclude Include="afrl\cmasi\Task.h"/>
+       <ClInclude Include="afrl\cmasi\SearchTask.h"/>
+       <ClInclude Include="afrl\cmasi\AbstractZone.h"/>
+       <ClInclude Include="afrl\cmasi\EntityConfiguration.h"/>
+       <ClInclude Include="afrl\cmasi\FlightProfile.h"/>
+       <ClInclude Include="afrl\cmasi\AirVehicleConfiguration.h"/>
+       <ClInclude Include="afrl\cmasi\EntityState.h"/>
+       <ClInclude Include="afrl\cmasi\AirVehicleState.h"/>
+       <ClInclude Include="afrl\cmasi\Wedge.h"/>
+       <ClInclude Include="afrl\cmasi\AreaSearchTask.h"/>
+       <ClInclude Include="afrl\cmasi\CameraAction.h"/>
+       <ClInclude Include="afrl\cmasi\CameraConfiguration.h"/>
+       <ClInclude Include="afrl\cmasi\GimballedPayloadState.h"/>
+       <ClInclude Include="afrl\cmasi\CameraState.h"/>
+       <ClInclude Include="afrl\cmasi\Circle.h"/>
+       <ClInclude Include="afrl\cmasi\GimbalAngleAction.h"/>
+       <ClInclude Include="afrl\cmasi\GimbalConfiguration.h"/>
+       <ClInclude Include="afrl\cmasi\GimbalScanAction.h"/>
+       <ClInclude Include="afrl\cmasi\GimbalStareAction.h"/>
+       <ClInclude Include="afrl\cmasi\GimbalState.h"/>
+       <ClInclude Include="afrl\cmasi\GoToWaypointAction.h"/>
+       <ClInclude Include="afrl\cmasi\KeepInZone.h"/>
+       <ClInclude Include="afrl\cmasi\KeepOutZone.h"/>
+       <ClInclude Include="afrl\cmasi\LineSearchTask.h"/>
+       <ClInclude Include="afrl\cmasi\NavigationAction.h"/>
+       <ClInclude Include="afrl\cmasi\LoiterAction.h"/>
+       <ClInclude Include="afrl\cmasi\LoiterTask.h"/>
+       <ClInclude Include="afrl\cmasi\Waypoint.h"/>
+       <ClInclude Include="afrl\cmasi\MissionCommand.h"/>
+       <ClInclude Include="afrl\cmasi\MustFlyTask.h"/>
+       <ClInclude Include="afrl\cmasi\OperatorSignal.h"/>
+       <ClInclude Include="afrl\cmasi\OperatingRegion.h"/>
+       <ClInclude Include="afrl\cmasi\AutomationRequest.h"/>
+       <ClInclude Include="afrl\cmasi\PointSearchTask.h"/>
+       <ClInclude Include="afrl\cmasi\Polygon.h"/>
+       <ClInclude Include="afrl\cmasi\Rectangle.h"/>
+       <ClInclude Include="afrl\cmasi\RemoveTasks.h"/>
+       <ClInclude Include="afrl\cmasi\ServiceStatus.h"/>
+       <ClInclude Include="afrl\cmasi\SessionStatus.h"/>
+       <ClInclude Include="afrl\cmasi\VehicleActionCommand.h"/>
+       <ClInclude Include="afrl\cmasi\VideoStreamAction.h"/>
+       <ClInclude Include="afrl\cmasi\VideoStreamConfiguration.h"/>
+       <ClInclude Include="afrl\cmasi\VideoStreamState.h"/>
+       <ClInclude Include="afrl\cmasi\AutomationResponse.h"/>
+       <ClInclude Include="afrl\cmasi\RemoveZones.h"/>
+       <ClInclude Include="afrl\cmasi\RemoveEntities.h"/>
+       <ClInclude Include="afrl\cmasi\FlightDirectorAction.h"/>
+       <ClInclude Include="afrl\cmasi\WeatherReport.h"/>
+       <ClInclude Include="afrl\cmasi\FollowPathCommand.h"/>
+       <ClInclude Include="afrl\cmasi\PathWaypoint.h"/>
+       <ClInclude Include="afrl\cmasi\StopMovementAction.h"/>
+       <ClInclude Include="afrl\cmasi\WaypointTransfer.h"/>
+       <ClInclude Include="afrl\cmasi\PayloadStowAction.h"/>
+       <ClInclude Include="afrl\cmasi\WavelengthBand.h"/>
+       <ClInclude Include="afrl\cmasi\NavigationMode.h"/>
+       <ClInclude Include="afrl\cmasi\FOVOperationMode.h"/>
+       <ClInclude Include="afrl\cmasi\GimbalPointingMode.h"/>
+       <ClInclude Include="afrl\cmasi\ZoneAvoidanceType.h"/>
+       <ClInclude Include="afrl\cmasi\LoiterType.h"/>
+       <ClInclude Include="afrl\cmasi\LoiterDirection.h"/>
+       <ClInclude Include="afrl\cmasi\ServiceStatusType.h"/>
+       <ClInclude Include="afrl\cmasi\SimulationStatusType.h"/>
+       <ClInclude Include="afrl\cmasi\SpeedType.h"/>
+       <ClInclude Include="afrl\cmasi\TurnType.h"/>
+       <ClInclude Include="afrl\cmasi\CommandStatusType.h"/>
+       <ClInclude Include="afrl\cmasi\AltitudeType.h"/>
+       <ClInclude Include="afrl\cmasi\TravelMode.h"/>
+       <ClInclude Include="afrl\cmasi\WaypointTransferMode.h"/>
+       <ClInclude Include="afrl\cmasi\CMASIXMLReader.h"/>
+       <ClInclude Include="afrl\cmasi\CMASIFactory.h"/>
+       <ClInclude Include="afrl\cmasi\CMASIEnum.h"/>
+       <ClInclude Include="afrl\cmasi\CMASI.h"/>
+
+  </ItemGroup>
+  <ItemGroup>
+       <ClCompile Include="avtas\lmcp\ByteBuffer.cpp"/>
+       <ClCompile Include="avtas\lmcp\Factory.cpp"/>
+       <ClCompile Include="avtas\lmcp\Node.cpp"/>
+       <ClCompile Include="avtas\lmcp\NodeUtil.cpp"/>
+       <ClCompile Include="avtas\lmcp\XMLParser.cpp"/>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeVideoRecord.cpp"/>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeStartupComplete.cpp"/>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeCreateNewService.cpp"/>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeKillService.cpp"/>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeIncrementWaypoint.cpp"/>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeSafeHeadingAction.cpp"/>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeEntityLocation.cpp"/>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeBandwidthTest.cpp"/>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeBandwidthReceiveReport.cpp"/>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeSubTaskExecution.cpp"/>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeSubTaskAssignment.cpp"/>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeAutopilotKeepAlive.cpp"/>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeOnboardStatusReport.cpp"/>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeEntityJoin.cpp"/>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeEntityExit.cpp"/>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeSimulationTimeStepAcknowledgement.cpp"/>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeSpeedOverrideAction.cpp"/>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeZeroizeCommand.cpp"/>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeZeroizeCondition.cpp"/>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeDownloadRequest.cpp"/>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeDownloadReply.cpp"/>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeFileTransferRequest.cpp"/>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeFile.cpp"/>
+       <ClCompile Include="uxas\messages\uxnative\uxasmessagesuxnativeFileTransfer.cpp"/>
+       <ClCompile Include="uxas\messages\uxnative\UXNATIVEXMLReader.cpp"/>
+       <ClCompile Include="uxas\messages\uxnative\UXNATIVEFactory.cpp"/>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskAssignmentCoordinatorTask.cpp"/>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskRendezvousTask.cpp"/>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskPlanningState.cpp"/>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskAssignmentCoordination.cpp"/>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskCoordinatedAutomationRequest.cpp"/>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskTaskAutomationRequest.cpp"/>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskTaskAutomationResponse.cpp"/>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskUniqueAutomationRequest.cpp"/>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskUniqueAutomationResponse.cpp"/>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskSensorFootprintRequests.cpp"/>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskFootprintRequest.cpp"/>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskSensorFootprint.cpp"/>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskSensorFootprintResponse.cpp"/>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskTaskImplementationRequest.cpp"/>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskTaskImplementationResponse.cpp"/>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskAssignmentCostMatrix.cpp"/>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskTaskOptionCost.cpp"/>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskTaskAssignment.cpp"/>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskTaskAssignmentSummary.cpp"/>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskTaskOption.cpp"/>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskTaskPlanOptions.cpp"/>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskTaskPause.cpp"/>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskTaskResume.cpp"/>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskTaskProgress.cpp"/>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskTaskProgressRequest.cpp"/>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskTaskInitialized.cpp"/>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskTaskActive.cpp"/>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskTaskComplete.cpp"/>
+       <ClCompile Include="uxas\messages\task\uxasmessagestaskCancelTask.cpp"/>
+       <ClCompile Include="uxas\messages\task\UXTASKXMLReader.cpp"/>
+       <ClCompile Include="uxas\messages\task\UXTASKFactory.cpp"/>
+       <ClCompile Include="uxas\messages\route\uxasmessagesrouteGraphNode.cpp"/>
+       <ClCompile Include="uxas\messages\route\uxasmessagesrouteGraphEdge.cpp"/>
+       <ClCompile Include="uxas\messages\route\uxasmessagesrouteGraphRegion.cpp"/>
+       <ClCompile Include="uxas\messages\route\uxasmessagesrouteRouteConstraints.cpp"/>
+       <ClCompile Include="uxas\messages\route\uxasmessagesrouteRouteRequest.cpp"/>
+       <ClCompile Include="uxas\messages\route\uxasmessagesrouteRoutePlanRequest.cpp"/>
+       <ClCompile Include="uxas\messages\route\uxasmessagesrouteRoutePlan.cpp"/>
+       <ClCompile Include="uxas\messages\route\uxasmessagesrouteRoutePlanResponse.cpp"/>
+       <ClCompile Include="uxas\messages\route\uxasmessagesrouteRouteResponse.cpp"/>
+       <ClCompile Include="uxas\messages\route\uxasmessagesrouteEgressRouteRequest.cpp"/>
+       <ClCompile Include="uxas\messages\route\uxasmessagesrouteEgressRouteResponse.cpp"/>
+       <ClCompile Include="uxas\messages\route\uxasmessagesrouteRoadPointsConstraints.cpp"/>
+       <ClCompile Include="uxas\messages\route\uxasmessagesrouteRoadPointsRequest.cpp"/>
+       <ClCompile Include="uxas\messages\route\uxasmessagesrouteRoadPointsResponse.cpp"/>
+       <ClCompile Include="uxas\messages\route\ROUTEXMLReader.cpp"/>
+       <ClCompile Include="uxas\messages\route\ROUTEFactory.cpp"/>
+       <ClCompile Include="afrl\cmasi\perceive\afrlcmasiperceiveEntityPerception.cpp"/>
+       <ClCompile Include="afrl\cmasi\perceive\afrlcmasiperceiveTrackEntityAction.cpp"/>
+       <ClCompile Include="afrl\cmasi\perceive\afrlcmasiperceiveTrackEntityTask.cpp"/>
+       <ClCompile Include="afrl\cmasi\perceive\PERCEIVEXMLReader.cpp"/>
+       <ClCompile Include="afrl\cmasi\perceive\PERCEIVEFactory.cpp"/>
+       <ClCompile Include="afrl\vehicles\afrlvehiclesGroundVehicleConfiguration.cpp"/>
+       <ClCompile Include="afrl\vehicles\afrlvehiclesGroundVehicleState.cpp"/>
+       <ClCompile Include="afrl\vehicles\afrlvehiclesSurfaceVehicleConfiguration.cpp"/>
+       <ClCompile Include="afrl\vehicles\afrlvehiclesSurfaceVehicleState.cpp"/>
+       <ClCompile Include="afrl\vehicles\afrlvehiclesStationarySensorConfiguration.cpp"/>
+       <ClCompile Include="afrl\vehicles\afrlvehiclesStationarySensorState.cpp"/>
+       <ClCompile Include="afrl\vehicles\VEHICLESXMLReader.cpp"/>
+       <ClCompile Include="afrl\vehicles\VEHICLESFactory.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactPowerConfiguration.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactRadioConfiguration.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactRadioTowerConfiguration.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactRadioState.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactRadioTowerState.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactImpactPayloadConfiguration.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactDeployImpactPayload.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactPowerPlantState.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactBatchRoutePlanRequest.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactBatchRoutePlanResponse.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactTaskTimingPair.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactBatchSummaryRequest.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactBatchSummaryResponse.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactTaskSummary.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactVehicleSummary.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactSpeedAltPair.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactImpactAutomationRequest.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactImpactAutomationResponse.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactPointOfInterest.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactLineOfInterest.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactAreaOfInterest.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactImpactPointSearchTask.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactPatternSearchTask.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactAngledAreaSearchTask.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactImpactLineSearchTask.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactWatchTask.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactMultiVehicleWatchTask.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactCommRelayTask.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactCordonTask.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactBlockadeTask.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactEscortTask.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactConfigurationRequest.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactWaterReport.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactWaterZone.cpp"/>
+       <ClCompile Include="afrl\impact\afrlimpactPayloadDropTask.cpp"/>
+       <ClCompile Include="afrl\impact\IMPACTXMLReader.cpp"/>
+       <ClCompile Include="afrl\impact\IMPACTFactory.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiAbstractGeometry.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiKeyValuePair.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiLocation3D.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiPayloadAction.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiPayloadConfiguration.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiPayloadState.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiVehicleAction.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiTask.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiSearchTask.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiAbstractZone.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiEntityConfiguration.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiFlightProfile.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiAirVehicleConfiguration.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiEntityState.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiAirVehicleState.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiWedge.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiAreaSearchTask.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiCameraAction.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiCameraConfiguration.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiGimballedPayloadState.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiCameraState.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiCircle.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiGimbalAngleAction.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiGimbalConfiguration.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiGimbalScanAction.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiGimbalStareAction.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiGimbalState.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiGoToWaypointAction.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiKeepInZone.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiKeepOutZone.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiLineSearchTask.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiNavigationAction.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiLoiterAction.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiLoiterTask.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiWaypoint.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiMissionCommand.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiMustFlyTask.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiOperatorSignal.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiOperatingRegion.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiAutomationRequest.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiPointSearchTask.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiPolygon.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiRectangle.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiRemoveTasks.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiServiceStatus.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiSessionStatus.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiVehicleActionCommand.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiVideoStreamAction.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiVideoStreamConfiguration.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiVideoStreamState.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiAutomationResponse.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiRemoveZones.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiRemoveEntities.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiFlightDirectorAction.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiWeatherReport.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiFollowPathCommand.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiPathWaypoint.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiStopMovementAction.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiWaypointTransfer.cpp"/>
+       <ClCompile Include="afrl\cmasi\afrlcmasiPayloadStowAction.cpp"/>
+       <ClCompile Include="afrl\cmasi\CMASIXMLReader.cpp"/>
+       <ClCompile Include="afrl\cmasi\CMASIFactory.cpp"/>
+
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

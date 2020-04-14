@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9.00"
+	Name="LMCPBuild"
+	ProjectGUID="{A78B8CEE-3A16-40D2-87CC-8A1995D53312}"
+	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
+	>
+	<Platforms>
+		<Platform
+			Name="Win32"
+		/>
+	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory="Debug"
+			IntermediateDirectory="Debug"
+			ConfigurationType="4"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="0"
+                                AdditionalIncludeDirectories=".\"
+				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;"
+				MinimalRebuild="true"
+				BasicRuntimeChecks="3"
+				RuntimeLibrary="3"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="4"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLibrarianTool"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="Release"
+			IntermediateDirectory="Release"
+			ConfigurationType="4"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
+			<Tool
+				Name="VCCLCompilerTool"
+				Optimization="3"
+                                AdditionalIncludeDirectories="./"
+				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;"
+				RuntimeLibrary="2"
+				UsePrecompiledHeader="0"
+				WarningLevel="3"
+				DebugInformationFormat="3"
+			/>
+			<Tool
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
+			<Tool
+				Name="VCLibrarianTool"
+			/>
+			<Tool
+				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCXDCMakeTool"
+			/>
+			<Tool
+				Name="VCBscMakeTool"
+			/>
+			<Tool
+				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCPostBuildEventTool"
+			/>
+		</Configuration>
+	</Configurations>
+	<References>
+	</References>
+	<Files>
+		<Filter
+			Name="Header Files"
+			Filter="h;hpp;hxx;hm;inl;inc;xsd"
+			UniqueIdentifier="{995E2B14-24AF-42D5-9068-000BB71378D2}"
+			>
+			<Filter Name="lmcp">
+			   <File RelativePath=".\avtas\lmcp\ByteBuffer.h"> </File>
+			   <File RelativePath=".\avtas\lmcp\Factory.h"> </File>
+			   <File RelativePath=".\avtas\lmcp\LmcpXMLReader.h"> </File>
+			   <File RelativePath=".\avtas\lmcp\Node.h"> </File>
+			   <File RelativePath=".\avtas\lmcp\NodeUtil.h"> </File>
+			   <File RelativePath=".\avtas\lmcp\Object.h"> </File>
+			   <File RelativePath=".\avtas\lmcp\XMLParser.h"> </File>
+			</Filter>
+			<Filter Name="uxas\messages\uxnative">
+			   <File RelativePath=".\uxas\messages\uxnative\VideoRecord.h"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\StartupComplete.h"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\CreateNewService.h"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\KillService.h"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\IncrementWaypoint.h"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\SafeHeadingAction.h"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\EntityLocation.h"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\BandwidthTest.h"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\BandwidthReceiveReport.h"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\SubTaskExecution.h"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\SubTaskAssignment.h"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\AutopilotKeepAlive.h"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\OnboardStatusReport.h"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\EntityJoin.h"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\EntityExit.h"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\SimulationTimeStepAcknowledgement.h"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\SpeedOverrideAction.h"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\ZeroizeCommand.h"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\ZeroizeCondition.h"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\DownloadRequest.h"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\DownloadReply.h"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\FileTransferRequest.h"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\File.h"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\FileTransfer.h"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\UXNATIVEXMLReader.h"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\UXNATIVEFactory.h"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\UXNATIVEEnum.h"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\UXNATIVE.h"> </File>
+			</Filter>
+			<Filter Name="uxas\messages\task">
+			   <File RelativePath=".\uxas\messages\task\AssignmentCoordinatorTask.h"> </File>
+			   <File RelativePath=".\uxas\messages\task\RendezvousTask.h"> </File>
+			   <File RelativePath=".\uxas\messages\task\PlanningState.h"> </File>
+			   <File RelativePath=".\uxas\messages\task\AssignmentCoordination.h"> </File>
+			   <File RelativePath=".\uxas\messages\task\CoordinatedAutomationRequest.h"> </File>
+			   <File RelativePath=".\uxas\messages\task\TaskAutomationRequest.h"> </File>
+			   <File RelativePath=".\uxas\messages\task\TaskAutomationResponse.h"> </File>
+			   <File RelativePath=".\uxas\messages\task\UniqueAutomationRequest.h"> </File>
+			   <File RelativePath=".\uxas\messages\task\UniqueAutomationResponse.h"> </File>
+			   <File RelativePath=".\uxas\messages\task\SensorFootprintRequests.h"> </File>
+			   <File RelativePath=".\uxas\messages\task\FootprintRequest.h"> </File>
+			   <File RelativePath=".\uxas\messages\task\SensorFootprint.h"> </File>
+			   <File RelativePath=".\uxas\messages\task\SensorFootprintResponse.h"> </File>
+			   <File RelativePath=".\uxas\messages\task\TaskImplementationRequest.h"> </File>
+			   <File RelativePath=".\uxas\messages\task\TaskImplementationResponse.h"> </File>
+			   <File RelativePath=".\uxas\messages\task\AssignmentCostMatrix.h"> </File>
+			   <File RelativePath=".\uxas\messages\task\TaskOptionCost.h"> </File>
+			   <File RelativePath=".\uxas\messages\task\TaskAssignment.h"> </File>
+			   <File RelativePath=".\uxas\messages\task\TaskAssignmentSummary.h"> </File>
+			   <File RelativePath=".\uxas\messages\task\TaskOption.h"> </File>
+			   <File RelativePath=".\uxas\messages\task\TaskPlanOptions.h"> </File>
+			   <File RelativePath=".\uxas\messages\task\TaskPause.h"> </File>
+			   <File RelativePath=".\uxas\messages\task\TaskResume.h"> </File>
+			   <File RelativePath=".\uxas\messages\task\TaskProgress.h"> </File>
+			   <File RelativePath=".\uxas\messages\task\TaskProgressRequest.h"> </File>
+			   <File RelativePath=".\uxas\messages\task\TaskInitialized.h"> </File>
+			   <File RelativePath=".\uxas\messages\task\TaskActive.h"> </File>
+			   <File RelativePath=".\uxas\messages\task\TaskComplete.h"> </File>
+			   <File RelativePath=".\uxas\messages\task\CancelTask.h"> </File>
+			   <File RelativePath=".\uxas\messages\task\UXTASKXMLReader.h"> </File>
+			   <File RelativePath=".\uxas\messages\task\UXTASKFactory.h"> </File>
+			   <File RelativePath=".\uxas\messages\task\UXTASKEnum.h"> </File>
+			   <File RelativePath=".\uxas\messages\task\UXTASK.h"> </File>
+			</Filter>
+			<Filter Name="uxas\messages\route">
+			   <File RelativePath=".\uxas\messages\route\GraphNode.h"> </File>
+			   <File RelativePath=".\uxas\messages\route\GraphEdge.h"> </File>
+			   <File RelativePath=".\uxas\messages\route\GraphRegion.h"> </File>
+			   <File RelativePath=".\uxas\messages\route\RouteConstraints.h"> </File>
+			   <File RelativePath=".\uxas\messages\route\RouteRequest.h"> </File>
+			   <File RelativePath=".\uxas\messages\route\RoutePlanRequest.h"> </File>
+			   <File RelativePath=".\uxas\messages\route\RoutePlan.h"> </File>
+			   <File RelativePath=".\uxas\messages\route\RoutePlanResponse.h"> </File>
+			   <File RelativePath=".\uxas\messages\route\RouteResponse.h"> </File>
+			   <File RelativePath=".\uxas\messages\route\EgressRouteRequest.h"> </File>
+			   <File RelativePath=".\uxas\messages\route\EgressRouteResponse.h"> </File>
+			   <File RelativePath=".\uxas\messages\route\RoadPointsConstraints.h"> </File>
+			   <File RelativePath=".\uxas\messages\route\RoadPointsRequest.h"> </File>
+			   <File RelativePath=".\uxas\messages\route\RoadPointsResponse.h"> </File>
+			   <File RelativePath=".\uxas\messages\route\ROUTEXMLReader.h"> </File>
+			   <File RelativePath=".\uxas\messages\route\ROUTEFactory.h"> </File>
+			   <File RelativePath=".\uxas\messages\route\ROUTEEnum.h"> </File>
+			   <File RelativePath=".\uxas\messages\route\ROUTE.h"> </File>
+			</Filter>
+			<Filter Name="afrl\cmasi\perceive">
+			   <File RelativePath=".\afrl\cmasi\perceive\EntityPerception.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\perceive\TrackEntityAction.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\perceive\TrackEntityTask.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\perceive\PERCEIVEXMLReader.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\perceive\PERCEIVEFactory.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\perceive\PERCEIVEEnum.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\perceive\PERCEIVE.h"> </File>
+			</Filter>
+			<Filter Name="afrl\vehicles">
+			   <File RelativePath=".\afrl\vehicles\GroundVehicleConfiguration.h"> </File>
+			   <File RelativePath=".\afrl\vehicles\GroundVehicleState.h"> </File>
+			   <File RelativePath=".\afrl\vehicles\SurfaceVehicleConfiguration.h"> </File>
+			   <File RelativePath=".\afrl\vehicles\SurfaceVehicleState.h"> </File>
+			   <File RelativePath=".\afrl\vehicles\StationarySensorConfiguration.h"> </File>
+			   <File RelativePath=".\afrl\vehicles\StationarySensorState.h"> </File>
+			   <File RelativePath=".\afrl\vehicles\VEHICLESXMLReader.h"> </File>
+			   <File RelativePath=".\afrl\vehicles\VEHICLESFactory.h"> </File>
+			   <File RelativePath=".\afrl\vehicles\VEHICLESEnum.h"> </File>
+			   <File RelativePath=".\afrl\vehicles\VEHICLES.h"> </File>
+			</Filter>
+			<Filter Name="afrl\impact">
+			   <File RelativePath=".\afrl\impact\PowerConfiguration.h"> </File>
+			   <File RelativePath=".\afrl\impact\RadioConfiguration.h"> </File>
+			   <File RelativePath=".\afrl\impact\RadioTowerConfiguration.h"> </File>
+			   <File RelativePath=".\afrl\impact\RadioState.h"> </File>
+			   <File RelativePath=".\afrl\impact\RadioTowerState.h"> </File>
+			   <File RelativePath=".\afrl\impact\ImpactPayloadConfiguration.h"> </File>
+			   <File RelativePath=".\afrl\impact\DeployImpactPayload.h"> </File>
+			   <File RelativePath=".\afrl\impact\PowerPlantState.h"> </File>
+			   <File RelativePath=".\afrl\impact\BatchRoutePlanRequest.h"> </File>
+			   <File RelativePath=".\afrl\impact\BatchRoutePlanResponse.h"> </File>
+			   <File RelativePath=".\afrl\impact\TaskTimingPair.h"> </File>
+			   <File RelativePath=".\afrl\impact\BatchSummaryRequest.h"> </File>
+			   <File RelativePath=".\afrl\impact\BatchSummaryResponse.h"> </File>
+			   <File RelativePath=".\afrl\impact\TaskSummary.h"> </File>
+			   <File RelativePath=".\afrl\impact\VehicleSummary.h"> </File>
+			   <File RelativePath=".\afrl\impact\SpeedAltPair.h"> </File>
+			   <File RelativePath=".\afrl\impact\ImpactAutomationRequest.h"> </File>
+			   <File RelativePath=".\afrl\impact\ImpactAutomationResponse.h"> </File>
+			   <File RelativePath=".\afrl\impact\PointOfInterest.h"> </File>
+			   <File RelativePath=".\afrl\impact\LineOfInterest.h"> </File>
+			   <File RelativePath=".\afrl\impact\AreaOfInterest.h"> </File>
+			   <File RelativePath=".\afrl\impact\ImpactPointSearchTask.h"> </File>
+			   <File RelativePath=".\afrl\impact\PatternSearchTask.h"> </File>
+			   <File RelativePath=".\afrl\impact\AngledAreaSearchTask.h"> </File>
+			   <File RelativePath=".\afrl\impact\ImpactLineSearchTask.h"> </File>
+			   <File RelativePath=".\afrl\impact\WatchTask.h"> </File>
+			   <File RelativePath=".\afrl\impact\MultiVehicleWatchTask.h"> </File>
+			   <File RelativePath=".\afrl\impact\CommRelayTask.h"> </File>
+			   <File RelativePath=".\afrl\impact\CordonTask.h"> </File>
+			   <File RelativePath=".\afrl\impact\BlockadeTask.h"> </File>
+			   <File RelativePath=".\afrl\impact\EscortTask.h"> </File>
+			   <File RelativePath=".\afrl\impact\ConfigurationRequest.h"> </File>
+			   <File RelativePath=".\afrl\impact\WaterReport.h"> </File>
+			   <File RelativePath=".\afrl\impact\WaterZone.h"> </File>
+			   <File RelativePath=".\afrl\impact\PayloadDropTask.h"> </File>
+			   <File RelativePath=".\afrl\impact\AreaSearchPattern.h"> </File>
+			   <File RelativePath=".\afrl\impact\PowerPlant.h"> </File>
+			   <File RelativePath=".\afrl\impact\AreaActionOptions.h"> </File>
+			   <File RelativePath=".\afrl\impact\ImpactPayloadType.h"> </File>
+			   <File RelativePath=".\afrl\impact\IMPACTXMLReader.h"> </File>
+			   <File RelativePath=".\afrl\impact\IMPACTFactory.h"> </File>
+			   <File RelativePath=".\afrl\impact\IMPACTEnum.h"> </File>
+			   <File RelativePath=".\afrl\impact\IMPACT.h"> </File>
+			</Filter>
+			<Filter Name="afrl\cmasi">
+			   <File RelativePath=".\afrl\cmasi\AbstractGeometry.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\KeyValuePair.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\Location3D.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\PayloadAction.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\PayloadConfiguration.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\PayloadState.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\VehicleAction.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\Task.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\SearchTask.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\AbstractZone.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\EntityConfiguration.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\FlightProfile.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\AirVehicleConfiguration.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\EntityState.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\AirVehicleState.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\Wedge.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\AreaSearchTask.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\CameraAction.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\CameraConfiguration.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\GimballedPayloadState.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\CameraState.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\Circle.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\GimbalAngleAction.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\GimbalConfiguration.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\GimbalScanAction.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\GimbalStareAction.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\GimbalState.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\GoToWaypointAction.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\KeepInZone.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\KeepOutZone.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\LineSearchTask.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\NavigationAction.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\LoiterAction.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\LoiterTask.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\Waypoint.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\MissionCommand.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\MustFlyTask.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\OperatorSignal.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\OperatingRegion.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\AutomationRequest.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\PointSearchTask.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\Polygon.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\Rectangle.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\RemoveTasks.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\ServiceStatus.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\SessionStatus.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\VehicleActionCommand.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\VideoStreamAction.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\VideoStreamConfiguration.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\VideoStreamState.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\AutomationResponse.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\RemoveZones.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\RemoveEntities.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\FlightDirectorAction.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\WeatherReport.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\FollowPathCommand.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\PathWaypoint.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\StopMovementAction.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\WaypointTransfer.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\PayloadStowAction.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\WavelengthBand.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\NavigationMode.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\FOVOperationMode.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\GimbalPointingMode.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\ZoneAvoidanceType.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\LoiterType.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\LoiterDirection.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\ServiceStatusType.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\SimulationStatusType.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\SpeedType.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\TurnType.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\CommandStatusType.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\AltitudeType.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\TravelMode.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\WaypointTransferMode.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\CMASIXMLReader.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\CMASIFactory.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\CMASIEnum.h"> </File>
+			   <File RelativePath=".\afrl\cmasi\CMASI.h"> </File>
+			</Filter>
+
+		</Filter>
+		<Filter
+			Name="Source Files"
+			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{832E6712-9708-4596-8A98-FF0B48F66199}"
+			>
+			<!--File
+				RelativePath=".\main.cpp"
+				>
+			</File-->
+			<Filter Name="lmcp">
+			   <File RelativePath=".\avtas\lmcp\ByteBuffer.cpp"> </File>
+			   <File RelativePath=".\avtas\lmcp\Factory.cpp"> </File>
+			   <File RelativePath=".\avtas\lmcp\Node.cpp"> </File>
+			   <File RelativePath=".\avtas\lmcp\NodeUtil.cpp"> </File>
+			   <File RelativePath=".\avtas\lmcp\XMLParser.cpp"> </File>
+			</Filter>
+			<Filter Name="uxas\messages\uxnative">
+			   <File RelativePath=".\uxas\messages\uxnative\uxasmessagesuxnativeVideoRecord.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\uxasmessagesuxnativeStartupComplete.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\uxasmessagesuxnativeCreateNewService.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\uxasmessagesuxnativeKillService.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\uxasmessagesuxnativeIncrementWaypoint.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\uxasmessagesuxnativeSafeHeadingAction.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\uxasmessagesuxnativeEntityLocation.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\uxasmessagesuxnativeBandwidthTest.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\uxasmessagesuxnativeBandwidthReceiveReport.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\uxasmessagesuxnativeSubTaskExecution.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\uxasmessagesuxnativeSubTaskAssignment.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\uxasmessagesuxnativeAutopilotKeepAlive.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\uxasmessagesuxnativeOnboardStatusReport.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\uxasmessagesuxnativeEntityJoin.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\uxasmessagesuxnativeEntityExit.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\uxasmessagesuxnativeSimulationTimeStepAcknowledgement.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\uxasmessagesuxnativeSpeedOverrideAction.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\uxasmessagesuxnativeZeroizeCommand.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\uxasmessagesuxnativeZeroizeCondition.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\uxasmessagesuxnativeDownloadRequest.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\uxasmessagesuxnativeDownloadReply.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\uxasmessagesuxnativeFileTransferRequest.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\uxasmessagesuxnativeFile.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\uxasmessagesuxnativeFileTransfer.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\UXNATIVEXMLReader.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\uxnative\UXNATIVEFactory.cpp"> </File>
+			</Filter>
+			<Filter Name="uxas\messages\task">
+			   <File RelativePath=".\uxas\messages\task\uxasmessagestaskAssignmentCoordinatorTask.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\task\uxasmessagestaskRendezvousTask.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\task\uxasmessagestaskPlanningState.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\task\uxasmessagestaskAssignmentCoordination.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\task\uxasmessagestaskCoordinatedAutomationRequest.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\task\uxasmessagestaskTaskAutomationRequest.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\task\uxasmessagestaskTaskAutomationResponse.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\task\uxasmessagestaskUniqueAutomationRequest.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\task\uxasmessagestaskUniqueAutomationResponse.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\task\uxasmessagestaskSensorFootprintRequests.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\task\uxasmessagestaskFootprintRequest.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\task\uxasmessagestaskSensorFootprint.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\task\uxasmessagestaskSensorFootprintResponse.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\task\uxasmessagestaskTaskImplementationRequest.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\task\uxasmessagestaskTaskImplementationResponse.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\task\uxasmessagestaskAssignmentCostMatrix.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\task\uxasmessagestaskTaskOptionCost.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\task\uxasmessagestaskTaskAssignment.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\task\uxasmessagestaskTaskAssignmentSummary.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\task\uxasmessagestaskTaskOption.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\task\uxasmessagestaskTaskPlanOptions.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\task\uxasmessagestaskTaskPause.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\task\uxasmessagestaskTaskResume.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\task\uxasmessagestaskTaskProgress.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\task\uxasmessagestaskTaskProgressRequest.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\task\uxasmessagestaskTaskInitialized.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\task\uxasmessagestaskTaskActive.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\task\uxasmessagestaskTaskComplete.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\task\uxasmessagestaskCancelTask.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\task\UXTASKXMLReader.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\task\UXTASKFactory.cpp"> </File>
+			</Filter>
+			<Filter Name="uxas\messages\route">
+			   <File RelativePath=".\uxas\messages\route\uxasmessagesrouteGraphNode.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\route\uxasmessagesrouteGraphEdge.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\route\uxasmessagesrouteGraphRegion.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\route\uxasmessagesrouteRouteConstraints.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\route\uxasmessagesrouteRouteRequest.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\route\uxasmessagesrouteRoutePlanRequest.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\route\uxasmessagesrouteRoutePlan.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\route\uxasmessagesrouteRoutePlanResponse.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\route\uxasmessagesrouteRouteResponse.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\route\uxasmessagesrouteEgressRouteRequest.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\route\uxasmessagesrouteEgressRouteResponse.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\route\uxasmessagesrouteRoadPointsConstraints.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\route\uxasmessagesrouteRoadPointsRequest.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\route\uxasmessagesrouteRoadPointsResponse.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\route\ROUTEXMLReader.cpp"> </File>
+			   <File RelativePath=".\uxas\messages\route\ROUTEFactory.cpp"> </File>
+			</Filter>
+			<Filter Name="afrl\cmasi\perceive">
+			   <File RelativePath=".\afrl\cmasi\perceive\afrlcmasiperceiveEntityPerception.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\perceive\afrlcmasiperceiveTrackEntityAction.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\perceive\afrlcmasiperceiveTrackEntityTask.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\perceive\PERCEIVEXMLReader.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\perceive\PERCEIVEFactory.cpp"> </File>
+			</Filter>
+			<Filter Name="afrl\vehicles">
+			   <File RelativePath=".\afrl\vehicles\afrlvehiclesGroundVehicleConfiguration.cpp"> </File>
+			   <File RelativePath=".\afrl\vehicles\afrlvehiclesGroundVehicleState.cpp"> </File>
+			   <File RelativePath=".\afrl\vehicles\afrlvehiclesSurfaceVehicleConfiguration.cpp"> </File>
+			   <File RelativePath=".\afrl\vehicles\afrlvehiclesSurfaceVehicleState.cpp"> </File>
+			   <File RelativePath=".\afrl\vehicles\afrlvehiclesStationarySensorConfiguration.cpp"> </File>
+			   <File RelativePath=".\afrl\vehicles\afrlvehiclesStationarySensorState.cpp"> </File>
+			   <File RelativePath=".\afrl\vehicles\VEHICLESXMLReader.cpp"> </File>
+			   <File RelativePath=".\afrl\vehicles\VEHICLESFactory.cpp"> </File>
+			</Filter>
+			<Filter Name="afrl\impact">
+			   <File RelativePath=".\afrl\impact\afrlimpactPowerConfiguration.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactRadioConfiguration.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactRadioTowerConfiguration.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactRadioState.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactRadioTowerState.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactImpactPayloadConfiguration.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactDeployImpactPayload.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactPowerPlantState.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactBatchRoutePlanRequest.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactBatchRoutePlanResponse.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactTaskTimingPair.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactBatchSummaryRequest.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactBatchSummaryResponse.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactTaskSummary.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactVehicleSummary.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactSpeedAltPair.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactImpactAutomationRequest.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactImpactAutomationResponse.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactPointOfInterest.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactLineOfInterest.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactAreaOfInterest.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactImpactPointSearchTask.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactPatternSearchTask.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactAngledAreaSearchTask.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactImpactLineSearchTask.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactWatchTask.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactMultiVehicleWatchTask.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactCommRelayTask.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactCordonTask.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactBlockadeTask.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactEscortTask.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactConfigurationRequest.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactWaterReport.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactWaterZone.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\afrlimpactPayloadDropTask.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\IMPACTXMLReader.cpp"> </File>
+			   <File RelativePath=".\afrl\impact\IMPACTFactory.cpp"> </File>
+			</Filter>
+			<Filter Name="afrl\cmasi">
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiAbstractGeometry.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiKeyValuePair.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiLocation3D.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiPayloadAction.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiPayloadConfiguration.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiPayloadState.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiVehicleAction.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiTask.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiSearchTask.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiAbstractZone.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiEntityConfiguration.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiFlightProfile.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiAirVehicleConfiguration.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiEntityState.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiAirVehicleState.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiWedge.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiAreaSearchTask.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiCameraAction.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiCameraConfiguration.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiGimballedPayloadState.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiCameraState.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiCircle.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiGimbalAngleAction.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiGimbalConfiguration.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiGimbalScanAction.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiGimbalStareAction.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiGimbalState.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiGoToWaypointAction.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiKeepInZone.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiKeepOutZone.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiLineSearchTask.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiNavigationAction.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiLoiterAction.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiLoiterTask.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiWaypoint.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiMissionCommand.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiMustFlyTask.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiOperatorSignal.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiOperatingRegion.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiAutomationRequest.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiPointSearchTask.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiPolygon.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiRectangle.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiRemoveTasks.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiServiceStatus.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiSessionStatus.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiVehicleActionCommand.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiVideoStreamAction.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiVideoStreamConfiguration.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiVideoStreamState.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiAutomationResponse.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiRemoveZones.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiRemoveEntities.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiFlightDirectorAction.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiWeatherReport.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiFollowPathCommand.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiPathWaypoint.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiStopMovementAction.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiWaypointTransfer.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\afrlcmasiPayloadStowAction.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\CMASIXMLReader.cpp"> </File>
+			   <File RelativePath=".\afrl\cmasi\CMASIFactory.cpp"> </File>
+			</Filter>
+
+		</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

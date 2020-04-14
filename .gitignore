@@ -18,9 +18,6 @@ doc/reference/UserManual/UxAS_UserManual.out
 doc/reference/UserManual/UxAS_UserManual.pdf
 doc/reference/UserManual/UxAS_UserManual.toc
 
-# generated LMCP source code
-src/LMCP
-
 # test output
 tests/**/output/**
 

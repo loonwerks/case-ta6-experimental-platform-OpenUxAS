@@ -1,0 +1,93 @@
+// ===============================================================================
+// Authors: AFRL/RQQA
+// Organization: Air Force Research Laboratory, Aerospace Systems Directorate, Power and Control Division
+// 
+// Copyright (c) 2017 Government of the United State of America, as represented by
+// the Secretary of the Air Force.  No copyright is claimed in the United States under
+// Title 17, U.S. Code.  All Other Rights Reserved.
+// ===============================================================================
+
+// This file was auto-created by LmcpGen. Modifications will be overwritten.
+
+#ifndef _AFRL_CMASI_ENTIRESERIESHEADER_H_
+#define _AFRL_CMASI_ENTIRESERIESHEADER_H_
+
+#include "afrl/cmasi/AbstractGeometry.h"
+#include "afrl/cmasi/KeyValuePair.h"
+#include "afrl/cmasi/Location3D.h"
+#include "afrl/cmasi/PayloadAction.h"
+#include "afrl/cmasi/PayloadConfiguration.h"
+#include "afrl/cmasi/PayloadState.h"
+#include "afrl/cmasi/VehicleAction.h"
+#include "afrl/cmasi/Task.h"
+#include "afrl/cmasi/SearchTask.h"
+#include "afrl/cmasi/AbstractZone.h"
+#include "afrl/cmasi/EntityConfiguration.h"
+#include "afrl/cmasi/FlightProfile.h"
+#include "afrl/cmasi/AirVehicleConfiguration.h"
+#include "afrl/cmasi/EntityState.h"
+#include "afrl/cmasi/AirVehicleState.h"
+#include "afrl/cmasi/Wedge.h"
+#include "afrl/cmasi/AreaSearchTask.h"
+#include "afrl/cmasi/CameraAction.h"
+#include "afrl/cmasi/CameraConfiguration.h"
+#include "afrl/cmasi/GimballedPayloadState.h"
+#include "afrl/cmasi/CameraState.h"
+#include "afrl/cmasi/Circle.h"
+#include "afrl/cmasi/GimbalAngleAction.h"
+#include "afrl/cmasi/GimbalConfiguration.h"
+#include "afrl/cmasi/GimbalScanAction.h"
+#include "afrl/cmasi/GimbalStareAction.h"
+#include "afrl/cmasi/GimbalState.h"
+#include "afrl/cmasi/GoToWaypointAction.h"
+#include "afrl/cmasi/KeepInZone.h"
+#include "afrl/cmasi/KeepOutZone.h"
+#include "afrl/cmasi/LineSearchTask.h"
+#include "afrl/cmasi/NavigationAction.h"
+#include "afrl/cmasi/LoiterAction.h"
+#include "afrl/cmasi/LoiterTask.h"
+#include "afrl/cmasi/Waypoint.h"
+#include "afrl/cmasi/MissionCommand.h"
+#include "afrl/cmasi/MustFlyTask.h"
+#include "afrl/cmasi/OperatorSignal.h"
+#include "afrl/cmasi/OperatingRegion.h"
+#include "afrl/cmasi/AutomationRequest.h"
+#include "afrl/cmasi/PointSearchTask.h"
+#include "afrl/cmasi/Polygon.h"
+#include "afrl/cmasi/Rectangle.h"
+#include "afrl/cmasi/RemoveTasks.h"
+#include "afrl/cmasi/ServiceStatus.h"
+#include "afrl/cmasi/SessionStatus.h"
+#include "afrl/cmasi/VehicleActionCommand.h"
+#include "afrl/cmasi/VideoStreamAction.h"
+#include "afrl/cmasi/VideoStreamConfiguration.h"
+#include "afrl/cmasi/VideoStreamState.h"
+#include "afrl/cmasi/AutomationResponse.h"
+#include "afrl/cmasi/RemoveZones.h"
+#include "afrl/cmasi/RemoveEntities.h"
+#include "afrl/cmasi/FlightDirectorAction.h"
+#include "afrl/cmasi/WeatherReport.h"
+#include "afrl/cmasi/FollowPathCommand.h"
+#include "afrl/cmasi/PathWaypoint.h"
+#include "afrl/cmasi/StopMovementAction.h"
+#include "afrl/cmasi/WaypointTransfer.h"
+#include "afrl/cmasi/PayloadStowAction.h"
+#include "afrl/cmasi/WavelengthBand.h"
+#include "afrl/cmasi/NavigationMode.h"
+#include "afrl/cmasi/FOVOperationMode.h"
+#include "afrl/cmasi/GimbalPointingMode.h"
+#include "afrl/cmasi/ZoneAvoidanceType.h"
+#include "afrl/cmasi/LoiterType.h"
+#include "afrl/cmasi/LoiterDirection.h"
+#include "afrl/cmasi/ServiceStatusType.h"
+#include "afrl/cmasi/SimulationStatusType.h"
+#include "afrl/cmasi/SpeedType.h"
+#include "afrl/cmasi/TurnType.h"
+#include "afrl/cmasi/CommandStatusType.h"
+#include "afrl/cmasi/AltitudeType.h"
+#include "afrl/cmasi/TravelMode.h"
+#include "afrl/cmasi/WaypointTransferMode.h"
+#include "afrl/cmasi/CMASIEnum.h"
+
+
+#endif //_AFRL_CMASI_ENTIRESERIESHEADER_H_
