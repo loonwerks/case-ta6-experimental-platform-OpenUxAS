@@ -1,0 +1,19 @@
+[binaries]
+c = 'arm-linux-gnueabi-gcc'
+cpp = 'arm-linux-gnueabi-g++'
+ar = 'arm-linux-gnueabi-ar'
+strip = 'arm-linux-gnueabi-strip'
+pkgconfig = 'arm-linux-gnueabi-pkg-config'
+
+[properties]
+c_args = [ '-static' ]
+cpp_args = [ '-static' ]
+c_link_args = [ '-static' ]
+cpp_link_args = [ '-static' ]
+needs_exe_wrapper = true
+
+[host_machine]
+system = 'linux'
+cpu_family = 'arm'
+cpu = 'armv7'
+endian = 'little'
