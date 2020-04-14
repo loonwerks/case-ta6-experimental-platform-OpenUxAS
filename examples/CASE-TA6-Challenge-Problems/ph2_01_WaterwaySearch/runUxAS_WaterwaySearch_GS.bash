@@ -1,7 +1,6 @@
-#! /bin/sh
+#! /bin/bash
 
-SCRIPT=$(readlink -f "$0")
-SCRIPT_DIR=$(dirname "$SCRIPT")
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 RUN_DIR="$(pwd)/RUNDIR_WaterwaySearch_GS"
 
 BIN="${SCRIPT_DIR}/../../../build/uxas"
