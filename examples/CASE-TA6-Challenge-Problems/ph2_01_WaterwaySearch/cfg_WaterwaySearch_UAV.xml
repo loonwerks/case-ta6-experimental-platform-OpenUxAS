@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <UxAS FormatVersion="1.0" EntityID="400"  EntityType="Aircraft">
+    <!-- Use Zyre for WiFi
     <Bridge Type="LmcpObjectNetworkZeroMqZyreBridge" NetworkDevice="ens33">
+        <SubscribeToExternalMessage MessageType="afrl.cmasi.OperatingRegion"/>
+        <SubscribeToExternalMessage MessageType="afrl.cmasi.LineSearchTask"/>
+        <SubscribeToExternalMessage MessageType="afrl.cmasi.AutomationRequest"/>
+    </Bridge>
+    -->
+
+    <!-- Use TCP for wired --->
+    <Bridge Type="LmcpObjectNetworkTcpBridge" TcpAddress="tcp://127.0.0.1:5556" Server="TRUE">
         <SubscribeToExternalMessage MessageType="afrl.cmasi.OperatingRegion"/>
         <SubscribeToExternalMessage MessageType="afrl.cmasi.LineSearchTask"/>
         <SubscribeToExternalMessage MessageType="afrl.cmasi.AutomationRequest"/>

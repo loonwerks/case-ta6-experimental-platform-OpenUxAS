@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <UxAS FormatVersion="1.0" EntityID="500"  EntityType="Ground">
+    <!--Use Zyre for WiFi
     <Bridge Type="LmcpObjectNetworkZeroMqZyreBridge" NetworkDevice="ens33">
+        <SubscribeToMessage MessageType="afrl.cmasi.OperatingRegion"/>
+        <SubscribeToMessage MessageType="afrl.cmasi.LineSearchTask"/>
+        <SubscribeToMessage MessageType="afrl.cmasi.AutomationRequest"/>
+    </Bridge>
+    --->
+
+    <!-- Use TCP for wired --->
+    <Bridge Type="LmcpObjectNetworkTcpBridge" TcpAddress="tcp://127.0.0.1:5556" Server="FALSE">
         <SubscribeToMessage MessageType="afrl.cmasi.OperatingRegion"/>
         <SubscribeToMessage MessageType="afrl.cmasi.LineSearchTask"/>
         <SubscribeToMessage MessageType="afrl.cmasi.AutomationRequest"/>
@@ -8,6 +17,7 @@
 
     <!-- Connect to AMASE (see config folder in OpenAMASE) -->
     <Bridge Type="LmcpObjectNetworkTcpBridge" TcpAddress="tcp://127.0.0.1:5555" Server="FALSE">
+        <SubscribeToMessage MessageType="afrl.cmasi.OperatingRegion"/>
         <SubscribeToMessage MessageType="afrl.cmasi.LineSearchTask" />
         <SubscribeToMessage MessageType="afrl.cmasi.AutomationRequest" />
     </Bridge>
