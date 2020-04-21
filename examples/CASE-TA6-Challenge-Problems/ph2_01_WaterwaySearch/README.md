@@ -20,16 +20,16 @@ The AADL model maps to the implementation very much in one-to-one manner.  Howev
 * `runUxAS_WaterwaySearch_GS.sh` - Bash shell script to run the ground station instance of UxAS
 * `runAMASE_WaterwaySearch.sh` - Bash shell script to run the OpenAMASE simulation environment
 * `Scenario_WaterwaySearch.xml` - Configuration file for the OpenAMASE simulation environment
-* `MessagesToSend/` - most of the messages in this directory are explained in the document, `WaterwayExample_MessageFLow.pdf`. A few are explained below
-* `InitializationMessages/` - Messages sent internally at the UAV to establish initial operating state
+* `Messages/` - most of the messages in this directory are explained in the document, `WaterwayExample_MessageFLow.pdf`. A few are explained below
+* `InitMessages/` - Messages sent internally at the UAV to establish initial operating state
 
 
-## The 'MessagesToSend' directory contains files with xml encoded LMCP messages that are sent in to UxAS using the 'MessagesToSend' service. ##
+## The 'Messages' directory contains files with xml encoded LMCP messages that are sent in to UxAS using the 'Messages' service. ##
 
-* `MessagesToSend/KeepInZone_334.xml` - defines polygon containing the search area
-* `MessagesToSend/KeepOutZone_335.xml` - defines circular region in river bend UAV should avoid
-* `MessagesToSend/ZeroizeCondition_V400.xml` - defines conditions on which UAV should zeroize with respect to keep-in and keep-out zones
-* `MessagesToSend/tasks/AutomationRequest.xml` - request by ID the line search task
+* `Messages/KeepInZone_334.xml` - defines polygon containing the search area
+* `Messages/KeepOutZone_335.xml` - defines circular region in river bend UAV should avoid
+* `Messages/ZeroizeCondition_V400.xml` - defines conditions on which UAV should zeroize with respect to keep-in and keep-out zones
+* `Messages/tasks/AutomationRequest.xml` - request by ID the line search task
 
 
 ## Running the Example:

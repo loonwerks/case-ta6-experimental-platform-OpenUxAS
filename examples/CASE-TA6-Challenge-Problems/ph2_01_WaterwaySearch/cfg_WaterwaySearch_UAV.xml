@@ -51,13 +51,13 @@
     </Service>
 
     <!-- Internal initialization messages, state and capabilities intrinsic to UAV -->
-    <Service Type="SendMessagesService" PathToMessageFiles="../InitializationMessages/">
+    <Service Type="SendMessagesService" PathToMessageFiles="../InitMessages/">
         <Message MessageFileName="AirVehicleState_V400.xml" SendTime_ms="20"/>
         <Message MessageFileName="MissionCommand_V400.xml" SendTime_ms="30"/>
     </Service>
 
     <!-- Internal configuration messages, to be obtained from a trusted data store -->
-    <Service Type="SendMessagesService" PathToMessageFiles="../InitializationMessages/">
+    <Service Type="SendMessagesService" PathToMessageFiles="../InitMessages/">
         <Message MessageFileName="AirVehicleConfiguration_V400.xml" SendTime_ms="10"/>
         <Message MessageFileName="KeepInZone_334.xml" SendTime_ms="40"/>
         <Message MessageFileName="KeepOutZone_335.xml" SendTime_ms="50"/>
