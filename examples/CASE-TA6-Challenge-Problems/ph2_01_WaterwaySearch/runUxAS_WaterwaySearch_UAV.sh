@@ -2,7 +2,7 @@
 
 SCRIPT=$(readlink -f "$0")
 SCRIPT_DIR=$(dirname "$SCRIPT")
-RUN_DIR="$(pwd)/RUNDIR_WaterwaySearch_UAV"
+RUN_DIR="${SCRIPT_DIR}/RUNDIR_WaterwaySearch_UAV"
 
 BIN="${SCRIPT_DIR}/../../../build/uxas"
 
