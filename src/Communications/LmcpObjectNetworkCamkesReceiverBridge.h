@@ -128,9 +128,6 @@ private:
     /** \brief count of messages dropped by the receiver */
     counter_t m_numDropped{0};
 
-    uxas::common::SentinelSerialBuffer m_receiveSerialDataBuffer;
-    
-    std::set<std::string> m_externalSubscriptionAddresses;
     std::set<std::string> m_nonImportForwardAddresses;
     std::set<std::string> m_nonExportForwardAddresses;
     
