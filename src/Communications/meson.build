@@ -21,6 +21,7 @@ inc_dirs = [
     '../../src/Includes',
     '../../src/Utilities',
     '../../src/Services',
+    'queue/include',
   ),
   incs_lmcp,
 ]
@@ -37,6 +38,7 @@ lib_uxas_communications = static_library(
     'LmcpObjectNetworkClientBase.cpp',
     'LmcpObjectNetworkPublishPullBridge.cpp',
     'LmcpObjectNetworkSerialBridge.cpp',
+    'LmcpObjectNetworkCamkesReceiverBridge.cpp',
     'LmcpObjectNetworkServer.cpp',
     'LmcpObjectNetworkSubscribePushBridge.cpp',
     'LmcpObjectNetworkTcpBridge.cpp',
@@ -51,6 +53,7 @@ lib_uxas_communications = static_library(
     'ZeroMqReceiverBase.cpp',
     'ZeroMqSenderBase.cpp',
     'ZeroMqZyreBridge.cpp',
+    'queue/src/queue.c',
   ],
   cpp_args: cpp_args_comms,
   dependencies: [

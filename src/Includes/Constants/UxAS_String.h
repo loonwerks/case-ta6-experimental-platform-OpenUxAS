@@ -30,6 +30,7 @@ public:
     static const std::string& ComponentManager() { static std::string s_string("ComponentManager"); return(s_string); };
     static const std::string& Components() { static std::string s_string("Components"); return(s_string); };
     static const std::string& ConsoleLoggerSeverityLevel() { static std::string s_string("ConsoleLoggerSeverityLevel"); return(s_string); };
+    static const std::string& DeviceName() { static std::string s_string("DeviceName"); return(s_string); };
     static const std::string& EntityID() { static std::string s_string("EntityID"); return(s_string); };
     static const std::string& EntityType() { static std::string s_string("EntityType"); return(s_string); };
     static const std::string& FilterType() { static std::string s_string("FilterType"); return(s_string); };
