@@ -21,7 +21,7 @@ inc_dirs = [
     '../../src/Includes',
     '../../src/Utilities',
     '../../src/Services',
-    'queue/include',
+    'camkes_queue/include',
   ),
   incs_lmcp,
 ]
@@ -54,7 +54,7 @@ lib_uxas_communications = static_library(
     'ZeroMqReceiverBase.cpp',
     'ZeroMqSenderBase.cpp',
     'ZeroMqZyreBridge.cpp',
-    'queue/src/queue.c',
+    'camkes_queue/src/queue.c',
   ],
   cpp_args: cpp_args_comms,
   dependencies: [
