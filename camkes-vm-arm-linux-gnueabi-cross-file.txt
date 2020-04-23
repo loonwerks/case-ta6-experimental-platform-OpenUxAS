@@ -6,10 +6,10 @@ strip = 'arm-linux-gnueabi-strip'
 pkgconfig = 'arm-linux-gnueabi-pkg-config'
 
 [properties]
-c_args = [ '-static' ]
-cpp_args = [ '-static' ]
-c_link_args = [ '-static' ]
-cpp_link_args = [ '-static' ]
+c_args = [ '-static', '-latomic' ]
+cpp_args = [ '-static', '-latomic' ]
+c_link_args = [ '-static', '-latomic' ]
+cpp_link_args = [ '-static', '-latomic' ]
 needs_exe_wrapper = true
 
 [host_machine]

@@ -6,10 +6,10 @@ strip = 'arm-linux-gnueabihf-strip'
 pkgconfig = 'arm-linux-gnueabihf-pkg-config'
 
 [properties]
-c_args = [ '-lGLU', '-lGL', '-static-libstdc++' ]
-cpp_args = [ '-lGLU', '-lGL', '-static-libstdc++' ]
-c_link_args = [ '-lGLU', '-lGL', '-static-libstdc++' ]
-cpp_link_args = [ '-lGLU', '-lGL', '-static-libstdc++' ]
+c_args = [ '-lGLU', '-lGL', '-latomic', '-static-libstdc++' ]
+cpp_args = [ '-lGLU', '-lGL', '-latomic', '-static-libstdc++' ]
+c_link_args = [ '-lGLU', '-lGL', '-latomic', '-static-libstdc++' ]
+cpp_link_args = [ '-lGLU', '-lGL', '-latomic', '-static-libstdc++' ]
 needs_exe_wrapper = true
 
 [host_machine]
