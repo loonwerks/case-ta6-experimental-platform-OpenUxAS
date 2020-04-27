@@ -15,6 +15,7 @@
 
 #include <queue.h>
 #include <stdint.h>
+#include <stdio.h>
 #include <stddef.h>
 
 //------------------------------------------------------------------------------
@@ -61,6 +62,8 @@ bool queue_dequeue(recv_queue_t *recvQueue, counter_t *numDropped, data_t *data)
   // How many new elements have been sent? Since we are using unsigned
   // integers, this correctly computes the value as counters wrap.
   counter_t numNew = numSent - *numRecv;
+  printf("queue_dequeue: after 1st thread fence: numSent %llu, numRecv %llu, numNew %llu\n",
+      (unsigned long long) numSent, (unsigned long long) *numRecv, (unsigned long long) numNew);
   if (0 == numNew) {
     // Queue is empty
     return false;
@@ -78,6 +81,9 @@ bool queue_dequeue(recv_queue_t *recvQueue, counter_t *numDropped, data_t *data)
   *data = queue->elt[i]; // Copy data
   // Acquire memory fence - ensure read of data BEFORE reading queue->numSent again 
   __atomic_thread_fence(__ATOMIC_ACQUIRE);
+  printf("queue_dequeue: after 2nd thread fence: numDroped %llu, numRecv %llu, numRemaining %llu, returning %d\n",
+      (unsigned long long) *numDropped, (unsigned long long) *numRecv, (unsigned long long) numRemaining,
+      queue->numSent - *numRecv + 1 < QUEUE_SIZE);
   if (queue->numSent - *numRecv + 1 < QUEUE_SIZE) {
     // Sender did not write element we were reading. Copied data is coherent.
     return true;

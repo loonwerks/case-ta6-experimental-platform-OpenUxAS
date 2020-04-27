@@ -27,10 +27,6 @@
 
 #include "LmcpObjectNetworkCamkesReceiverBridge.h"
 
-//#define UXAS_DEBUG_VERBOSE_LOGGING_ENABLED
-//#define UXAS_DEBUG_LOGGING_ENABLED
-//#define UXAS_INFO_LOGGING_ENABLED
-
 #include "UxAS_Log.h"
 #include "Constants/UxAS_String.h"
 
@@ -39,6 +35,10 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
+
+#define UXAS_LOG_INFORM uxas::common::log::LogManager::getInstance().log<uxas::common::log::LogSeverityLevel::UXASINFO>
+#define UXAS_LOG_DEBUGGING uxas::common::log::LogManager::getInstance().log<uxas::common::log::LogSeverityLevel::UXASDEBUG>
+#define UXAS_LOG_DEBUG_VERBOSE uxas::common::log::LogManager::getInstance().log<uxas::common::log::LogSeverityLevel::UXASDEBUG>
 
 namespace uxas
 {
@@ -146,7 +146,7 @@ LmcpObjectNetworkCamkesReceiverBridge::initialize()
         m_camkesRecvQueue = uxas::stduxas::make_unique<recv_queue_t>();
         recv_queue_init(m_camkesRecvQueue.get(), m_dataport.get());
         isSuccess = true;
-        UXAS_LOG_INFORM(s_typeName(), "::initialized initialized port device ", m_deviceName, "successfully");
+        UXAS_LOG_INFORM(s_typeName(), "::initialized initialized port device ", m_deviceName, " successfully");
    }
     else
     {
@@ -198,16 +198,24 @@ LmcpObjectNetworkCamkesReceiverBridge::processReceivedSerializedLmcpMessage(std:
 void
 LmcpObjectNetworkCamkesReceiverBridge::camkesPortInAadlEventDataWait(counter_t *numDropped, data_t *data) {
     data->len = 0;
+    UXAS_LOG_DEBUG_VERBOSE(s_typeName(), "::camkesPortInAadlEventDataWait [", m_entityIdNetworkIdUnicastString,
+        "] port [", m_deviceName, "] BEFORE queue_dequeue");
     while (!queue_dequeue(m_camkesRecvQueue.get(), numDropped, data)) {
     	int val;
     	/* Blocking read */
+        UXAS_LOG_DEBUG_VERBOSE(s_typeName(), "::camkesPortInAadlEventDataWait [", m_entityIdNetworkIdUnicastString,
+            "] port [", m_deviceName, "] BEFORE blocking read");
     	int result = read(m_dataportFd, &val, sizeof(val));
-		if (result < 0) {
+        UXAS_LOG_DEBUG_VERBOSE(s_typeName(), "::camkesPortInAadlEventDataWait [", m_entityIdNetworkIdUnicastString,
+            "] port [", m_deviceName, "] AFTER blocking read, returned ", result);
+        if (result < 0) {
             UXAS_LOG_WARN(s_typeName(), "::camkesPortInAadlEventDataWait [", m_entityIdNetworkIdUnicastString,
-                            "] port [", m_deviceName, "] read error: ", strerror(errno));
-		    return;
-		} 
+                "] port [", m_deviceName, "] read error: ", strerror(errno));
+            return;
+        } 
     }
+    UXAS_LOG_DEBUG_VERBOSE(s_typeName(), "::camkesPortInAadlEventDataWait [", m_entityIdNetworkIdUnicastString,
+        "] port [", m_deviceName, "] AFTER queue_dequeue loop, numDropped ", numDropped, ", data->len ", data->len, ", returning");
 }
 
 void
@@ -225,7 +233,7 @@ LmcpObjectNetworkCamkesReceiverBridge::executeCamkesReceiveProcessing()
                 data_t portInput;
                 camkesPortInAadlEventDataWait(&m_numDropped, &portInput);
                 UXAS_LOG_DEBUG_VERBOSE(s_typeName(), "::executeCamkesReceiveProcessing [", m_entityIdNetworkIdUnicastString,
-                                  "] port [", m_deviceName, "] AFTER camkes connection read value [", serialInput, "]");
+                        "] port [", m_deviceName, "] AFTER camkes connection read message of length ", portInput.len, ".");
                 if (portInput.len > 0)
                 {
                     UXAS_LOG_DEBUGGING(s_typeName(), "::executeCamkesReceiveProcessing [", m_deviceName, "] before processing received string");
@@ -253,7 +261,7 @@ LmcpObjectNetworkCamkesReceiverBridge::executeCamkesReceiveProcessing()
                 }
                 else
                 {
-                    UXAS_LOG_INFORM(s_typeName(), "::executeCamkesReceiveProcessing ignoring empty message ", recvdAddAttMsg->getAddress(), ", source entity ID ", recvdAddAttMsg->getMessageAttributesReference()->getSourceEntityId(), " and source service ID ", recvdAddAttMsg->getMessageAttributesReference()->getSourceServiceId());
+                    UXAS_LOG_INFORM(s_typeName(), "::executeCamkesReceiveProcessing ignoring empty message");
                 }
                 
             }
