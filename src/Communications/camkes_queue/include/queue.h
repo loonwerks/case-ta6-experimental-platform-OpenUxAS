@@ -40,7 +40,7 @@
 // Note: One cell in the queue is always considered dirty. Its the next
 // element to be written. Thus the queue can only contain QUEUE_SIZE-1
 // elements.
-#define QUEUE_SIZE 8
+#define QUEUE_SIZE 4
 
 // This is the type of the seL4 dataport (shared memory) that is shared by the
 // sender and all receivers. This type is referenced in the sender and receiver

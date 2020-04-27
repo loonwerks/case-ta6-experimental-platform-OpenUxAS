@@ -27,7 +27,9 @@
 
 #include "LmcpObjectNetworkCamkesReceiverBridge.h"
 
-#include "SerialHelper.h"
+//#define UXAS_DEBUG_VERBOSE_LOGGING_ENABLED
+//#define UXAS_DEBUG_LOGGING_ENABLED
+//#define UXAS_INFO_LOGGING_ENABLED
 
 #include "UxAS_Log.h"
 #include "Constants/UxAS_String.h"
@@ -141,6 +143,7 @@ LmcpObjectNetworkCamkesReceiverBridge::initialize()
             UXAS_LOG_ERROR(s_typeName(), "::initialize failed to mmap port device ", m_deviceName, ": ", strerror(errno));
             close(m_dataportFd);
         }
+        m_camkesRecvQueue = uxas::stduxas::make_unique<recv_queue_t>();
         recv_queue_init(m_camkesRecvQueue.get(), m_dataport.get());
         isSuccess = true;
         UXAS_LOG_INFORM(s_typeName(), "::initialized initialized port device ", m_deviceName, "successfully");
@@ -218,14 +221,14 @@ LmcpObjectNetworkCamkesReceiverBridge::executeCamkesReceiveProcessing()
             {
                 // check serial connection for inputs
                 UXAS_LOG_DEBUG_VERBOSE(s_typeName(), "::executeCamkesReceiveProcessing [", m_entityIdNetworkIdUnicastString,
-                                  "] port [", m_serialConnection->getPort(), "] BEFORE camkes connection read");
+                                  "] port [", m_deviceName, "] BEFORE camkes connection read");
                 data_t portInput;
                 camkesPortInAadlEventDataWait(&m_numDropped, &portInput);
                 UXAS_LOG_DEBUG_VERBOSE(s_typeName(), "::executeCamkesReceiveProcessing [", m_entityIdNetworkIdUnicastString,
-                                  "] port [", m_serialConnection->getPort(), "] AFTER camkes connection read value [", serialInput, "]");
+                                  "] port [", m_deviceName, "] AFTER camkes connection read value [", serialInput, "]");
                 if (portInput.len > 0)
                 {
-                    UXAS_LOG_DEBUGGING(s_typeName(), "::executeCamkesReceiveProcessing [", serialInput, "] before processing received serial string");
+                    UXAS_LOG_DEBUGGING(s_typeName(), "::executeCamkesReceiveProcessing [", m_deviceName, "] before processing received string");
                     std::unique_ptr<uxas::communications::data::AddressedAttributedMessage> recvdAddAttMsg = uxas::stduxas::make_unique<uxas::communications::data::AddressedAttributedMessage>();
                     std::string recvdDataSegment((const char *) portInput.payload, portInput.len);
                     if (recvdAddAttMsg->setAddressAttributesAndPayloadFromDelimitedString(std::move(recvdDataSegment)))

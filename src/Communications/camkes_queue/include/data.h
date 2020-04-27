@@ -9,7 +9,7 @@
 #include <stdint.h>
 #include <sys/types.h>
 
-#define DATA_T_MAX_PAYLOAD (4096 - sizeof(size_t))
+#define DATA_T_MAX_PAYLOAD (4096 - 2 * sizeof(size_t))
 
 typedef struct data {
   size_t len;
