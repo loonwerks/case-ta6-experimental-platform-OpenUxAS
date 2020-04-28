@@ -189,8 +189,8 @@ LmcpObjectNetworkCamkesTransmitterBridge::processReceivedSerializedLmcpMessage(s
                 std::string messageString = receivedLmcpMessage->getString();
                 size_t messageStringLength = messageString.length();
                 data_t data;
-                data.len = (messageStringLength <= m_camkesMaxBytesReadCount) ? messageStringLength : m_camkesMaxBytesReadCount;
-                memcpy((void *) data.payload, (const void *) messageString.data(), data.len);
+                size_t data_len = (messageStringLength <= m_camkesMaxBytesReadCount) ? messageStringLength : m_camkesMaxBytesReadCount;
+                memcpy((void *) data.payload, (const void *) messageString.data(), data_len);
                 queue_enqueue(m_dataport.get(), &data);
                 (m_emitTrigger.get())[0] = 1;
             }
