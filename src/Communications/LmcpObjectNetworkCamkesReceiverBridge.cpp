@@ -201,7 +201,6 @@ LmcpObjectNetworkCamkesReceiverBridge::processReceivedSerializedLmcpMessage(std:
 
 void
 LmcpObjectNetworkCamkesReceiverBridge::camkesPortInAadlEventDataWait(counter_t *numDropped, data_t *data) {
-    data->len = 0;
     UXAS_LOG_DEBUG_VERBOSE(s_typeName(), "::camkesPortInAadlEventDataWait [", m_entityIdNetworkIdUnicastString,
         "] port [", m_deviceName, "] BEFORE queue_dequeue");
     while (!queue_dequeue(m_camkesRecvQueue.get(), numDropped, data)) {
@@ -219,7 +218,7 @@ LmcpObjectNetworkCamkesReceiverBridge::camkesPortInAadlEventDataWait(counter_t *
         } 
     }
     UXAS_LOG_DEBUG_VERBOSE(s_typeName(), "::camkesPortInAadlEventDataWait [", m_entityIdNetworkIdUnicastString,
-        "] port [", m_deviceName, "] AFTER queue_dequeue loop, data->len ", data->len, ", returning");
+        "] port [", m_deviceName, "] AFTER queue_dequeue loop, returning");
 }
 
 void
@@ -238,35 +237,29 @@ LmcpObjectNetworkCamkesReceiverBridge::executeCamkesReceiveProcessing()
                 camkesPortInAadlEventDataWait(&m_numDropped, &portInput);
                 unsigned long long dropCount = m_numDropped;
                 UXAS_LOG_DEBUG_VERBOSE(s_typeName(), "::executeCamkesReceiveProcessing [", m_entityIdNetworkIdUnicastString,
-                        "] port [", m_deviceName, "] AFTER camkes connection read message, numDropped ", dropCount, ", length ", portInput.len, ".");
-                if (portInput.len > 0)
+                        "] port [", m_deviceName, "] AFTER camkes connection read message, numDropped ", dropCount, ".");
+
+                UXAS_LOG_DEBUGGING(s_typeName(), "::executeCamkesReceiveProcessing [", m_deviceName, "] before processing received string");
+                std::unique_ptr<uxas::communications::data::AddressedAttributedMessage> recvdAddAttMsg = uxas::stduxas::make_unique<uxas::communications::data::AddressedAttributedMessage>();
+                std::string recvdDataSegment((const char *) portInput.payload, sizeof(data_t));
+                if (recvdAddAttMsg->setAddressAttributesAndPayloadFromDelimitedString(std::move(recvdDataSegment)))
                 {
-                    UXAS_LOG_DEBUGGING(s_typeName(), "::executeCamkesReceiveProcessing [", m_deviceName, "] before processing received string");
-                    std::unique_ptr<uxas::communications::data::AddressedAttributedMessage> recvdAddAttMsg = uxas::stduxas::make_unique<uxas::communications::data::AddressedAttributedMessage>();
-                    std::string recvdDataSegment((const char *) portInput.payload, portInput.len);
-                    if (recvdAddAttMsg->setAddressAttributesAndPayloadFromDelimitedString(std::move(recvdDataSegment)))
+                    if (m_nonImportForwardAddresses.find(recvdAddAttMsg->getAddress()) == m_nonImportForwardAddresses.end())
                     {
-                        if (m_nonImportForwardAddresses.find(recvdAddAttMsg->getAddress()) == m_nonImportForwardAddresses.end())
+                        if(m_isConsideredSelfGenerated)
                         {
-                            if(m_isConsideredSelfGenerated)
-                            {
-                                recvdAddAttMsg->updateSourceAttributes("CamkesReceiverBridge", std::to_string(m_entityId), std::to_string(m_networkId));
-                            }
-                            sendSerializedLmcpObjectMessage(std::move(recvdAddAttMsg));
+                            recvdAddAttMsg->updateSourceAttributes("CamkesReceiverBridge", std::to_string(m_entityId), std::to_string(m_networkId));
                         }
-                        else
-                        {
-                            UXAS_LOG_INFORM(s_typeName(), "::executeCamkesReceiveProcessing ignoring non-import message with address ", recvdAddAttMsg->getAddress(), ", source entity ID ", recvdAddAttMsg->getMessageAttributesReference()->getSourceEntityId(), " and source service ID ", recvdAddAttMsg->getMessageAttributesReference()->getSourceServiceId());
-                        }
+                        sendSerializedLmcpObjectMessage(std::move(recvdAddAttMsg));
                     }
                     else
                     {
-                        UXAS_LOG_WARN(s_typeName(), "::executeCamkesReceiveProcessing failed to create AddressedAttributedMessage object from serial data buffer string segment");
+                        UXAS_LOG_INFORM(s_typeName(), "::executeCamkesReceiveProcessing ignoring non-import message with address ", recvdAddAttMsg->getAddress(), ", source entity ID ", recvdAddAttMsg->getMessageAttributesReference()->getSourceEntityId(), " and source service ID ", recvdAddAttMsg->getMessageAttributesReference()->getSourceServiceId());
                     }
                 }
                 else
                 {
-                    UXAS_LOG_INFORM(s_typeName(), "::executeCamkesReceiveProcessing ignoring empty message");
+                    UXAS_LOG_WARN(s_typeName(), "::executeCamkesReceiveProcessing failed to create AddressedAttributedMessage object from serial data buffer string segment");
                 }
                 
             }
