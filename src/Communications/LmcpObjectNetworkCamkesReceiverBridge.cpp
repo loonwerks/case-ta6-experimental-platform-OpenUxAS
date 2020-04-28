@@ -136,17 +136,21 @@ LmcpObjectNetworkCamkesReceiverBridge::initialize()
     m_dataportFd = open(m_deviceName.c_str(), O_RDWR);
     if (m_dataportFd >= 0)
     {
-        queue_t *dp = (queue_t *) mmap(NULL, sizeof(data_t), PROT_READ | PROT_WRITE, MAP_SHARED, m_dataportFd, 1 * getpagesize());
+        int portsize = 1 * getpagesize();
+        queue_t *dp = (queue_t *) mmap(NULL, sizeof(data_t), PROT_READ | PROT_WRITE, MAP_SHARED, m_dataportFd, portsize);
         m_dataport.reset(dp);
         if (m_dataport.get() == (void *) -1)
         {
             UXAS_LOG_ERROR(s_typeName(), "::initialize failed to mmap port device ", m_deviceName, ": ", strerror(errno));
             close(m_dataportFd);
         }
-        m_camkesRecvQueue = uxas::stduxas::make_unique<recv_queue_t>();
-        recv_queue_init(m_camkesRecvQueue.get(), m_dataport.get());
-        isSuccess = true;
-        UXAS_LOG_INFORM(s_typeName(), "::initialized initialized port device ", m_deviceName, " successfully");
+        else
+        {
+            m_camkesRecvQueue = uxas::stduxas::make_unique<recv_queue_t>();
+            recv_queue_init(m_camkesRecvQueue.get(), m_dataport.get());
+            isSuccess = true;
+            UXAS_LOG_INFORM(s_typeName(), "::initialized initialized port device ", m_deviceName, " successfully, port size ", portsize);
+        }        
    }
     else
     {
@@ -204,8 +208,8 @@ LmcpObjectNetworkCamkesReceiverBridge::camkesPortInAadlEventDataWait(counter_t *
     	int val;
     	/* Blocking read */
         UXAS_LOG_DEBUG_VERBOSE(s_typeName(), "::camkesPortInAadlEventDataWait [", m_entityIdNetworkIdUnicastString,
-            "] port [", m_deviceName, "] BEFORE blocking read");
-    	int result = read(m_dataportFd, &val, sizeof(val));
+            "] port [", m_deviceName, "] BEFORE blocking read (replaced by usleep)");
+    	int result = usleep(1000000); /* read(m_dataportFd, &val, sizeof(val)); */
         UXAS_LOG_DEBUG_VERBOSE(s_typeName(), "::camkesPortInAadlEventDataWait [", m_entityIdNetworkIdUnicastString,
             "] port [", m_deviceName, "] AFTER blocking read, returned ", result);
         if (result < 0) {
@@ -215,7 +219,7 @@ LmcpObjectNetworkCamkesReceiverBridge::camkesPortInAadlEventDataWait(counter_t *
         } 
     }
     UXAS_LOG_DEBUG_VERBOSE(s_typeName(), "::camkesPortInAadlEventDataWait [", m_entityIdNetworkIdUnicastString,
-        "] port [", m_deviceName, "] AFTER queue_dequeue loop, numDropped ", numDropped, ", data->len ", data->len, ", returning");
+        "] port [", m_deviceName, "] AFTER queue_dequeue loop, data->len ", data->len, ", returning");
 }
 
 void
@@ -232,8 +236,9 @@ LmcpObjectNetworkCamkesReceiverBridge::executeCamkesReceiveProcessing()
                                   "] port [", m_deviceName, "] BEFORE camkes connection read");
                 data_t portInput;
                 camkesPortInAadlEventDataWait(&m_numDropped, &portInput);
+                unsigned long long dropCount = m_numDropped;
                 UXAS_LOG_DEBUG_VERBOSE(s_typeName(), "::executeCamkesReceiveProcessing [", m_entityIdNetworkIdUnicastString,
-                        "] port [", m_deviceName, "] AFTER camkes connection read message of length ", portInput.len, ".");
+                        "] port [", m_deviceName, "] AFTER camkes connection read message, numDropped ", dropCount, ", length ", portInput.len, ".");
                 if (portInput.len > 0)
                 {
                     UXAS_LOG_DEBUGGING(s_typeName(), "::executeCamkesReceiveProcessing [", m_deviceName, "] before processing received string");
