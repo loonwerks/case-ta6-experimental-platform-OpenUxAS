@@ -241,25 +241,35 @@ LmcpObjectNetworkCamkesReceiverBridge::executeCamkesReceiveProcessing()
 
                 UXAS_LOG_DEBUGGING(s_typeName(), "::executeCamkesReceiveProcessing [", m_deviceName, "] before processing received string");
                 std::unique_ptr<uxas::communications::data::AddressedAttributedMessage> recvdAddAttMsg = uxas::stduxas::make_unique<uxas::communications::data::AddressedAttributedMessage>();
-                std::string recvdDataSegment((const char *) portInput.payload, sizeof(data_t));
-                if (recvdAddAttMsg->setAddressAttributesAndPayloadFromDelimitedString(std::move(recvdDataSegment)))
+                std::string recvdDataSegment((const char *) portInput.payload, sizeof(portInput.payload));
+                std::string::size_type payloadLength = computeAddAttrLmcpMessageSize(recvdDataSegment);
+                UXAS_LOG_DEBUGGING(s_typeName(), "::executeCamkesReceiveProcessing [", m_deviceName, "] computed payload length ", payloadLength);
+                if (payloadLength > 0)
                 {
-                    if (m_nonImportForwardAddresses.find(recvdAddAttMsg->getAddress()) == m_nonImportForwardAddresses.end())
+                    std::string recvdPayload(recvdDataSegment.substr(0, payloadLength));
+                    if (recvdAddAttMsg->setAddressAttributesAndPayloadFromDelimitedString(std::move(recvdPayload)))
                     {
-                        if(m_isConsideredSelfGenerated)
+                        if (m_nonImportForwardAddresses.find(recvdAddAttMsg->getAddress()) == m_nonImportForwardAddresses.end())
                         {
-                            recvdAddAttMsg->updateSourceAttributes("CamkesReceiverBridge", std::to_string(m_entityId), std::to_string(m_networkId));
+                            if(m_isConsideredSelfGenerated)
+                            {
+                                recvdAddAttMsg->updateSourceAttributes("CamkesReceiverBridge", std::to_string(m_entityId), std::to_string(m_networkId));
+                            }
+                            sendSerializedLmcpObjectMessage(std::move(recvdAddAttMsg));
                         }
-                        sendSerializedLmcpObjectMessage(std::move(recvdAddAttMsg));
+                        else
+                        {
+                            UXAS_LOG_INFORM(s_typeName(), "::executeCamkesReceiveProcessing ignoring non-import message with address ", recvdAddAttMsg->getAddress(), ", source entity ID ", recvdAddAttMsg->getMessageAttributesReference()->getSourceEntityId(), " and source service ID ", recvdAddAttMsg->getMessageAttributesReference()->getSourceServiceId());
+                        }
                     }
                     else
                     {
-                        UXAS_LOG_INFORM(s_typeName(), "::executeCamkesReceiveProcessing ignoring non-import message with address ", recvdAddAttMsg->getAddress(), ", source entity ID ", recvdAddAttMsg->getMessageAttributesReference()->getSourceEntityId(), " and source service ID ", recvdAddAttMsg->getMessageAttributesReference()->getSourceServiceId());
+                        UXAS_LOG_WARN(s_typeName(), "::executeCamkesReceiveProcessing failed to create AddressedAttributedMessage object from serial data buffer string segment");
                     }
                 }
                 else
                 {
-                    UXAS_LOG_WARN(s_typeName(), "::executeCamkesReceiveProcessing failed to create AddressedAttributedMessage object from serial data buffer string segment");
+                    UXAS_LOG_WARN(s_typeName(), "::executeCamkesReceiveProcessing ignoring message with non-computable LMCP message size");
                 }
                 
             }
@@ -277,6 +287,45 @@ LmcpObjectNetworkCamkesReceiverBridge::executeCamkesReceiveProcessing()
         UXAS_LOG_ERROR(s_typeName(), "::executeCamkesReceiveProcessing EXCEPTION: ", ex.what());
     }
 };
+
+std::string::size_type
+LmcpObjectNetworkCamkesReceiverBridge::computeAddAttrLmcpMessageSize(const std::string& delimitedString) const
+{
+    std::string::size_type endOfAddressDelimIndex = delimitedString.find(*(data::AddressedAttributedMessage::s_addressAttributesDelimiter().c_str()));
+    if (endOfAddressDelimIndex == std::string::npos)
+    {
+        UXAS_LOG_ERROR(s_typeName(), "::computeAddAttrLmcpMessageSize failed to parse address from delimited string ", delimitedString);
+        return 0;
+    }
+        
+    std::string::size_type endOfMessageAttributesDelimIndex = delimitedString.find(*(data::AddressedAttributedMessage::s_addressAttributesDelimiter().c_str()), (endOfAddressDelimIndex + 1));
+    if (endOfMessageAttributesDelimIndex == std::string::npos)
+    {
+        UXAS_LOG_ERROR(s_typeName(), "::computeAddAttrLmcpMessageSize failed to parse message attribute string from delimited string ", delimitedString);
+        return 0;
+    }
+    else if (endOfMessageAttributesDelimIndex == (delimitedString.length() - 1))
+    {
+        UXAS_LOG_ERROR(s_typeName(), "::computeAddAttrLmcpMessageSize payload must be non-empty");
+        return 0;
+    }
+
+    const std::string::size_type lmcp_control_string_size = 4;
+    const std::string::size_type checksum_size = 4;
+
+    std::string::size_type lmcp_message_size_pos = endOfMessageAttributesDelimIndex + 1 + (std::string::size_type) lmcp_control_string_size;
+    std::string::size_type lmcp_message_size = ((std::string::size_type) delimitedString.at(lmcp_message_size_pos + 0) << 24)
+                                             + ((std::string::size_type) delimitedString.at(lmcp_message_size_pos + 1) << 16)
+                                             + ((std::string::size_type) delimitedString.at(lmcp_message_size_pos + 2) <<  8)
+                                             + ((std::string::size_type) delimitedString.at(lmcp_message_size_pos + 3) <<  0);
+    
+    if (lmcp_message_size > delimitedString.length())
+    {
+        return 0;
+    }
+    
+    return lmcp_message_size_pos + lmcp_control_string_size + lmcp_message_size + checksum_size;
+}
 
 }; //namespace communications
 }; //namespace uxas

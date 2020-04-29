@@ -108,6 +108,9 @@ private:
     void
     executeCamkesReceiveProcessing();
 
+    std::string::size_type
+    computeAddAttrLmcpMessageSize(const std::string& delimitedString) const;
+
     std::atomic<bool> m_isTerminate{false};
 
     /** \brief External processing thread.  */
