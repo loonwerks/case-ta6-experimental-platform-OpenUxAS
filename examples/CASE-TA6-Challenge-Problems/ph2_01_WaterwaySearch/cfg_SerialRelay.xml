@@ -73,7 +73,7 @@
         <SubscribeToMessage MessageType="Z" />
     </Bridge>
 
-    <Bridge Type="LmcpObjectNetworkSerialBridge" SerialPortAddress="/dev/ttyS0" BaudRate="115200">
+    <Bridge Type="LmcpObjectNetworkSerialBridge" SerialPortAddress="/dev/ttyUSB1" BaudRate="115200">
         <SubscribeToMessage MessageType="a" />
         <SubscribeToMessage MessageType="b" />
         <SubscribeToMessage MessageType="c" />
