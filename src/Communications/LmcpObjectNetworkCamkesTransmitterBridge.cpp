@@ -146,7 +146,7 @@ LmcpObjectNetworkCamkesTransmitterBridge::initialize()
         }
         queue_init(m_dataport.get());
         isSuccess = true;
-        UXAS_LOG_INFORM(s_typeName(), "::initialized initialized port device ", m_deviceName, "successfully");
+        UXAS_LOG_INFORM(s_typeName(), "::initialized port device ", m_deviceName, "successfully, port size ", sizeof(data_t));
     }
     else
     {

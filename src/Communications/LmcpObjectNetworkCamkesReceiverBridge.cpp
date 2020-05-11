@@ -136,8 +136,8 @@ LmcpObjectNetworkCamkesReceiverBridge::initialize()
     m_dataportFd = open(m_deviceName.c_str(), O_RDWR);
     if (m_dataportFd >= 0)
     {
-        int portsize = 1 * getpagesize();
-        queue_t *dp = (queue_t *) mmap(NULL, sizeof(data_t), PROT_READ | PROT_WRITE, MAP_SHARED, m_dataportFd, portsize);
+        int port_offset = 1 * getpagesize();
+        queue_t *dp = (queue_t *) mmap(NULL, sizeof(data_t), PROT_READ | PROT_WRITE, MAP_SHARED, m_dataportFd, port_offset);
         m_dataport.reset(dp);
         if (m_dataport.get() == (void *) -1)
         {
@@ -149,7 +149,7 @@ LmcpObjectNetworkCamkesReceiverBridge::initialize()
             m_camkesRecvQueue = uxas::stduxas::make_unique<recv_queue_t>();
             recv_queue_init(m_camkesRecvQueue.get(), m_dataport.get());
             isSuccess = true;
-            UXAS_LOG_INFORM(s_typeName(), "::initialized initialized port device ", m_deviceName, " successfully, port size ", portsize);
+            UXAS_LOG_INFORM(s_typeName(), "::initialized port device ", m_deviceName, " successfully, port size ", sizeof(data_t), " port offset ", port_offset);
         }        
    }
     else
