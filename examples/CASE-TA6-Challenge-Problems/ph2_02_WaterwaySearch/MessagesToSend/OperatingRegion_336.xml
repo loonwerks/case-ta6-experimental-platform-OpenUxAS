@@ -1,0 +1,12 @@
+      <OperatingRegion Series="CMASI">
+        <ID>336</ID>
+        <ZeroizeOnExitingOperationalArea>true</ZeroizeOnExitingOperationalArea>
+        <ActiveOperationalArea>333</ActiveOperationalArea>
+        <KeepInAreas>
+          <int64>334</int64>
+        </KeepInAreas>
+        <KeepOutAreas>
+          <int64>335</int64>
+        </KeepOutAreas>
+      </OperatingRegion>
+
