@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AMASE>
+  <ScenarioData>
+    <SimulationView LongExtent="0.11" Latitude="45.323" Longitude="-120.9645"/>
+    <ScenarioName>Waterway Search Example</ScenarioName>
+    <Date>1/1/2020:16:50:18</Date>
+    <ScenarioDuration>785.0</ScenarioDuration>
+    <TrackAgeOut/>
+  </ScenarioData>
+    <ScenarioEventList>
+
+      <GroundVehicleConfiguration Series="VEHICLES" Time="1.1e-15">
+        <ID>100</ID>
+        <Label>Home Base</Label>
+        <MinimumSpeed>0.0</MinimumSpeed>
+        <MaximumSpeed>0.0</MaximumSpeed>
+      </GroundVehicleConfiguration>
+
+      <GroundVehicleState Series="VEHICLES" Time="1.2e-15">
+        <ID>100</ID>
+         <Location>
+         <Location3D Series="CMASI">
+          <Altitude>0</Altitude><AltitudeType>AGL</AltitudeType>           
+          <Latitude>45.3364</Latitude>
+          <Longitude>-121.0032</Longitude>
+         </Location3D>
+        </Location>
+        <u>0</u>
+        <v>0</v>
+        <w>0</w>
+        <udot>0</udot>
+        <vdot>0</vdot>
+        <wdot>0</wdot>
+        <Heading>90</Heading>
+        <Pitch>0</Pitch>
+        <Roll>0</Roll>
+        <p>0</p>
+        <q>0</q>
+        <r>0</r>
+        <ActualEnergyRate>0</ActualEnergyRate>
+        <EnergyAvailable>100</EnergyAvailable>
+        <GroundSpeed>0</GroundSpeed>
+        <GroundTrack>0</GroundTrack>
+        <CurrentWaypoint>0</CurrentWaypoint>
+        <CurrentCommand>0</CurrentCommand>
+        <Mode>Waypoint</Mode>
+        <AssociatedTasks>
+        </AssociatedTasks>
+        <Time>0</Time>
+      </GroundVehicleState>
+
+      <GroundVehicleConfiguration Series="VEHICLES" Time="1.1e-15">
+        <ID>500</ID>
+        <Label>GV 500</Label>
+        <MinimumSpeed>0.0</MinimumSpeed>
+        <MaximumSpeed>3.0</MaximumSpeed>
+      </GroundVehicleConfiguration>
+
+      <GroundVehicleState Series="VEHICLES" Time="1.2e-15">
+        <ID>500</ID>
+         <Location>
+         <Location3D Series="CMASI">
+          <Altitude>0</Altitude><AltitudeType>AGL</AltitudeType>           
+          <Latitude>45.3138</Latitude>
+          <Longitude>-120.941</Longitude>
+         </Location3D>
+        </Location>
+        <u>0</u>
+        <v>0</v>
+        <w>0</w>
+        <udot>0</udot>
+        <vdot>0</vdot>
+        <wdot>0</wdot>
+        <Heading>90</Heading>
+        <Pitch>0</Pitch>
+        <Roll>0</Roll>
+        <p>0</p>
+        <q>0</q>
+        <r>0</r>
+        <ActualEnergyRate>0</ActualEnergyRate>
+        <EnergyAvailable>100</EnergyAvailable>
+        <GroundSpeed>0</GroundSpeed>
+        <GroundTrack>0</GroundTrack>
+        <CurrentWaypoint>0</CurrentWaypoint>
+        <CurrentCommand>0</CurrentCommand>
+        <Mode>Waypoint</Mode>
+        <AssociatedTasks>
+        </AssociatedTasks>
+        <Time>0</Time>
+      </GroundVehicleState>
+ 
+      <AirVehicleConfiguration Series="CMASI" Time="2.1e-15">
+        <ID>400</ID>
+        <Label>UAV 400</Label>
+        <MinimumSpeed>18.0055561065674</MinimumSpeed>
+        <MaximumSpeed>33.4388885498047</MaximumSpeed>
+        <NominalSpeed>22.0</NominalSpeed>
+        <NominalAltitude>700.0</NominalAltitude>
+        <NominalAltitudeType>MSL</NominalAltitudeType>
+        <NominalFlightProfile>
+         <FlightProfile Series="CMASI">
+           <Name></Name>
+           <Airspeed>22.1211109161377</Airspeed>
+           <PitchAngle>0</PitchAngle>
+           <VerticalSpeed>0</VerticalSpeed>
+           <MaxBankAngle>20</MaxBankAngle>
+           <EnergyRate>0.000277999992249534</EnergyRate>
+         </FlightProfile>
+        </NominalFlightProfile>
+        <AlternateFlightProfiles>
+        </AlternateFlightProfiles>
+       <PayloadConfigurationList>
+      </PayloadConfigurationList>
+        <AvailableLoiterTypes>
+        <LoiterType>Circular</LoiterType>
+        </AvailableLoiterTypes>
+        <AvailableTurnTypes>
+        <TurnType>TurnShort</TurnType>
+        <TurnType>FlyOver</TurnType>
+        </AvailableTurnTypes>
+        <MinimumAltitude>0</MinimumAltitude>
+        <MaximumAltitude>1000000</MaximumAltitude>
+        <MinAltAboveGround>0</MinAltAboveGround>
+      </AirVehicleConfiguration>
+
+      <AirVehicleState Series="CMASI" Time="2.2e-15">
+        <ID>400</ID>
+         <Location>
+         <Location3D Series="CMASI">
+          <Altitude>700</Altitude><AltitudeType>MSL</AltitudeType>           
+          <Latitude>45.3171</Latitude>
+          <Longitude>-120.9923</Longitude>
+         </Location3D>
+        </Location>
+        <u>0</u>
+        <v>0</v>
+        <w>0</w>
+        <udot>0</udot>
+        <vdot>0</vdot>
+        <wdot>0</wdot>
+        <Heading>90</Heading>
+        <Pitch>0</Pitch>
+        <Roll>0</Roll>
+        <p>0</p>
+        <q>0</q>
+        <r>0</r>
+        <Airspeed>22.1211109161377</Airspeed>
+        <VerticalSpeed>0</VerticalSpeed>
+        <ActualEnergyRate>0</ActualEnergyRate>
+        <EnergyAvailable>100</EnergyAvailable>
+        <WindSpeed>0</WindSpeed>
+        <WindDirection>0</WindDirection>
+        <GroundSpeed>0</GroundSpeed>
+        <GroundTrack>0</GroundTrack>
+            <PayloadStateList>
+            </PayloadStateList>
+        <CurrentWaypoint>0</CurrentWaypoint>
+        <CurrentCommand>0</CurrentCommand>
+        <Mode>Waypoint</Mode>
+        <AssociatedTasks>
+        </AssociatedTasks>
+        <Time>0</Time>
+      </AirVehicleState>
+
+      <MissionCommand Series="CMASI" Time="2.3e-15">
+        <CommandID>100</CommandID>
+        <VehicleID>400</VehicleID>
+        <WaypointList>
+         <Waypoint Series="CMASI">
+           <Number>1</Number>
+           <NextWaypoint>1</NextWaypoint>
+           <Speed>22.1211109161377</Speed>
+           <SpeedType>Airspeed</SpeedType>
+           <ClimbRate>0</ClimbRate>
+           <TurnType>TurnShort</TurnType>
+           <VehicleActionList>
+            <LoiterAction Series="CMASI">
+              <LoiterType>VehicleDefault</LoiterType>
+              <Radius>100</Radius>
+              <Axis>0</Axis>
+              <Length>0</Length>
+              <Direction>VehicleDefault</Direction>
+              <Duration>0</Duration>
+              <Airspeed>22.1211109161377</Airspeed>
+              <Location>
+               <Location3D Series="CMASI">
+                 <Altitude>700</Altitude><AltitudeType>MSL</AltitudeType>           
+                 <Latitude>45.3171</Latitude>
+                 <Longitude>-120.9923</Longitude>
+               </Location3D>
+              </Location>
+              <AssociatedTaskList>
+              </AssociatedTaskList>
+            </LoiterAction>
+           </VehicleActionList>
+           <ContingencyWaypoint>0</ContingencyWaypoint>
+           <AssociatedTasks>
+           </AssociatedTasks>
+          <Altitude>700</Altitude><AltitudeType>MSL</AltitudeType>           
+          <Latitude>45.3171</Latitude>
+          <Longitude>-120.9923</Longitude>
+         </Waypoint>
+        </WaypointList>
+        <FirstWaypoint>1</FirstWaypoint>
+        <Status>Pending</Status>
+      </MissionCommand>
+
+    </ScenarioEventList>
+
+</AMASE>
