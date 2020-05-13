@@ -99,6 +99,9 @@ private:
     bool
     terminate() override;
     
+    static std::string
+    shexdump(const std::string& prefix, size_t max_line_len, const std::string& data);
+
     bool
     processReceivedSerializedLmcpMessage(std::unique_ptr<uxas::communications::data::AddressedAttributedMessage>
                                         receivedLmcpMessage) override;

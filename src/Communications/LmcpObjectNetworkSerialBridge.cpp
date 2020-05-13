@@ -7,12 +7,20 @@
 // Title 17, U.S. Code.  All Other Rights Reserved.
 // ===============================================================================
 
+#include <iomanip>
+#include <iostream>
+#include <sstream>
+
 #include "LmcpObjectNetworkSerialBridge.h"
 
 #include "SerialHelper.h"
 
 #include "UxAS_Log.h"
 #include "Constants/UxAS_String.h"
+
+#define UXAS_LOG_INFORM uxas::common::log::LogManager::getInstance().log<uxas::common::log::LogSeverityLevel::UXASINFO>
+#define UXAS_LOG_DEBUGGING uxas::common::log::LogManager::getInstance().log<uxas::common::log::LogSeverityLevel::UXASDEBUG>
+// #define UXAS_LOG_DEBUG_VERBOSE uxas::common::log::LogManager::getInstance().log<uxas::common::log::LogSeverityLevel::UXASDEBUG>
 
 namespace uxas
 {
@@ -144,6 +152,33 @@ LmcpObjectNetworkSerialBridge::terminate()
     return (true);
 };
 
+std::string
+LmcpObjectNetworkSerialBridge::shexdump(const std::string& prefix, size_t max_line_len, const std::string& data) {
+    std::stringstream ss;
+    ss << std::endl << std::hex << std::setfill('0') << std::right;
+    std::size_t datalen = data.size();
+    ss << prefix << "     |";
+    for (std::size_t index = 0; index < max_line_len; ++index) {
+        ss << " " << std::hex << std::setfill('0') << std::setw(2) << std::right << ((uint16_t) index);
+    }
+    ss << std::endl << prefix << "-----|";
+    for (std::size_t index = 0; index < max_line_len; ++index) {
+        ss << "---";
+    }
+    size_t offset = 0, line_offset = 0;
+    for (; line_offset < datalen; line_offset += max_line_len) {
+        ss << std::endl << prefix << std::hex << std::setfill('0') << std::setw(4) << std::right << ((uint16_t) line_offset) << " |";
+        std::stringstream pss;
+        for (; offset < datalen && offset < line_offset + max_line_len; ++offset) {
+            ss << " " << std::hex << std::setfill('0') << std::setw(2) << std::right << ((int (data.at(offset))) & 0xFF);
+            pss << ((isprint((int) data.at(offset))) ? data.at(offset) : '.');
+        }
+        ss << "  " << pss.str();
+    }
+    ss << std::endl;
+    return ss.str();
+};
+
 bool
 LmcpObjectNetworkSerialBridge::processReceivedSerializedLmcpMessage(std::unique_ptr<uxas::communications::data::AddressedAttributedMessage> 
                                                                    receivedLmcpMessage)
@@ -203,7 +238,7 @@ LmcpObjectNetworkSerialBridge::executeSerialReceiveProcessing()
                                   "] port [", m_serialConnection->getPort(), "] AFTER serial connection read value [", serialInput, "]");
                 if (!serialInput.empty())
                 {
-                    UXAS_LOG_DEBUGGING(s_typeName(), "::executeSerialReceiveProcessing [", serialInput, "] before processing received serial string");
+                    UXAS_LOG_DEBUGGING(s_typeName(), "::executeSerialReceiveProcessing [", shexdump("    ", 32, serialInput), "] before processing received serial string");
                     std::string recvdSerialDataSegment = m_receiveSerialDataBuffer.getNextPayloadString(serialInput);
                     while (!recvdSerialDataSegment.empty())
                     {
