@@ -75,7 +75,6 @@ TaskManagerService::s_registrar(TaskManagerService::s_registryServiceTypeNames()
 TaskManagerService::TaskManagerService()
     : ServiceBase(TaskManagerService::s_typeName(), TaskManagerService::s_directoryName())
 {
-    m_idVsEntityConfigurationMap.configure("DBTaskManagerService.db3", "idVsEntityConfiguration");
 }
 
 TaskManagerService::~TaskManagerService() { };
@@ -265,8 +264,7 @@ TaskManagerService::processReceivedLmcpMessage(std::unique_ptr<uxas::communicati
         createNewServiceMessage->setXmlConfiguration(xmlConfigStr);
 
         // add all existing entities for new service initialization
-        auto entityMap = m_idVsEntityConfigurationMap.asStdMap();
-        for (auto& entityConfiguration : *entityMap)
+        for (auto& entityConfiguration : m_idVsEntityConfiguration)
         {
             createNewServiceMessage->getEntityConfigurations().push_back(entityConfiguration.second->clone());
         }
@@ -383,13 +381,12 @@ TaskManagerService::processReceivedLmcpMessage(std::unique_ptr<uxas::communicati
     {
         if (m_entityId == zeroizeCommand->getEntityID())
         {
-            m_idVsEntityConfigurationMap.zeroizeMap();
             UXAS_LOG_WARN("Received zeroization command, zeroized entity configuration map.");
         }
     }
     else if (entityConfiguration)
     {
-        m_idVsEntityConfigurationMap.put(entityConfiguration->getID(), entityConfiguration);
+        m_idVsEntityConfiguration[entityConfiguration->getID()] = entityConfiguration;
     }
     else if (entityState)
     {
