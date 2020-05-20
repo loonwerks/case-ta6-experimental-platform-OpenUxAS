@@ -130,15 +130,15 @@ main(int argc, char** argv)
     //        BEFORE_LOG_MANAGER_INITIALIZATION_LOG_MESSAGE("ERROR UxAS_Main failed to initialize main database logger")
     //    }
 
-    bool isMainFileLoggerInitialized = uxas::common::log::LogManagerDefaultInitializer::initializeMainFileLogger();
-    if (isMainFileLoggerInitialized)
-    {
-        UXAS_LOG_INFORM("UxAS_Main initialized main file logger");
-    }
-    else
-    {
-        BEFORE_LOG_MANAGER_INITIALIZATION_LOG_MESSAGE("ERROR UxAS_Main failed to initialize main file logger")
-    }
+    //    bool isMainFileLoggerInitialized = uxas::common::log::LogManagerDefaultInitializer::initializeMainFileLogger();
+    //    if (isMainFileLoggerInitialized)
+    //    {
+    //        UXAS_LOG_INFORM("UxAS_Main initialized main file logger");
+    //    }
+    //    else
+    //    {
+    //        BEFORE_LOG_MANAGER_INITIALIZATION_LOG_MESSAGE("ERROR UxAS_Main failed to initialize main file logger")
+    //    }
 
     //
     // log thread id
