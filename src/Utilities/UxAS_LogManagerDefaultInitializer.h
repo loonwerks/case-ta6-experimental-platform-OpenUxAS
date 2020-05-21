@@ -11,6 +11,7 @@
 #define UXAS_COMMON_LOG_LOG_MANAGER_DEFAULT_INITIALIZER_H
 
 #include "UxAS_ConfigurationManager.h"
+#include "UxAS_CAmkESLogger.h"
 #include "UxAS_ConsoleLogger.h"
 #include "UxAS_FileLogger.h"
 #include "UxAS_HeadLogDataDatabaseLogger.h"
@@ -18,6 +19,7 @@
 #include "UxAS_LoggerBase.h"
 #include "UxAS_LogManager.h"
 #include "UxAS_LogSeverityLevel.h"
+#include "UxAS_UDPNetLogger.h"
 
 #include "FileSystemUtilities.h"
 
@@ -48,7 +50,7 @@ public:
         std::string logFilePath;
         return (uxas::common::log::LogManager::getInstance().addLogger(uxas::common::log::ConsoleLogger::s_defaultUxasConsoleLoggerName(), 
                                                                        uxas::common::log::ConsoleLogger::s_typeName(), 
-                                                                       uxas::common::log::LogSeverityLevel::UXASWARNING, "",logFilePath));
+                                                                       uxas::common::log::LogSeverityLevel::UXASDEBUG, "",logFilePath));
     };
 
     static bool
@@ -126,6 +128,22 @@ public:
         }
     };
     
+    static bool
+    initializeCAmkESLogger(std::string& camkesLoggerDevice)
+    {
+        return (uxas::common::log::LogManager::getInstance().addLogger(uxas::common::log::CAmkESLogger::s_defaultUxasCAmkESLoggerName(), 
+                                                                       uxas::common::log::CAmkESLogger::s_typeName(), 
+                                                                       uxas::common::log::LogSeverityLevel::UXASDEBUG, "", camkesLoggerDevice));
+    };
+
+    static bool
+    initializeUDPNetLogger(std::string& udpLoggerDestination)
+    {
+        return (uxas::common::log::LogManager::getInstance().addLogger(uxas::common::log::UDPNetLogger::s_defaultUxasUDPNetLoggerName(), 
+                                                                       uxas::common::log::UDPNetLogger::s_typeName(), 
+                                                                       uxas::common::log::LogSeverityLevel::UXASDEBUG, "", udpLoggerDestination));
+    };
+
     LogManagerDefaultInitializer();
 
     ~LogManagerDefaultInitializer();

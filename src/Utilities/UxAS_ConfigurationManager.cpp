@@ -59,6 +59,9 @@ std::string ConfigurationManager::s_rootDataInDirectory{"./datain/"};
 std::string ConfigurationManager::s_rootDataRefDirectory{"./dataref/"};
 std::string ConfigurationManager::s_rootDataWorkDirectory{"./datawork/"};
 
+std::string ConfigurationManager::s_camkesLoggerDevice{""};
+std::string ConfigurationManager::s_udpNetLoggerDestination{""};
+
 std::unique_ptr<ConfigurationManager> ConfigurationManager::s_instance = nullptr;
 
 ConfigurationManager&
@@ -367,6 +370,28 @@ ConfigurationManager::setEntityValuesFromXmlNode(const pugi::xml_node& xmlNode)
         else
         {
             UXAS_LOG_INFORM(s_typeName(), "::setEntityFromXmlNode retained default ", StringConstant::MainFileLoggerSeverityLevel());
+        }
+
+        if (isSuccess && !entityInfoXmlNode.attribute(StringConstant::CAmkESLoggerDevice().c_str()).empty())
+        {
+            s_camkesLoggerDevice = entityInfoXmlNode.attribute(StringConstant::CAmkESLoggerDevice().c_str()).value();
+            UXAS_LOG_INFORM(s_typeName(), "::setEntityFromXmlNode set CAmkES logger device ", s_camkesLoggerDevice);
+        }
+        else
+        {
+            isSuccess = false;
+            UXAS_LOG_INFORM(s_typeName(), "::setEntityFromXmlNode retained default CAmkES logger device");
+        }
+
+        if (isSuccess && !entityInfoXmlNode.attribute(StringConstant::UDPNetLoggerDestination().c_str()).empty())
+        {
+            s_udpNetLoggerDestination = entityInfoXmlNode.attribute(StringConstant::UDPNetLoggerDestination().c_str()).value();
+            UXAS_LOG_INFORM(s_typeName(), "::setEntityFromXmlNode set UDP logger destination ", s_udpNetLoggerDestination);
+        }
+        else
+        {
+            isSuccess = false;
+            UXAS_LOG_INFORM(s_typeName(), "::setEntityFromXmlNode retained default UDP logger destination");
         }
 
         if (isSuccess && !entityInfoXmlNode.attribute(StringConstant::StartDelay_ms().c_str()).empty())

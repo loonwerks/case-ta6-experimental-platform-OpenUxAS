@@ -233,6 +233,22 @@ public:
     pugi::xml_node
     getEnabledServices();
 
+    /** \brief Enables logging to CAmkES cross-VM connection on the given
+     * device
+     * 
+     * @return root data directory.
+     */
+    static std::string
+    getCAmkESLoggerDevice() { return (s_camkesLoggerDevice); };
+    
+    /** \brief Enables logging to network via UDP on the given destination
+     * (e.g. "127.0.0.1:5577")
+     * 
+     * @return root data directory.
+     */
+    static std::string
+    getUDPNetLoggerDestination() { return (s_udpNetLoggerDestination); };
+    
 private:
 
     void
@@ -372,6 +388,9 @@ private:
 
     static std::string s_rootDataInDirectory;
     static std::string s_rootDataRefDirectory;
+
+    static std::string s_camkesLoggerDevice;
+    static std::string s_udpNetLoggerDestination;
 
     static std::unique_ptr<ConfigurationManager> s_instance;
     

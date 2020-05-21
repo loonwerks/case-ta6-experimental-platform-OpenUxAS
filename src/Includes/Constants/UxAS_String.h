@@ -26,6 +26,7 @@ public:
     static const std::string& AlwaysSendPosition() { static std::string s_string("AlwaysSendPosition"); return(s_string); };
     static const std::string& BaudRate() { static std::string s_string("BaudRate"); return(s_string); };
     static const std::string& Bridge() { static std::string s_string("Bridge"); return(s_string); };
+    static const std::string& CAmkESLoggerDevice() { static std::string s_string("CAmkESLoggerDevice"); return(s_string); };
     static const std::string& Component() { static std::string s_string("Component"); return(s_string); };
     static const std::string& ComponentManager() { static std::string s_string("ComponentManager"); return(s_string); };
     static const std::string& Components() { static std::string s_string("Components"); return(s_string); };
@@ -66,6 +67,7 @@ public:
     static const std::string& TransformReceivedMessage() { static std::string s_string("TransformReceivedMessage"); return(s_string); };
     static const std::string& Type() { static std::string s_string("Type"); return(s_string); };
     static const std::string& UAV() { static std::string s_string("UAV"); return(s_string); };
+    static const std::string& UDPNetLoggerDestination() { static std::string s_string("UDPNetLoggerDestination"); return(s_string); };
     static const std::string& UxAS() { static std::string s_string("UxAS"); return(s_string); };
 
 };

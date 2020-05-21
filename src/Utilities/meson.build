@@ -9,6 +9,7 @@ srcs_utilities = [
   'RouteExtension.cpp',
   'SensorSteering.cpp',
   'UnitConversions.cpp',
+  'UxAS_CAmkESLogger.cpp',
   'UxAS_ConfigurationManager.cpp',
   'UxAS_ConsoleLogger.cpp',
   'UxAS_DatabaseLogger.cpp',
@@ -20,13 +21,16 @@ srcs_utilities = [
   'UxAS_SentinelSerialBuffer.cpp',
   'UxAS_Time.cpp',
   'UxAS_TimerManager.cpp',
+  'UxAS_UDPNetLogger.cpp',
   'UxAS_ZeroMQ.cpp',
+  'camkes_log_queue/src/camkes_log_queue.c',
 ]
 
 incs_utilities = [
   include_directories(
     '../../src/Includes',
     '../../src/Plans',
+    'camkes_log_queue/include',
   ),
   incs_lmcp,
 ]
