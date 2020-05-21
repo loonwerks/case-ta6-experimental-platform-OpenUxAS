@@ -154,7 +154,7 @@ main(int argc, char** argv)
         }
     }
 
-    auto udpNetLoggerDestination = uxas::common::ConfigurationManager::getInstance().getCAmkESLoggerDevice();
+    auto udpNetLoggerDestination = uxas::common::ConfigurationManager::getInstance().getUDPNetLoggerDestination();
     if (!udpNetLoggerDestination.empty())
     {
         bool isUDPNetLoggerInitialized = uxas::common::log::LogManagerDefaultInitializer::initializeUDPNetLogger(udpNetLoggerDestination);
