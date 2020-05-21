@@ -10,6 +10,46 @@
     <ScenarioEventList>
 
       <GroundVehicleConfiguration Series="VEHICLES" Time="1.1e-15">
+        <ID>200</ID>
+        <Label>Home Base</Label>
+        <MinimumSpeed>0.0</MinimumSpeed>
+        <MaximumSpeed>0.0</MaximumSpeed>
+      </GroundVehicleConfiguration>
+
+      <GroundVehicleState Series="VEHICLES" Time="1.2e-15">
+        <ID>200</ID>
+         <Location>
+         <Location3D Series="CMASI">
+          <Altitude>0</Altitude><AltitudeType>AGL</AltitudeType>           
+          <Latitude>45.3364</Latitude>
+          <Longitude>-121.0032</Longitude>
+         </Location3D>
+        </Location>
+        <u>0</u>
+        <v>0</v>
+        <w>0</w>
+        <udot>0</udot>
+        <vdot>0</vdot>
+        <wdot>0</wdot>
+        <Heading>90</Heading>
+        <Pitch>0</Pitch>
+        <Roll>0</Roll>
+        <p>0</p>
+        <q>0</q>
+        <r>0</r>
+        <ActualEnergyRate>0</ActualEnergyRate>
+        <EnergyAvailable>100</EnergyAvailable>
+        <GroundSpeed>0</GroundSpeed>
+        <GroundTrack>0</GroundTrack>
+        <CurrentWaypoint>0</CurrentWaypoint>
+        <CurrentCommand>0</CurrentCommand>
+        <Mode>Waypoint</Mode>
+        <AssociatedTasks>
+        </AssociatedTasks>
+        <Time>0</Time>
+      </GroundVehicleState>
+
+      <GroundVehicleConfiguration Series="VEHICLES" Time="1.1e-15">
         <ID>500</ID>
         <Label>GV 500</Label>
         <MinimumSpeed>0.0</MinimumSpeed>
@@ -70,46 +110,6 @@
         <AlternateFlightProfiles>
         </AlternateFlightProfiles>
        <PayloadConfigurationList>
-        <GimbalConfiguration Series="CMASI">
-          <SupportedPointingModes />
-          <MinAzimuth>-180.0</MinAzimuth>
-          <MaxAzimuth>180.0</MaxAzimuth>
-          <IsAzimuthClamped>true</IsAzimuthClamped>
-          <MinElevation>-130.0</MinElevation>
-          <MaxElevation>40.0</MaxElevation>
-          <IsElevationClamped>true</IsElevationClamped>
-          <MinRotation>0.0</MinRotation>
-          <MaxRotation>0.0</MaxRotation>
-          <IsRotationClamped>true</IsRotationClamped>
-          <MaxAzimuthSlewRate>114.59</MaxAzimuthSlewRate>
-          <MaxElevationSlewRate>114.59</MaxElevationSlewRate>
-          <MaxRotationRate>0.0</MaxRotationRate>
-          <ContainedPayloadList>
-            <uint32>10001</uint32>
-          </ContainedPayloadList>
-          <PayloadID>1</PayloadID>
-          <PayloadKind />
-        </GimbalConfiguration>
-        <CameraConfiguration Series="CMASI">
-          <SupportedWavelengthBands>
-            <WavelengthBand>AllAny</WavelengthBand>
-          </SupportedWavelengthBands>
-          <FieldOfViewMode>Discrete</FieldOfViewMode>
-          <MinHorizontalFieldOfView>0.11</MinHorizontalFieldOfView>
-          <MaxHorizontalFieldOfView>45.0</MaxHorizontalFieldOfView>
-          <DiscreteHorizontalFieldOfViewList>
-            <real32>45.0</real32>
-            <real32>22.0</real32>
-            <real32>7.6</real32>
-            <real32>3.7</real32>
-            <real32>0.63</real32>
-            <real32>0.11</real32>
-          </DiscreteHorizontalFieldOfViewList>
-          <VideoStreamHorizontalResolution>1024</VideoStreamHorizontalResolution>
-          <VideoStreamVerticalResolution>768</VideoStreamVerticalResolution>
-          <PayloadID>10001</PayloadID>
-          <PayloadKind />
-        </CameraConfiguration>
       </PayloadConfigurationList>
         <AvailableLoiterTypes>
         <LoiterType>Circular</LoiterType>
@@ -153,18 +153,6 @@
         <GroundSpeed>0</GroundSpeed>
         <GroundTrack>0</GroundTrack>
             <PayloadStateList>
-                <GimbalState Series="CMASI">
-                    <PointingMode>AirVehicleRelativeAngle</PointingMode>
-                    <Azimuth>0.0</Azimuth>
-                    <Elevation>-45.0</Elevation>
-                    <Rotation>0.0</Rotation>
-                    <PayloadID>1</PayloadID>
-                </GimbalState>
-                <CameraState Series="CMASI">
-                    <HorizontalFieldOfView>45.0</HorizontalFieldOfView>
-                    <Footprint />
-                    <PayloadID>10001</PayloadID>
-                </CameraState>
             </PayloadStateList>
         <CurrentWaypoint>0</CurrentWaypoint>
         <CurrentCommand>0</CurrentCommand>
