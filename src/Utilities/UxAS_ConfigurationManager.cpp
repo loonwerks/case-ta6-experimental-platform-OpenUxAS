@@ -379,7 +379,6 @@ ConfigurationManager::setEntityValuesFromXmlNode(const pugi::xml_node& xmlNode)
         }
         else
         {
-            isSuccess = false;
             UXAS_LOG_INFORM(s_typeName(), "::setEntityFromXmlNode retained default CAmkES logger device");
         }
 
@@ -390,7 +389,6 @@ ConfigurationManager::setEntityValuesFromXmlNode(const pugi::xml_node& xmlNode)
         }
         else
         {
-            isSuccess = false;
             UXAS_LOG_INFORM(s_typeName(), "::setEntityFromXmlNode retained default UDP logger destination");
         }
 
