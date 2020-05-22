@@ -42,7 +42,7 @@ UDPNetLogger::UDPNetLogger()
 bool
 UDPNetLogger::openStream(std::string& logFilePath)
 {
-    bool isSuccess{false};
+    bool isSuccess{true};
 
     m_destinationAddress = logFilePath;
 
@@ -69,29 +69,29 @@ UDPNetLogger::openStream(std::string& logFilePath)
     m_destinationSockaddr.sin_family = AF_INET;
     if (delimiterPosition == std::string::npos)
     {
-        std::cout << "INFORM: " << s_typeName() << "::initialize socket destination " << m_destinationAddress.c_str();
+        std::cout << "INFORM: " << s_typeName() << "::openStream socket destination " << m_destinationAddress.c_str() << std::endl;
         m_destinationSockaddr.sin_addr.s_addr = inet_addr(m_destinationAddress.c_str());
         m_destinationSockaddr.sin_port = htons(5577);
     }
     else
     {
-        std::cout << "INFORM: " << s_typeName() << "::initialize socket destination address "
+        std::cout << "INFORM: " << s_typeName() << "::openStream socket destination address "
             << m_destinationAddress.substr(0, delimiterPosition).c_str() << " port "
             << m_destinationAddress.substr(delimiterPosition + 1, std::string::npos).c_str() << " ("
-            << m_destinationAddress.c_str() << ")";
+            << m_destinationAddress.c_str() << ")" << std::endl;
         m_destinationSockaddr.sin_addr.s_addr = inet_addr(m_destinationAddress.substr(0, delimiterPosition).c_str());
         m_destinationSockaddr.sin_port = htons(atoi(m_destinationAddress.substr(delimiterPosition + 1, std::string::npos).c_str()));
     }
 
     if ((m_dataportFd = socket(AF_INET, SOCK_DGRAM, 0)) < 0)
     {
-        std::cout << "WARN: " << s_typeName() << "::initialize cannot create socket " << ": " << strerror(errno);
+        std::cout << "WARN: " << s_typeName() << "::openStream cannot create socket " << ": " << strerror(errno);
         isSuccess = false;
     }
 
     if (isSuccess && bind(m_dataportFd, (struct sockaddr *) &m_clientSockaddr, sizeof(struct sockaddr_in)) < 0)
     {
-        std::cout << "WARN: " << s_typeName() << "::initialize bind failed " << ": " << strerror(errno);
+        std::cout << "WARN: " << s_typeName() << "::openStream bind failed " << ": " << strerror(errno);
         isSuccess = false;
     }
 
@@ -130,13 +130,25 @@ UDPNetLogger::outputTextToStream(const std::string& text)
 bool
 UDPNetLogger::outputTimeTextToStream(const std::string& text, bool isTimeIsolatedLine)
 {
-    return (outputToStreamBasicFormat(std::cout, text, m_isLogThreadId, isTimeIsolatedLine));
+    std::stringstream ss;
+    bool isSuccess = outputToStreamBasicFormat(ss, text, m_isLogThreadId, isTimeIsolatedLine);
+    if (isSuccess)
+    {
+        isSuccess = outputTextToStream(ss.str());
+    }
+    return (isSuccess);
 };
 
 bool
 UDPNetLogger::outputToStream(HeadLogData& headerAndData)
 {
-    return (outputToStreamBasicFormat(std::cout, headerAndData));
+    std::stringstream ss;
+    bool isSuccess = outputToStreamBasicFormat(ss, headerAndData);
+    if (isSuccess)
+    {
+        isSuccess = outputTextToStream(ss.str());
+    }
+    return (isSuccess);
 };
 
 }; //namespace log
