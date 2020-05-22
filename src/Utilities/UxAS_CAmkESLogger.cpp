@@ -11,6 +11,7 @@
 #include <cerrno>
 #include <cstring>
 #include <iostream>
+#include <sstream>
 
 #include <sys/mman.h>
 #include <sys/types.h>
@@ -121,13 +122,25 @@ CAmkESLogger::outputTextToStream(const std::string& text)
 bool
 CAmkESLogger::outputTimeTextToStream(const std::string& text, bool isTimeIsolatedLine)
 {
-    return (outputToStreamBasicFormat(std::cout, text, m_isLogThreadId, isTimeIsolatedLine));
+    std::stringstream ss;
+    bool isSuccess = outputToStreamBasicFormat(ss, text, m_isLogThreadId, isTimeIsolatedLine);
+    if (isSuccess)
+    {
+        isSuccess = outputTextToStream(ss.str());
+    }
+    return (isSuccess);
 };
 
 bool
 CAmkESLogger::outputToStream(HeadLogData& headerAndData)
 {
-    return (outputToStreamBasicFormat(std::cout, headerAndData));
+    std::stringstream ss;
+    bool isSuccess = outputToStreamBasicFormat(ss, headerAndData);
+    if (isSuccess)
+    {
+        isSuccess = outputTextToStream(ss.str());
+    }
+    return (isSuccess);
 };
 
 }; //namespace log
