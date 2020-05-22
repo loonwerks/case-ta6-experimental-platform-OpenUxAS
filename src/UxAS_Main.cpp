@@ -140,34 +140,6 @@ main(int argc, char** argv)
     //        BEFORE_LOG_MANAGER_INITIALIZATION_LOG_MESSAGE("ERROR UxAS_Main failed to initialize main file logger")
     //    }
 
-    auto camkesLoggerDevice = uxas::common::ConfigurationManager::getInstance().getCAmkESLoggerDevice();
-    if (!camkesLoggerDevice.empty())
-    {
-        bool isCAmkESLoggerInitialized = uxas::common::log::LogManagerDefaultInitializer::initializeCAmkESLogger(camkesLoggerDevice);
-        if (isCAmkESLoggerInitialized)
-        {
-            UXAS_LOG_INFORM("UxAS_Main initialized CAmkES cross-vm logger");
-        }
-        else
-        {
-            BEFORE_LOG_MANAGER_INITIALIZATION_LOG_MESSAGE("ERROR UxAS_Main failed to initialize CAmkES cross-vm logger")
-        }
-    }
-
-    auto udpNetLoggerDestination = uxas::common::ConfigurationManager::getInstance().getUDPNetLoggerDestination();
-    if (!udpNetLoggerDestination.empty())
-    {
-        bool isUDPNetLoggerInitialized = uxas::common::log::LogManagerDefaultInitializer::initializeUDPNetLogger(udpNetLoggerDestination);
-        if (isUDPNetLoggerInitialized)
-        {
-            UXAS_LOG_INFORM("UxAS_Main initialized UDP network logger");
-        }
-        else
-        {
-            BEFORE_LOG_MANAGER_INITIALIZATION_LOG_MESSAGE("ERROR UxAS_Main failed to initialize UDP network logger")
-        }
-    }
-
     //
     // log thread id
     //
@@ -206,6 +178,34 @@ main(int argc, char** argv)
     {
         UXAS_LOG_ERROR("UxAS_Main failed to load base XML configuration from [", cfgPath, "]");
         return (100);
+    }
+
+    auto camkesLoggerDevice = uxas::common::ConfigurationManager::getInstance().getCAmkESLoggerDevice();
+    if (!camkesLoggerDevice.empty())
+    {
+        bool isCAmkESLoggerInitialized = uxas::common::log::LogManagerDefaultInitializer::initializeCAmkESLogger(camkesLoggerDevice);
+        if (isCAmkESLoggerInitialized)
+        {
+            UXAS_LOG_INFORM("UxAS_Main initialized CAmkES cross-vm logger");
+        }
+        else
+        {
+            BEFORE_LOG_MANAGER_INITIALIZATION_LOG_MESSAGE("ERROR UxAS_Main failed to initialize CAmkES cross-vm logger")
+        }
+    }
+
+    auto udpNetLoggerDestination = uxas::common::ConfigurationManager::getInstance().getUDPNetLoggerDestination();
+    if (!udpNetLoggerDestination.empty())
+    {
+        bool isUDPNetLoggerInitialized = uxas::common::log::LogManagerDefaultInitializer::initializeUDPNetLogger(udpNetLoggerDestination);
+        if (isUDPNetLoggerInitialized)
+        {
+            UXAS_LOG_INFORM("UxAS_Main initialized UDP network logger");
+        }
+        else
+        {
+            BEFORE_LOG_MANAGER_INITIALIZATION_LOG_MESSAGE("ERROR UxAS_Main failed to initialize UDP network logger")
+        }
     }
 
     //
