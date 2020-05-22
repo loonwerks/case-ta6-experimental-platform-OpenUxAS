@@ -8,10 +8,12 @@
 // ===============================================================================
 
 #include "UxAS_LogManager.h"
+#include "UxAS_CAmkESLogger.h"
 #include "UxAS_ConsoleLogger.h"
 #include "UxAS_DatabaseLogger.h"
 #include "UxAS_FileLogger.h"
 #include "UxAS_HeadLogDataDatabaseLogger.h"
+#include "UxAS_UDPNetLogger.h"
 
 #include "stdUniquePtr.h"
 
@@ -47,6 +49,12 @@ LogManager::getInstance()
         }
         {
             auto logger = uxas::stduxas::make_unique<uxas::common::log::HeadLogDataDatabaseLogger>();
+        }
+        {
+            auto logger = uxas::stduxas::make_unique<uxas::common::log::CAmkESLogger>();
+        }
+        {
+            auto logger = uxas::stduxas::make_unique<uxas::common::log::UDPNetLogger>();
         }
         // </editor-fold>
 
