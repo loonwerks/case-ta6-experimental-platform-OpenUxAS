@@ -69,11 +69,16 @@ UDPNetLogger::openStream(std::string& logFilePath)
     m_destinationSockaddr.sin_family = AF_INET;
     if (delimiterPosition == std::string::npos)
     {
+        std::cout << "INFORM: " << s_typeName() << "::initialize socket destination " << m_destinationAddress.c_str();
         m_destinationSockaddr.sin_addr.s_addr = inet_addr(m_destinationAddress.c_str());
         m_destinationSockaddr.sin_port = htons(5577);
     }
     else
     {
+        std::cout << "INFORM: " << s_typeName() << "::initialize socket destination address "
+            << m_destinationAddress.substr(0, delimiterPosition).c_str() << " port "
+            << m_destinationAddress.substr(delimiterPosition + 1, std::string::npos).c_str() << " ("
+            << m_destinationAddress.c_str() << ")";
         m_destinationSockaddr.sin_addr.s_addr = inet_addr(m_destinationAddress.substr(0, delimiterPosition).c_str());
         m_destinationSockaddr.sin_port = htons(atoi(m_destinationAddress.substr(delimiterPosition + 1, std::string::npos).c_str()));
     }
