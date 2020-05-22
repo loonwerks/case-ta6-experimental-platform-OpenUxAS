@@ -143,7 +143,7 @@ LmcpObjectNetworkCamkesTransmitterBridge::initialize()
             m_emitTrigger.reset(emit);
             if (emit == (void *) -1)
             {
-                UXAS_LOG_ERROR(s_typeName(), "::initialize failed to mmap emit trigger on device  ", m_deviceName, ": ", strerror(errno));
+                UXAS_LOG_ERROR(s_typeName(), "::initialize failed to mmap emit trigger on device ", m_deviceName, ": ", strerror(errno));
                 munmap(m_dataport.get(), port_size);
                 close(m_dataportFd);
             }
@@ -151,7 +151,7 @@ LmcpObjectNetworkCamkesTransmitterBridge::initialize()
         }
         queue_init(m_dataport.get());
         isSuccess = true;
-        UXAS_LOG_INFORM(s_typeName(), "::initialized port device ", m_deviceName, "successfully, port size ", port_size);
+        UXAS_LOG_INFORM(s_typeName(), "::initialized port device ", m_deviceName, " successfully, port size ", port_size);
     }
     else
     {
