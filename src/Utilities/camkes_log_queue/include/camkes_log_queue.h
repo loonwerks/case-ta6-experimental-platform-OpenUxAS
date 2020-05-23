@@ -37,9 +37,13 @@ using namespace std;
 #include <stdatomic.h>
 #endif
 
+#ifdef __cplusplus
+  extern "C" {
+#endif
+
 // Defs to allow easy changing of counter type. Keep these consistent!
-typedef atomic_uintmax_t counter_t;
-#define COUNTER_MAX UINTMAX_MAX
+typedef atomic_uintmax_t camkes_log_counter_t;
+#define CAMKES_LOG_COUNTER_MAX UINTMAX_MAX
 #define PRIcounter PRIuMAX
 
 
@@ -82,7 +86,7 @@ typedef struct camkes_log_queue {
   // overflows. It just wraps modulo the size of the counter type. The counter
   // is typically very large (see counter.h), so this should happen very
   // infrequently. Depending in C to initialize this to zero.
-  counter_t numSent;
+  camkes_log_counter_t numSent;
   // Queue of elements of type data_t (see data.h) implemented as a ring buffer.
   // No initialization necessary.
   camkes_log_data_t elt[QUEUE_SIZE];
@@ -95,10 +99,10 @@ typedef struct camkes_log_queue {
 // code needs this.
 
 // Initialize the queue. Sender must call this exactly once before any calls to queue_enqueue();
-void queue_init(camkes_log_queue_t *queue);
+void camkes_log_queue_init(camkes_log_queue_t *queue);
 
 // Enqueue data. This always succeeds and never blocks. Data is copied.
-void queue_enqueue(camkes_log_queue_t *queue, camkes_log_data_t *data);
+void camkes_log_queue_enqueue(camkes_log_queue_t *queue, camkes_log_data_t *data);
 
 //------------------------------------------------------------------------------
 // Receiver API
@@ -113,7 +117,7 @@ typedef struct camkes_log_recv_queue {
   // counter never overflows. It just wraps modulo the size of the counter
   // type. The counter is typically very large (see counter.h), so this should
   // happen very infrequently.
-  counter_t numRecv;
+  camkes_log_counter_t numRecv;
   // Pointer to the actual queue. This is the seL4 dataport (shared memory)
   // that is shared by the sender and all receivers.
   camkes_log_queue_t *queue;
@@ -121,7 +125,7 @@ typedef struct camkes_log_recv_queue {
 
 // Each receiver must call this exactly once before any calls to other queue
 // API functions.
-void recv_queue_init(camkes_log_recv_queue_t *recvQueue, camkes_log_queue_t *queue);
+void camkes_log_recv_queue_init(camkes_log_recv_queue_t *recvQueue, camkes_log_queue_t *queue);
 
 // Dequeue data. Never blocks but can fail if the sender writes at same
 // time. 
@@ -143,9 +147,14 @@ void recv_queue_init(camkes_log_recv_queue_t *recvQueue, camkes_log_queue_t *que
 // numDropped. Since COUNTER_MAX is very large (typically on the order of 2^64,
 // see counter.h), this is very unlikely.  If the sender is ever this far
 // ahead of a receiver the system is probably in a very bad state.
-bool queue_dequeue(camkes_log_recv_queue_t *recvQueue, counter_t *numDropped, camkes_log_data_t *data);
+bool camkes_log_queue_dequeue(camkes_log_recv_queue_t *recvQueue, camkes_log_counter_t *numDropped, camkes_log_data_t *data);
 
 // Is queue empty? If the queue is not empty, it will stay that way until the
 // receiver dequeues all data. If the queue is empty you can make no
 // assumptions about how long it will stay empty.
-bool queue_is_empty(camkes_log_recv_queue_t *recvQueue); 
+bool camkes_log_queue_is_empty(camkes_log_recv_queue_t *recvQueue); 
+
+#ifdef __cplusplus
+  }
+#endif
+

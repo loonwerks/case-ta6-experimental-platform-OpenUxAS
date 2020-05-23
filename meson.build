@@ -197,6 +197,7 @@ executable(
       'src/Communications',
       'src/Includes',
       'src/Services',
+      'src/Utilities/camkes_log_queue/include',
     ),
     incs_lmcp,
   ],

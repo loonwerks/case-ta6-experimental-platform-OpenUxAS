@@ -19,6 +19,7 @@ inc_test = [
     '../src/Includes',
     '../src/Services',
     '../src/VisilibityLib',
+    '../src/Utilities/camkes_log_queue/include',
   ),
   incs_lmcp,
 ]

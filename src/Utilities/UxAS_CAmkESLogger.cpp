@@ -48,8 +48,9 @@ CAmkESLogger::openStream(std::string& logFilePath)
     if (m_dataportFd >= 0)
     {
         size_t port_size = sizeof(camkes_log_queue_t);
-        m_dataport = (camkes_log_queue_t *) mmap(NULL, port_size, PROT_READ | PROT_WRITE, MAP_SHARED, m_dataportFd, 1 * getpagesize());
-        if (m_dataport == (camkes_log_queue_t *) -1)
+        camkes_log_queue_t *dp = (camkes_log_queue_t *) mmap(NULL, port_size, PROT_READ | PROT_WRITE, MAP_SHARED, m_dataportFd, 1 * getpagesize());
+        m_dataport.reset(dp);
+        if (m_dataport.get() == (camkes_log_queue_t *) -1)
         {
             std::cout << "WARN: " << s_typeName() << "::initialize failed to mmap port device " << m_deviceName << ": " << strerror(errno);
             close(m_dataportFd);
@@ -61,12 +62,12 @@ CAmkESLogger::openStream(std::string& logFilePath)
             if (emit == (void *) -1)
             {
                 std::cout << "WARN: " << s_typeName() << "::initialize failed to mmap emit trigger on device " << m_deviceName << ": " << strerror(errno);
-                munmap((void *) m_dataport, port_size);
+                munmap((void *) m_dataport.get(), port_size);
                 close(m_dataportFd);
             }
 
         }
-        queue_init(m_dataport);
+        camkes_log_queue_init(m_dataport.get());
         isSuccess = true;
         std::cout << "WARN: " << s_typeName() << "::initialized port device " << m_deviceName << " successfully, port size " << port_size;
     }
@@ -87,9 +88,9 @@ CAmkESLogger::closeStream()
         std::cout << "WARN: " << s_typeName() << "::unmapped emit trigger on device " << m_deviceName;
     }
 
-    if ((m_dataport != (camkes_log_queue_t *) -1) && m_dataport != 0)
+    if ((m_dataport.get() != (camkes_log_queue_t *) -1) && m_dataport != 0)
     {
-        munmap((void *) m_dataport, sizeof(camkes_log_queue_t));
+        munmap((void *) m_dataport.get(), sizeof(camkes_log_queue_t));
         std::cout << "WARN: " << s_typeName() << "::unmapped port device " << m_deviceName;
     }
 
@@ -111,7 +112,7 @@ CAmkESLogger::outputTextToStream(const std::string& text)
         size_t lengthRemaining = textLength - currentOffset;
         data.payload_length = (lengthRemaining <= sizeof(data.payload)) ? lengthRemaining : sizeof(data.payload);
         memcpy((void *) data.payload, (const void *) text.data(), (size_t) data.payload_length);
-        queue_enqueue(m_dataport, &data);
+        camkes_log_queue_enqueue(m_dataport.get(), &data);
         (m_emitTrigger.get())[0] = 1;
         currentOffset += data.payload_length;
     }

@@ -16,7 +16,7 @@
 #include <atomic>
 #include <cstdint>
 
-struct camkes_log_queue;
+#include <camkes_log_queue.h>
 
 namespace uxas
 {
@@ -57,7 +57,7 @@ private:
     CAmkESLogger& operator=(const CAmkESLogger&) = delete;
 
     int m_dataportFd{-1};
-    struct camkes_log_queue *m_dataport{(struct camkes_log_queue *) -1};
+    std::unique_ptr<camkes_log_queue_t> m_dataport;
     std::unique_ptr<int> m_emitTrigger;
 
     std::string m_deviceName = std::string("/dev/uio0");
