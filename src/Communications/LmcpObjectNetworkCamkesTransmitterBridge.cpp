@@ -193,11 +193,21 @@ LmcpObjectNetworkCamkesTransmitterBridge::processReceivedSerializedLmcpMessage(s
             {
                 std::string messageString = receivedLmcpMessage->getString();
                 size_t messageStringLength = messageString.length();
-                data_t data;
-                size_t data_len = (messageStringLength <= m_camkesMaxBytesReadCount) ? messageStringLength : m_camkesMaxBytesReadCount;
-                memcpy((void *) data.payload, (const void *) messageString.data(), data_len);
-                queue_enqueue(m_dataport.get(), &data);
-                (m_emitTrigger.get())[0] = 1;
+                data_t *data = (data_t*) calloc(1, sizeof(data_t));
+                if (data != NULL)
+                {
+                    size_t data_len = (messageStringLength <= m_camkesMaxBytesReadCount) ? messageStringLength : m_camkesMaxBytesReadCount;
+                    memcpy((void *) data->payload, (const void *) messageString.data(), data_len);
+                    queue_enqueue(m_dataport.get(), data);
+                    (m_emitTrigger.get())[0] = 1;
+                    UXAS_LOG_INFORM(s_typeName(), "::processReceivedSerializedLmcpMessage sent message of ", data_len, " octets");
+                    free(data);
+                }
+                else
+                {
+                    UXAS_LOG_ERROR(s_typeName(), "::processReceivedSerializedLmcpMessage could not allocate data buffer");
+                }
+                
             }
             catch (std::exception& ex)
             {
