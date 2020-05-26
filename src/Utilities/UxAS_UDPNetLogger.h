@@ -80,6 +80,11 @@ public:
     bool
     outputToStream(HeadLogData& headerAndData) override;
 
+private:
+
+    bool
+    internalOutputTextToStream(const std::string& text);
+    
 };
 
 }; //namespace log

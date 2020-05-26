@@ -106,6 +106,39 @@ bool
 CAmkESLogger::outputTextToStream(const std::string& text)
 {
     std::lock_guard<std::mutex> lock(m_mutex);
+    bool isSuccess  = outputTextToStream(text);
+    return (isSuccess);
+};
+
+bool
+CAmkESLogger::outputTimeTextToStream(const std::string& text, bool isTimeIsolatedLine)
+{
+    std::lock_guard<std::mutex> lock(m_mutex);
+    std::stringstream ss;
+    bool isSuccess = outputToStreamBasicFormat(ss, text, m_isLogThreadId, isTimeIsolatedLine);
+    if (isSuccess)
+    {
+        isSuccess = outputTextToStream(ss.str());
+    }
+    return (isSuccess);
+};
+
+bool
+CAmkESLogger::outputToStream(HeadLogData& headerAndData)
+{
+    std::lock_guard<std::mutex> lock(m_mutex);
+    std::stringstream ss;
+    bool isSuccess = outputToStreamBasicFormat(ss, headerAndData);
+    if (isSuccess)
+    {
+        isSuccess = outputTextToStream(ss.str());
+    }
+    return (isSuccess);
+};
+
+bool
+CAmkESLogger::internalOutputTextToStream(const std::string& text)
+{
     bool isSuccess(false);
     size_t textLength = text.length();
     size_t currentOffset = 0;
@@ -127,30 +160,6 @@ CAmkESLogger::outputTextToStream(const std::string& text)
     else
     {
         std::cout << "ERROR: " << s_typeName() << "::outputTextToStream could not allocate tx data buffer for " << m_deviceName;
-    }
-    return (isSuccess);
-};
-
-bool
-CAmkESLogger::outputTimeTextToStream(const std::string& text, bool isTimeIsolatedLine)
-{
-    std::stringstream ss;
-    bool isSuccess = outputToStreamBasicFormat(ss, text, m_isLogThreadId, isTimeIsolatedLine);
-    if (isSuccess)
-    {
-        isSuccess = outputTextToStream(ss.str());
-    }
-    return (isSuccess);
-};
-
-bool
-CAmkESLogger::outputToStream(HeadLogData& headerAndData)
-{
-    std::stringstream ss;
-    bool isSuccess = outputToStreamBasicFormat(ss, headerAndData);
-    if (isSuccess)
-    {
-        isSuccess = outputTextToStream(ss.str());
     }
     return (isSuccess);
 };

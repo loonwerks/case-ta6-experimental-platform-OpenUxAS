@@ -111,6 +111,39 @@ bool
 UDPNetLogger::outputTextToStream(const std::string& text)
 {
     std::lock_guard<std::mutex> lock(m_mutex);
+    bool isSuccess = outputTextToStream(text);
+    return (isSuccess);
+};
+
+bool
+UDPNetLogger::outputTimeTextToStream(const std::string& text, bool isTimeIsolatedLine)
+{
+    std::lock_guard<std::mutex> lock(m_mutex);
+    std::stringstream ss;
+    bool isSuccess = outputToStreamBasicFormat(ss, text, m_isLogThreadId, isTimeIsolatedLine);
+    if (isSuccess)
+    {
+        isSuccess = outputTextToStream(ss.str());
+    }
+    return (isSuccess);
+};
+
+bool
+UDPNetLogger::outputToStream(HeadLogData& headerAndData)
+{
+    std::lock_guard<std::mutex> lock(m_mutex);
+    std::stringstream ss;
+    bool isSuccess = outputToStreamBasicFormat(ss, headerAndData);
+    if (isSuccess)
+    {
+        isSuccess = outputTextToStream(ss.str());
+    }
+    return (isSuccess);
+};
+
+bool
+UDPNetLogger::internalOutputTextToStream(const std::string& text)
+{
     bool isSuccess{true};
     size_t textLength = text.length();
     size_t currentOffset = 0;
@@ -125,30 +158,6 @@ UDPNetLogger::outputTextToStream(const std::string& text)
 	        break;
         }
         currentOffset += chunkSize;
-    }
-    return (isSuccess);
-};
-
-bool
-UDPNetLogger::outputTimeTextToStream(const std::string& text, bool isTimeIsolatedLine)
-{
-    std::stringstream ss;
-    bool isSuccess = outputToStreamBasicFormat(ss, text, m_isLogThreadId, isTimeIsolatedLine);
-    if (isSuccess)
-    {
-        isSuccess = outputTextToStream(ss.str());
-    }
-    return (isSuccess);
-};
-
-bool
-UDPNetLogger::outputToStream(HeadLogData& headerAndData)
-{
-    std::stringstream ss;
-    bool isSuccess = outputToStreamBasicFormat(ss, headerAndData);
-    if (isSuccess)
-    {
-        isSuccess = outputTextToStream(ss.str());
     }
     return (isSuccess);
 };
