@@ -48,7 +48,12 @@ void queue_enqueue(queue_t *queue, data_t *data) {
 // See queue.h for API documentation. Only implementation details are documented here.
 
 void recv_queue_init(recv_queue_t *recvQueue, queue_t *queue) {
-  recvQueue->numRecv = 0;
+  // Need to ignore all messages sent when initializing the queue, otherwise OpenUxAS
+  // will likely be confused by stale messages
+  counter_t numSent = queue->numSent;
+  // Acquire memory fence - ensure read of queue->numSent BEFORE updating numRecv
+  __atomic_thread_fence(__ATOMIC_ACQUIRE);
+  recvQueue->numRecv = numSent;
   recvQueue->queue = queue;
   // fprintf(stdout, "recv_queue_init: initialized recvQueue at %p, data queue at %p\n", (void *) recvQueue, (void *) queue);
   // fflush(stdout);
