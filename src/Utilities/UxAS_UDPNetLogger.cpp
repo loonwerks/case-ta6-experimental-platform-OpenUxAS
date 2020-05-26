@@ -110,7 +110,6 @@ UDPNetLogger::closeStream()
 bool
 UDPNetLogger::outputTextToStream(const std::string& text)
 {
-    std::lock_guard<std::mutex> lock(m_mutex);
     bool isSuccess = outputTextToStream(text);
     return (isSuccess);
 };
@@ -118,7 +117,6 @@ UDPNetLogger::outputTextToStream(const std::string& text)
 bool
 UDPNetLogger::outputTimeTextToStream(const std::string& text, bool isTimeIsolatedLine)
 {
-    std::lock_guard<std::mutex> lock(m_mutex);
     std::stringstream ss;
     bool isSuccess = outputToStreamBasicFormat(ss, text, m_isLogThreadId, isTimeIsolatedLine);
     if (isSuccess)
@@ -131,7 +129,6 @@ UDPNetLogger::outputTimeTextToStream(const std::string& text, bool isTimeIsolate
 bool
 UDPNetLogger::outputToStream(HeadLogData& headerAndData)
 {
-    std::lock_guard<std::mutex> lock(m_mutex);
     std::stringstream ss;
     bool isSuccess = outputToStreamBasicFormat(ss, headerAndData);
     if (isSuccess)
@@ -144,6 +141,7 @@ UDPNetLogger::outputToStream(HeadLogData& headerAndData)
 bool
 UDPNetLogger::internalOutputTextToStream(const std::string& text)
 {
+    std::lock_guard<std::mutex> lock(m_mutex);
     bool isSuccess{true};
     size_t textLength = text.length();
     size_t currentOffset = 0;

@@ -105,7 +105,6 @@ CAmkESLogger::closeStream()
 bool
 CAmkESLogger::outputTextToStream(const std::string& text)
 {
-    std::lock_guard<std::mutex> lock(m_mutex);
     bool isSuccess  = outputTextToStream(text);
     return (isSuccess);
 };
@@ -113,7 +112,6 @@ CAmkESLogger::outputTextToStream(const std::string& text)
 bool
 CAmkESLogger::outputTimeTextToStream(const std::string& text, bool isTimeIsolatedLine)
 {
-    std::lock_guard<std::mutex> lock(m_mutex);
     std::stringstream ss;
     bool isSuccess = outputToStreamBasicFormat(ss, text, m_isLogThreadId, isTimeIsolatedLine);
     if (isSuccess)
@@ -126,7 +124,6 @@ CAmkESLogger::outputTimeTextToStream(const std::string& text, bool isTimeIsolate
 bool
 CAmkESLogger::outputToStream(HeadLogData& headerAndData)
 {
-    std::lock_guard<std::mutex> lock(m_mutex);
     std::stringstream ss;
     bool isSuccess = outputToStreamBasicFormat(ss, headerAndData);
     if (isSuccess)
@@ -139,6 +136,7 @@ CAmkESLogger::outputToStream(HeadLogData& headerAndData)
 bool
 CAmkESLogger::internalOutputTextToStream(const std::string& text)
 {
+    std::lock_guard<std::mutex> lock(m_mutex);
     bool isSuccess(false);
     size_t textLength = text.length();
     size_t currentOffset = 0;
