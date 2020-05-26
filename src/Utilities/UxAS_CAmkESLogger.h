@@ -15,6 +15,7 @@
 
 #include <atomic>
 #include <cstdint>
+#include <mutex>
 
 #include <camkes_log_queue.h>
 
@@ -59,6 +60,8 @@ private:
     int m_dataportFd{-1};
     std::unique_ptr<camkes_log_queue_t> m_dataport;
     std::unique_ptr<int> m_emitTrigger;
+
+    std::mutex m_mutex;
 
     std::string m_deviceName = std::string("/dev/uio0");
 

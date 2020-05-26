@@ -13,6 +13,7 @@
 
 #include <string>
 #include <cstdint>
+#include <mutex>
 
 #include <arpa/inet.h>
 
@@ -57,6 +58,8 @@ private:
     int m_dataportFd{-1};
     struct sockaddr_in m_clientSockaddr;
     struct sockaddr_in m_destinationSockaddr;
+
+    std::mutex m_mutex;
 
     std::string m_destinationAddress = std::string("127.0.0.1:5577");
 

@@ -105,6 +105,7 @@ CAmkESLogger::closeStream()
 bool
 CAmkESLogger::outputTextToStream(const std::string& text)
 {
+    std::lock_guard<std::mutex> lock(m_mutex);
     bool isSuccess(false);
     size_t textLength = text.length();
     size_t currentOffset = 0;

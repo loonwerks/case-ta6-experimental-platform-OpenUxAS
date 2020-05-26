@@ -110,6 +110,7 @@ UDPNetLogger::closeStream()
 bool
 UDPNetLogger::outputTextToStream(const std::string& text)
 {
+    std::lock_guard<std::mutex> lock(m_mutex);
     bool isSuccess{true};
     size_t textLength = text.length();
     size_t currentOffset = 0;
