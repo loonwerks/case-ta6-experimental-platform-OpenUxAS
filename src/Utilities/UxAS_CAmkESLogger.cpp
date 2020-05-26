@@ -105,19 +105,29 @@ CAmkESLogger::closeStream()
 bool
 CAmkESLogger::outputTextToStream(const std::string& text)
 {
+    bool isSuccess(false);
     size_t textLength = text.length();
     size_t currentOffset = 0;
-    camkes_log_data_t data;
-    while (currentOffset < textLength) {
-        size_t lengthRemaining = textLength - currentOffset;
-        data.payload_length = (lengthRemaining <= sizeof(data.payload)) ? lengthRemaining : sizeof(data.payload);
-        memcpy((void *) data.payload, (const void *) text.data(), (size_t) data.payload_length);
-        camkes_log_queue_enqueue(m_dataport.get(), &data);
-        (m_emitTrigger.get())[0] = 1;
-        currentOffset += data.payload_length;
+    camkes_log_data_t *data = (camkes_log_data_t *) calloc(1, sizeof(camkes_log_data_t));
+    if (data != NULL)
+    {
+        while (currentOffset < textLength) {
+            size_t lengthRemaining = textLength - currentOffset;
+            size_t chunkSize = (lengthRemaining <= sizeof(data->payload)) ? lengthRemaining : sizeof(data->payload);
+            data->payload_length = chunkSize;
+            memcpy((void *) data->payload, (const void *) (text.data() + currentOffset), chunkSize);
+            camkes_log_queue_enqueue(m_dataport.get(), data);
+            (m_emitTrigger.get())[0] = 1;
+            currentOffset += chunkSize;
+        }
+        free(data);
+        isSuccess = true;
     }
-    data.payload_length = (uint32_t) (textLength <= sizeof(data.payload) ? textLength : sizeof(data.payload));
-    return (true);
+    else
+    {
+        std::cout << "ERROR: " << s_typeName() << "::outputTextToStream could not allocate tx data buffer for " << m_deviceName;
+    }
+    return (isSuccess);
 };
 
 bool
