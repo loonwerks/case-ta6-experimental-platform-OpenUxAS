@@ -110,7 +110,7 @@ UDPNetLogger::closeStream()
 bool
 UDPNetLogger::outputTextToStream(const std::string& text)
 {
-    bool isSuccess = outputTextToStream(text);
+    bool isSuccess = internalOutputTextToStream(text);
     return (isSuccess);
 };
 
@@ -121,7 +121,7 @@ UDPNetLogger::outputTimeTextToStream(const std::string& text, bool isTimeIsolate
     bool isSuccess = outputToStreamBasicFormat(ss, text, m_isLogThreadId, isTimeIsolatedLine);
     if (isSuccess)
     {
-        isSuccess = outputTextToStream(ss.str());
+        isSuccess = internalOutputTextToStream(ss.str());
     }
     return (isSuccess);
 };
@@ -133,7 +133,7 @@ UDPNetLogger::outputToStream(HeadLogData& headerAndData)
     bool isSuccess = outputToStreamBasicFormat(ss, headerAndData);
     if (isSuccess)
     {
-        isSuccess = outputTextToStream(ss.str());
+        isSuccess = internalOutputTextToStream(ss.str());
     }
     return (isSuccess);
 };

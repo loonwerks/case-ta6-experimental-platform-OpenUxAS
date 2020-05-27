@@ -105,7 +105,7 @@ CAmkESLogger::closeStream()
 bool
 CAmkESLogger::outputTextToStream(const std::string& text)
 {
-    bool isSuccess  = outputTextToStream(text);
+    bool isSuccess  = internalOutputTextToStream(text);
     return (isSuccess);
 };
 
@@ -116,7 +116,7 @@ CAmkESLogger::outputTimeTextToStream(const std::string& text, bool isTimeIsolate
     bool isSuccess = outputToStreamBasicFormat(ss, text, m_isLogThreadId, isTimeIsolatedLine);
     if (isSuccess)
     {
-        isSuccess = outputTextToStream(ss.str());
+        isSuccess = internalOutputTextToStream(ss.str());
     }
     return (isSuccess);
 };
@@ -128,7 +128,7 @@ CAmkESLogger::outputToStream(HeadLogData& headerAndData)
     bool isSuccess = outputToStreamBasicFormat(ss, headerAndData);
     if (isSuccess)
     {
-        isSuccess = outputTextToStream(ss.str());
+        isSuccess = internalOutputTextToStream(ss.str());
     }
     return (isSuccess);
 };
