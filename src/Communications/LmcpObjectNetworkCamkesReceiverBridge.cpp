@@ -56,9 +56,10 @@ LmcpObjectNetworkCamkesReceiverBridge::~LmcpObjectNetworkCamkesReceiverBridge()
         m_camkesProcessingThread->detach();
     }
 
-    if ((m_dataport.get() != (void *) -1) && m_dataport.get() != 0)
+    if (m_camkesRecvQueue.get() != NULL && m_camkesRecvQueue.get()->queue != NULL)
     {
-        munmap(m_dataport.get(), sizeof(data_t));
+        munmap(m_camkesRecvQueue.get()->queue, sizeof(data_t));
+        m_camkesRecvQueue.get()->queue = NULL;
         UXAS_LOG_INFORM(s_typeName(), "::unmapped initialized port device ", m_deviceName);
     }
 
@@ -139,8 +140,7 @@ LmcpObjectNetworkCamkesReceiverBridge::initialize()
         size_t port_size = sizeof(queue_t);
         int port_offset = 1 * getpagesize();
         queue_t *dp = (queue_t *) mmap(NULL, port_size, PROT_READ | PROT_WRITE, MAP_SHARED, m_dataportFd, port_offset);
-        m_dataport.reset(dp);
-        if (m_dataport.get() == (void *) -1)
+        if (dp == (void *) -1)
         {
             UXAS_LOG_ERROR(s_typeName(), "::initialize failed to mmap port device ", m_deviceName, ": ", strerror(errno));
             close(m_dataportFd);
@@ -148,7 +148,7 @@ LmcpObjectNetworkCamkesReceiverBridge::initialize()
         else
         {
             m_camkesRecvQueue = uxas::stduxas::make_unique<recv_queue_t>();
-            recv_queue_init(m_camkesRecvQueue.get(), m_dataport.get());
+            recv_queue_init(m_camkesRecvQueue.get(), dp);
             isSuccess = true;
             UXAS_LOG_INFORM(s_typeName(), "::initialized port device ", m_deviceName, " successfully, port size ", port_size, " port offset ", port_offset);
         }        

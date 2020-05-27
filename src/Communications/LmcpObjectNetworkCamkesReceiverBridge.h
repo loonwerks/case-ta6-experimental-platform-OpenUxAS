@@ -118,7 +118,6 @@ private:
     
     std::unique_ptr<recv_queue_t> m_camkesRecvQueue;
     int m_dataportFd{-1};
-    std::unique_ptr<queue_t> m_dataport;
 
     std::string m_deviceName = std::string("/dev/uio0");
 
