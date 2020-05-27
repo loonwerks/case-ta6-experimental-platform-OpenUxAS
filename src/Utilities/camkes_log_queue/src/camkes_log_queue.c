@@ -32,10 +32,10 @@ void camkes_log_queue_init(camkes_log_queue_t *queue) {
 void camkes_log_queue_enqueue(camkes_log_queue_t *queue, camkes_log_data_t *data) {
   // Simple ring with one dirty element that will be written next. Only one
   // writer, so no need for any synchronization. elt[queue->numSent %
-  // QUEUE_SIZE] is always considered dirty. So do not advance queue-NumSent
-  // till AFTER data is copied.
+  // CAMKES_LOG_QUEUE_SIZE] is always considered dirty. So do not advance
+  // queue->NumSent until AFTER data is copied.
   
-  size_t i = queue->numSent % QUEUE_SIZE;
+  size_t i = queue->numSent % CAMKES_LOG_QUEUE_SIZE;
   queue->elt[i] = *data; // Copy data into queue
   // Release memory fence - ensure that data write above completes BEFORE we advance queue->numSent
   __atomic_thread_fence(__ATOMIC_RELEASE);
@@ -73,22 +73,22 @@ bool camkes_log_queue_dequeue(camkes_log_recv_queue_t *recvQueue, camkes_log_cou
   }
   // One element in the ring buffer is always considered dirty. Its the next
   // element we will write.  It's not safe to read it until numSent has been
-  // incremented. Thus there are really only (QUEUE_SIZE - 1) elements in the
-  // queue.
-  *numDropped = (numNew <= QUEUE_SIZE - 1) ? 0 : numNew - QUEUE_SIZE + 1;
+  // incremented. Thus there are really only (CAMKES_LOG_QUEUE_SIZE - 1)
+  // elements in the queue.
+  *numDropped = (numNew <= CAMKES_LOG_QUEUE_SIZE - 1) ? 0 : numNew - CAMKES_LOG_QUEUE_SIZE + 1;
   // Increment numRecv by *numDropped plus one for the element we are about to
   // read.
   *numRecv += *numDropped + 1;
   camkes_log_counter_t numRemaining = numSent - *numRecv;
-  size_t i = (*numRecv - 1) % QUEUE_SIZE;
+  size_t i = (*numRecv - 1) % CAMKES_LOG_QUEUE_SIZE;
   *data = queue->elt[i]; // Copy data
   // Acquire memory fence - ensure read of data BEFORE reading queue->numSent again 
   __atomic_thread_fence(__ATOMIC_ACQUIRE);
   // fprintf(stdout, "queue_dequeue: after 2nd thread fence: numDroped %llu, numRecv %llu, numRemaining %llu, returning %d\n",
   //    (unsigned long long) *numDropped, (unsigned long long) *numRecv, (unsigned long long) numRemaining,
-  //     queue->numSent - *numRecv + 1 < QUEUE_SIZE);
+  //     queue->numSent - *numRecv + 1 < CAMKES_LOG_QUEUE_SIZE);
   // fflush(stdout);
-  if (queue->numSent - *numRecv + 1 < QUEUE_SIZE) {
+  if (queue->numSent - *numRecv + 1 < CAMKES_LOG_QUEUE_SIZE) {
     // Sender did not write element we were reading. Copied data is coherent.
     return true;
   } else {
