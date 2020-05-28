@@ -26,6 +26,7 @@ public:
     static const std::string& AlwaysSendPosition() { static std::string s_string("AlwaysSendPosition"); return(s_string); };
     static const std::string& BaudRate() { static std::string s_string("BaudRate"); return(s_string); };
     static const std::string& Bridge() { static std::string s_string("Bridge"); return(s_string); };
+    static const std::string& CAmkESDevice() { static std::string s_string("CAmkESDevice"); return(s_string); };
     static const std::string& CAmkESLoggerDevice() { static std::string s_string("CAmkESLoggerDevice"); return(s_string); };
     static const std::string& Component() { static std::string s_string("Component"); return(s_string); };
     static const std::string& ComponentManager() { static std::string s_string("ComponentManager"); return(s_string); };
