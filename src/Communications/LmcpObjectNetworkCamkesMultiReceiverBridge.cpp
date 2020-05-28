@@ -58,16 +58,16 @@ LmcpObjectNetworkCamkesMultiReceiverBridge::~LmcpObjectNetworkCamkesMultiReceive
 
     for (auto& port : m_camkesRecvPorts)
     {
-        if (port.second.recvQueue.get() != NULL && port.second.recvQueue.get()->queue != NULL)
+        if (port.recvQueue.get() != NULL && port.recvQueue.get()->queue != NULL)
         {
-            munmap(port.second.recvQueue.get()->queue, sizeof(data_t));
-            port.second.recvQueue.get()->queue = NULL;
-            UXAS_LOG_INFORM(s_typeName(), "::unmapped initialized port device ", port.first);
+            munmap(port.recvQueue.get()->queue, sizeof(data_t));
+            port.recvQueue.get()->queue = NULL;
+            UXAS_LOG_INFORM(s_typeName(), "::unmapped initialized port device ", port.deviceName);
         }
-        if (port.second.fd >= 0)
+        if (port.fd >= 0)
         {
-            close(port.second.fd);
-            UXAS_LOG_INFORM(s_typeName(), "::closed initialized port device ", port.first);
+            close(port.fd);
+            UXAS_LOG_INFORM(s_typeName(), "::closed initialized port device ", port.deviceName);
         }
     }
     m_camkesRecvPorts.clear();
@@ -86,7 +86,7 @@ LmcpObjectNetworkCamkesMultiReceiverBridge::configure(const pugi::xml_node& brid
                 std::string deviceName = currentXmlNode.attribute(uxas::common::StringConstant::DeviceName().c_str()).value();
                 if (!deviceName.empty())
                 {
-                    m_camkesRecvPorts[deviceName];
+                    m_camkesRecvPorts.emplace_back(deviceName);
                 }
             }
     }
@@ -140,29 +140,29 @@ LmcpObjectNetworkCamkesMultiReceiverBridge::initialize()
 
     for (auto& port : m_camkesRecvPorts)
     {
-        port.second.fd = open(port.first.c_str(), O_RDWR);
-        if (port.second.fd >= 0)
+        port.fd = open(port.deviceName.c_str(), O_RDWR);
+        if (port.fd >= 0)
         {
             size_t port_size = sizeof(queue_t);
             int port_offset = 1 * getpagesize();
-            queue_t *dp = (queue_t *) mmap(NULL, port_size, PROT_READ | PROT_WRITE, MAP_SHARED, port.second.fd, port_offset);
+            queue_t *dp = (queue_t *) mmap(NULL, port_size, PROT_READ | PROT_WRITE, MAP_SHARED, port.fd, port_offset);
             if (dp == (void *) -1)
             {
-                UXAS_LOG_ERROR(s_typeName(), "::initialize failed to mmap port device ", port.first, ": ", strerror(errno));
-                close(port.second.fd);
-                port.second.fd = -1;
+                UXAS_LOG_ERROR(s_typeName(), "::initialize failed to mmap port device ", port.deviceName, ": ", strerror(errno));
+                close(port.fd);
+                port.fd = -1;
                 isSuccess = false;
             }
             else
             {
-                port.second.recvQueue = uxas::stduxas::make_unique<recv_queue_t>();
-                recv_queue_init(port.second.recvQueue.get(), dp);
-                UXAS_LOG_INFORM(s_typeName(), "::initialized port device ", port.first, " successfully, port size ", port_size, " port offset ", port_offset);
+                port.recvQueue = uxas::stduxas::make_unique<recv_queue_t>();
+                recv_queue_init(port.recvQueue.get(), dp);
+                UXAS_LOG_INFORM(s_typeName(), "::initialized port device ", port.deviceName, " successfully, port size ", port_size, " port offset ", port_offset);
             }        
         }
         else
         {
-            UXAS_LOG_ERROR(s_typeName(), "::initialize failed to open port device ", port.first, ": ", strerror(errno));
+            UXAS_LOG_ERROR(s_typeName(), "::initialize failed to open port device ", port.deviceName, ": ", strerror(errno));
         }
         
     }
@@ -219,11 +219,11 @@ LmcpObjectNetworkCamkesMultiReceiverBridge::camkesPortInAadlEventDataWait(data_t
             UXAS_LOG_DEBUG_VERBOSE(s_typeName(), "::camkesPortInAadlEventDataWait [", m_entityIdNetworkIdUnicastString, "] port [",
                 port.first, "] BEFORE queue_dequeue");
             counter_t numDropped{0};
-            if (queue_dequeue(port.second.recvQueue.get(), &numDropped, data))
+            if (queue_dequeue(port.recvQueue.get(), &numDropped, data))
             {
                 UXAS_LOG_DEBUG_VERBOSE(s_typeName(), "::executeCamkesReceiveProcessing [", m_entityIdNetworkIdUnicastString,
                     "] port [", port.first, "] AFTER camkes connection read message, numDropped ", numDropped, ".");
-                port.second.numDropped += numDropped;
+                port.numDropped += numDropped;
                 isSuccess = true;
                 break;
             }

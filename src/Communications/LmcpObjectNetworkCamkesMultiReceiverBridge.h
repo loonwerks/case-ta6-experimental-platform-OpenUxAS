@@ -36,7 +36,6 @@ extern "C" {
 
 #include <atomic>
 #include <cstdint>
-#include <map>
 
 namespace uxas
 {
@@ -117,13 +116,14 @@ private:
     /** \brief External processing thread.  */
     std::unique_ptr<std::thread> m_camkesProcessingThread;
 
-    struct CamkesFdQueuePair {
-        CamkesFdQueuePair() : fd(-1), recvQueue(), numDropped(0) {};
+    struct CamkesPort {
+        CamkesPort(const std::string& name) : deviceName(name), fd(-1), recvQueue(uxas::stduxas::make_unique<recv_queue_t>()), numDropped(0) {};
+        std::string deviceName;
         int fd;
         std::unique_ptr<recv_queue_t> recvQueue;
-        counter_t numDropped;
+        unsigned long long numDropped;
     };
-    std::map<std::string, CamkesFdQueuePair> m_camkesRecvPorts;
+    std::vector<CamkesPort> m_camkesRecvPorts;
 
     /** \brief maximum number of characters to read from connection
      * 
