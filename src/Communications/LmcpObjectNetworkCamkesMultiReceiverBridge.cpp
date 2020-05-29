@@ -226,23 +226,23 @@ LmcpObjectNetworkCamkesMultiReceiverBridge::camkesPortInAadlEventDataWait(data_t
         for (auto& port : m_camkesRecvPorts)
         {
             UXAS_LOG_DEBUG_VERBOSE(s_typeName(), "::camkesPortInAadlEventDataWait [", m_entityIdNetworkIdUnicastString, "] port [",
-                port.first, "] BEFORE queue_dequeue");
+                port.deviceName, "] BEFORE queue_dequeue");
             counter_t numDropped{0};
             if (queue_dequeue(port.recvQueue.get(), &numDropped, data))
             {
                 UXAS_LOG_DEBUG_VERBOSE(s_typeName(), "::executeCamkesReceiveProcessing [", m_entityIdNetworkIdUnicastString,
-                    "] port [", port.first, "] AFTER camkes connection read message, numDropped ", numDropped, ".");
+                    "] port [", port.deviceName, "] AFTER camkes connection read message, numDropped ", ((unsigned long long) numDropped), ".");
                 port.numDropped += numDropped;
                 isSuccess = true;
                 break;
             }
             UXAS_LOG_DEBUG_VERBOSE(s_typeName(), "::camkesPortInAadlEventDataWait [", m_entityIdNetworkIdUnicastString,
-                "] port [", port.first, "] AFTER queue_dequeue loop, returning");
+                "] port [", port.deviceName, "] AFTER queue_dequeue loop, returning");
         }
         if (!isSuccess) usleep(100000);
     }
     UXAS_LOG_DEBUG_VERBOSE(s_typeName(), "::camkesPortInAadlEventDataWait [", m_entityIdNetworkIdUnicastString,
-        "] port [", m_deviceName, "] AFTER queue_dequeue loop, returning");
+        "] port AFTER queue_dequeue loop, returning");
     return (isSuccess);
 }
 
@@ -257,7 +257,7 @@ LmcpObjectNetworkCamkesMultiReceiverBridge::executeCamkesReceiveProcessing()
             {
                 // check serial connection for inputs
                 UXAS_LOG_DEBUG_VERBOSE(s_typeName(), "::executeCamkesReceiveProcessing [", m_entityIdNetworkIdUnicastString,
-                                  "] port [", m_deviceName, "] BEFORE camkes connection read");
+                                  "] port BEFORE camkes connection read");
                 data_t* portInput = (data_t *) calloc(1, sizeof(data_t));
                 if (portInput != NULL)
                 {
