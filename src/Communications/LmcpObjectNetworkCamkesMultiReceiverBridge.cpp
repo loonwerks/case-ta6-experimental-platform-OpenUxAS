@@ -81,14 +81,23 @@ LmcpObjectNetworkCamkesMultiReceiverBridge::configure(const pugi::xml_node& brid
 
     for (pugi::xml_node currentXmlNode = bridgeXmlNode.first_child(); currentXmlNode; currentXmlNode = currentXmlNode.next_sibling())
     {
-            if (std::string(uxas::common::StringConstant::CAmkESDevice().c_str()) == currentXmlNode.name())
+        UXAS_LOG_INFORM(s_typeName(), "::configure found CAmkESDevice XML subnode");
+        if (std::string(uxas::common::StringConstant::CAmkESDevice().c_str()) == currentXmlNode.name())
+        {
+            std::string deviceName = currentXmlNode.attribute(uxas::common::StringConstant::DeviceName().c_str()).value();
+            if (!deviceName.empty())
             {
-                std::string deviceName = currentXmlNode.attribute(uxas::common::StringConstant::DeviceName().c_str()).value();
-                if (!deviceName.empty())
-                {
-                    m_camkesRecvPorts.emplace_back(deviceName);
-                }
+                UXAS_LOG_INFORM(s_typeName(), "::configure found CAmkESDevice subnode with DeviceName ", deviceName);
+                m_camkesRecvPorts.emplace_back(deviceName);
+                isSuccess = true;
             }
+            else
+            {
+                UXAS_LOG_INFORM(s_typeName(), "::configure found CAmkESDevice subnode contains empty DeviceName");
+                isSuccess = false;
+                break;
+            }
+        }
     }
 
     if (!bridgeXmlNode.attribute("ConsiderSelfGenerated").empty())
