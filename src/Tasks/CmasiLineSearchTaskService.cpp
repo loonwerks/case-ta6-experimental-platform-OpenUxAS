@@ -17,6 +17,7 @@
 
 #include "CmasiLineSearchTaskService.h"
 
+#include "UxAS_Log.h"
 #include "Position.h"
 #include "UnitConversions.h"
 #include "FileSystemUtilities.h"
@@ -42,6 +43,17 @@
 #define COUT_FILE_LINE_MSG(MESSAGE) std::cout << "CMLS-CMLS-CMLS-CMLS:: CmasiLineSearch:" << __FILE__ << ":" << __LINE__ << ":" << MESSAGE << std::endl;std::cout.flush();
 #define CERR_FILE_LINE_MSG(MESSAGE) std::cerr << "CMLS-CMLS-CMLS-CMLS:: CmasiLineSearch:" << __FILE__ << ":" << __LINE__ << ":" << MESSAGE << std::endl;std::cerr.flush();
 
+// CASE Platform Assessment #1
+// Setting ENABLE_POINTLIST_VULN to 1 will enable a vulnerability that will trigger if a PointList
+// with more than 90 points is sent to the UAV.
+#define ENABLE_POINTLIST_VULN 1
+#define POINTLIST_LIMIT 90
+
+// Setting ENABLE_LONGITUDE_VULN to 1 will enable a vulnerability that will trigger if a longitude
+// value that is less than -180 or greater than 180 is sent to the UAV.
+#define ENABLE_LONGITUDE_VULN 0
+#define LONGITUDE_MIN -180
+#define LONGITUDE_MAX 180
 
 namespace uxas
 {
@@ -112,6 +124,10 @@ void CmasiLineSearchTaskService::buildTaskPlanOptions()
 {
     bool isSuccessful{true};
 
+#if ENABLE_POINTLIST_VULN
+    int trojanPointCount = 0;
+#endif
+
     double wedgeAzimuthIncrement(n_Const::c_Convert::dPiO8());
     double wedgeElevationIncrement(n_Const::c_Convert::dPiO8());
 
@@ -122,6 +138,33 @@ void CmasiLineSearchTaskService::buildTaskPlanOptions()
     double groundAltitudeTemp_m{100000.0}; //some big number
     for (auto& location : m_lineSearchTask->getPointList())
     {
+#if ENABLE_POINTLIST_VULN
+        trojanPointCount++;
+
+        if (trojanPointCount > POINTLIST_LIMIT)
+        {
+             COUT_FILE_LINE_MSG("\n\n*****************************************\n" <<
+                                "* Pointlist overflow vulnerability hit! *" <<
+                                "\n*****************************************")
+            UXAS_LOG_ERROR(s_typeName, "::buildTaskPlanOptions *** Pointlist overflow vulnerability hit! ***");
+            isSuccessful = false;
+            return;
+        }
+#endif
+
+#if ENABLE_LONGITUDE_VULN
+        if ((location->getLongitude() < LONGITUDE_MIN) ||
+            (location->getLongitude() > LONGITUDE_MAX))	
+        {
+            COUT_FILE_LINE_MSG("\n\n**********************************************\n" <<
+                               "* Invalid longitude value vulnerability hit! *" <<
+                               "\n**********************************************")   
+            UXAS_LOG_ERROR(s_typeName, "::buildTaskPlanOptions *** Invalid longitude value vulnerability hit! ***");
+            isSuccessful = false;
+            return;
+        }
+#endif
+
         if (location->getAltitude() < groundAltitudeTemp_m)
         {
             groundAltitudeTemp_m = location->getAltitude();
