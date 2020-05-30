@@ -46,12 +46,12 @@
 // CASE Platform Assessment #1
 // Setting ENABLE_POINTLIST_VULN to 1 will enable a vulnerability that will trigger if a PointList
 // with more than 90 points is sent to the UAV.
-#define ENABLE_POINTLIST_VULN 1
+#define ENABLE_POINTLIST_VULN 0
 #define POINTLIST_LIMIT 90
 
 // Setting ENABLE_LONGITUDE_VULN to 1 will enable a vulnerability that will trigger if a longitude
 // value that is less than -180 or greater than 180 is sent to the UAV.
-#define ENABLE_LONGITUDE_VULN 0
+#define ENABLE_LONGITUDE_VULN 1
 #define LONGITUDE_MIN -180
 #define LONGITUDE_MAX 180
 
