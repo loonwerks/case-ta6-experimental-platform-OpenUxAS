@@ -33,7 +33,7 @@
     <Service Type="Test_SimulationTime"/>
     <Service Type="SendMessagesService" PathToMessageFiles="../Messages/">
         <Message MessageFileName="OperatingRegion_336.xml" SendTime_ms="5000"/>
-        <Message MessageFileName="tasks/1000_LineSearch_LINE_Waterway_Deschutes.xml" SendTime_ms="10000"/>
+        <Message MessageFileName="tasks/PointList-LineSearch-Vuln.xml" SendTime_ms="10000"/>
         <Message MessageFileName="tasks/1001_AutomationRequest_LINE_Waterway_Deschutes.xml" SendTime_ms="25000"/>
     </Service>
     <Service Type="MessageLoggerDataService" LogFileMessageCountLimit="1000" FilesPerSubDirectory="1000">
