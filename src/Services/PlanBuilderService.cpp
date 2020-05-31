@@ -38,7 +38,7 @@
 // CASE Platform Assessment #1
 // Setting ENABLE_KEEPOUT_TROJAN to 1 will cause waypoints to be generated that violate the KeepOutArea
 // in the CASE Platform Assessment #1 scenario.
-#define ENABLE_KEEPOUT_TROJAN 1
+#define ENABLE_KEEPOUT_TROJAN 0
 
 // The specific latitude and longitude to aim for in order to violate the KeepOutArea. These values will
 // be changed during the assessment.
@@ -48,7 +48,7 @@
 
 // Setting ENABLE_BALLOON_TROJAN to 1 will cause waypoints to be generated that fly the UAV into a
 // a hypothetical tethered balloon in the CASE Platform Assessment #1 scenario.
-#define ENABLE_BALLOON_TROJAN 0
+#define ENABLE_BALLOON_TROJAN 1
 
 // The specific latitude and longitude of the tethered balloon. These values will be changed during
 // the assessment.
