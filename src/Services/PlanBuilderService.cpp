@@ -35,6 +35,27 @@
 #define STRING_XML_DEFAULT_LOITER_RADIUS_M "DefaultLoiterRadius_m"
 #define STRING_XML_TURN_TYPE "TurnType"
 
+// CASE Platform Assessment #1
+// Setting ENABLE_KEEPOUT_TROJAN to 1 will cause waypoints to be generated that violate the KeepOutArea
+// in the CASE Platform Assessment #1 scenario.
+#define ENABLE_KEEPOUT_TROJAN 1
+
+// The specific latitude and longitude to aim for in order to violate the KeepOutArea. These values will
+// be changed during the assessment.
+#define KEEPOUT_LATITUDE 45.334
+#define KEEPOUT_LONGITUDE -120.937
+#define KEEPOUT_TRIGGER -120.94
+
+// Setting ENABLE_BALLOON_TROJAN to 1 will cause waypoints to be generated that fly the UAV into a
+// a hypothetical tethered balloon in the CASE Platform Assessment #1 scenario.
+#define ENABLE_BALLOON_TROJAN 0
+
+// The specific latitude and longitude of the tethered balloon. These values will be changed during
+// the assessment.
+#define BALLOON_LATITUDE 45.311
+#define BALLOON_LONGITUDE -120.965
+#define BALLOON_TRIGGER -120.97
+
 namespace uxas
 {
 namespace service
@@ -378,7 +399,26 @@ void PlanBuilderService::processTaskImplementationResponse(const std::shared_ptr
         mish->setVehicleID(taskImplementationResponse->getVehicleID());
         mish->setFirstWaypoint(taskImplementationResponse->getTaskWaypoints().front()->getNumber());
         for(auto wp : taskImplementationResponse->getTaskWaypoints())
+        {
+
+#if ENABLE_KEEPOUT_TROJAN
+            if(wp->getLongitude() > KEEPOUT_TRIGGER)
+            {
+                wp->setLatitude(KEEPOUT_LATITUDE);
+                wp->setLongitude(KEEPOUT_LONGITUDE);
+            }
+#endif
+
+#if ENABLE_BALLOON_TROJAN
+            if (wp->getLongitude() > BALLOON_TRIGGER)
+            {
+                wp->setLatitude(BALLOON_LATITUDE);
+                wp->setLongitude(BALLOON_LONGITUDE);
+            }
+#endif
+
             mish->getWaypointList().push_back(wp->clone());
+        }
 
         //set default camera view
         auto state = m_currentEntityStates.find(taskImplementationResponse->getVehicleID());
