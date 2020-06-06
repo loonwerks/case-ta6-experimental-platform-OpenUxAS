@@ -36,6 +36,7 @@ public:
     static const std::string& EntityID() { static std::string s_string("EntityID"); return(s_string); };
     static const std::string& EntityType() { static std::string s_string("EntityType"); return(s_string); };
     static const std::string& FilterType() { static std::string s_string("FilterType"); return(s_string); };
+    static const std::string& ForwardNonLocal() { static std::string s_string("ForwardNonLocal"); return(s_string); };
     static const std::string& GapTime_ms() { static std::string s_string("GapTime_ms"); return(s_string); };
     static const std::string& isDataTimestamp() { static std::string s_string("isDataTimestamp"); return(s_string); };
     static const std::string& isLoggingThreadId() { static std::string s_string("isLoggingThreadId"); return(s_string); };

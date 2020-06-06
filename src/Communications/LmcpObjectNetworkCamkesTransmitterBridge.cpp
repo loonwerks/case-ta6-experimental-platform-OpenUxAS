@@ -87,7 +87,19 @@ LmcpObjectNetworkCamkesTransmitterBridge::configure(const pugi::xml_node& bridge
     {
         UXAS_LOG_INFORM(s_typeName(), "::configure failed to find device name in XML configuration");
     }
-    
+
+    if (!bridgeXmlNode.attribute(uxas::common::StringConstant::ForwardNonLocal().c_str()).empty())
+    {
+        m_forwardNonLocalMessages = bridgeXmlNode.attribute(uxas::common::StringConstant::ForwardNonLocal().c_str()).as_bool();
+        UXAS_LOG_INFORM(s_typeName(), "::configure setting '", uxas::common::StringConstant::ForwardNonLocal(), "' boolean to ",
+            m_forwardNonLocalMessages, " from XML configuration");
+    }
+    else
+    {
+        UXAS_LOG_INFORM(s_typeName(), "::configure did not find '", uxas::common::StringConstant::ForwardNonLocal(),
+            "' boolean in XML configuration; '", uxas::common::StringConstant::ForwardNonLocal(), "' boolean is ", m_forwardNonLocalMessages);
+    }
+
     if (isSuccess)
     {
         for (pugi::xml_node currentXmlNode = bridgeXmlNode.first_child(); currentXmlNode; currentXmlNode = currentXmlNode.next_sibling())
@@ -184,7 +196,7 @@ LmcpObjectNetworkCamkesTransmitterBridge::processReceivedSerializedLmcpMessage(s
                   " and size ", receivedLmcpMessage->getPayload().size());
 
     // process messages from a local service (only)
-    if (m_entityIdString == receivedLmcpMessage->getMessageAttributesReference()->getSourceEntityId())
+    if (m_forwardNonLocalMessages || m_entityIdString == receivedLmcpMessage->getMessageAttributesReference()->getSourceEntityId())
     {
         if (m_nonExportForwardAddresses.find(receivedLmcpMessage->getAddress()) == m_nonExportForwardAddresses.end())
         {

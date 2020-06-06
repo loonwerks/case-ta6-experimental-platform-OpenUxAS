@@ -123,6 +123,7 @@ private:
 
     const size_t m_camkesEmitTriggerSize{0x1000};
 
+    bool m_forwardNonLocalMessages{true};
     std::set<std::string> m_externalSubscriptionAddresses;
     std::set<std::string> m_nonImportForwardAddresses;
     std::set<std::string> m_nonExportForwardAddresses;
