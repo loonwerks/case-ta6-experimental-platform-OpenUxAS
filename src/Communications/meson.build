@@ -44,6 +44,7 @@ lib_uxas_communications = static_library(
     'LmcpObjectNetworkServer.cpp',
     'LmcpObjectNetworkSubscribePushBridge.cpp',
     'LmcpObjectNetworkTcpBridge.cpp',
+    'LmcpObjectNetworkTcpToCamkesBridge.cpp',
     'LmcpObjectNetworkZeroMqZyreBridge.cpp',
     'TransportReceiverBase.cpp',
     'ZeroMqAddressStringReceiver.cpp',

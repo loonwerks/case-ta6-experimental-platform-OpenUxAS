@@ -18,6 +18,7 @@
 #include "LmcpObjectNetworkCamkesMultiReceiverBridge.h"
 #include "LmcpObjectNetworkCamkesReceiverBridge.h"
 #include "LmcpObjectNetworkCamkesTransmitterBridge.h"
+#include "LmcpObjectNetworkTcpToCamkesBridge.h"
 
 #include "UxAS_ConfigurationManager.h"
 #include "Constants/UxAS_String.h"
@@ -222,6 +223,10 @@ LmcpObjectNetworkBridgeManager::createBridge(const pugi::xml_node& bridgeXmlNode
         else if (ImpactSubscribePushBridge::s_typeName().compare(bridgeType) == 0)
         {
             newBridge = uxas::stduxas::make_unique<ImpactSubscribePushBridge>();
+        }
+        else if (LmcpObjectNetworkTcpToCamkesBridge::s_typeName().compare(bridgeType) == 0)
+        {
+            newBridge = uxas::stduxas::make_unique<LmcpObjectNetworkTcpToCamkesBridge>();
         }
         else
         {
