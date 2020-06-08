@@ -90,6 +90,7 @@
 		<Location3D Series="CMASI"><Altitude>0</Altitude><Longitude>-120.9332043644707</Longitude><Latitude>45.33823373721766</Latitude></Location3D>
 		<Location3D Series="CMASI"><Altitude>0</Altitude><Longitude>-120.9352862310112</Longitude><Latitude>45.33968836356476</Latitude></Location3D>
 		<Location3D Series="CMASI"><Altitude>0</Altitude><Longitude>-120.9377622731235</Longitude><Latitude>45.34120895091226</Latitude></Location3D>
+		<Location3D Series="CMASI"><Altitude>0</Altitude><Longitude>-120.9387622731235</Longitude><Latitude>45.34520895091226</Latitude></Location3D>
 	</PointList>
 	<ViewAngleList></ViewAngleList>
 	<UseInertialViewAngles>false</UseInertialViewAngles>
