@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <UxAS FormatVersion="1.0" EntityID="500"  EntityType="Ground">
+
+	<!-- THIS ADDITIONAL COMMENT WILL CAUSE ATTESTATION TO FAIL	-->
+
     <!--Use Zyre for WiFi
     <Bridge Type="LmcpObjectNetworkZeroMqZyreBridge" NetworkDevice="ens33">
         <SubscribeToMessage MessageType="afrl.cmasi.OperatingRegion"/>
