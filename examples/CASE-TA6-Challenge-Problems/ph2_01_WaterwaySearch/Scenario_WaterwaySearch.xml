@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AMASE>
   <ScenarioData>
-    <SimulationView LongExtent="0.11" Latitude="45.323" Longitude="-120.9645"/>
+    <SimulationView LongExtent="0.15" Latitude="45.323" Longitude="-120.9645"/>
     <ScenarioName>Waterway Search Example</ScenarioName>
     <Date>1/1/2020:16:50:18</Date>
     <ScenarioDuration>785.0</ScenarioDuration>
@@ -204,6 +204,60 @@
         <FirstWaypoint>1</FirstWaypoint>
         <Status>Pending</Status>
       </MissionCommand>
+
+      <KeepInZone Series="CMASI" Time="3.0e-15">
+        <ZoneID>334</ZoneID>
+        <MinAltitude>50</MinAltitude>
+        <MinAltitudeType>AGL</MinAltitudeType>
+        <MaxAltitude>5000</MaxAltitude>
+        <MaxAltitudeType>MSL</MaxAltitudeType>
+        <AffectedAircraft/>
+        <StartTime>0</StartTime>
+        <EndTime>0</EndTime>
+        <Padding>0.0</Padding>
+        <Label/>
+        <Boundary>
+          <Rectangle Series="CMASI">
+            <CenterPoint>
+              <Location3D Series="CMASI">
+                <Altitude>1000</Altitude><AltitudeType>MSL</AltitudeType>
+                <Latitude>45.322869</Latitude>
+                <Longitude>-120.963645</Longitude>
+              </Location3D>
+            </CenterPoint>
+            <Width>8000.0</Width>
+            <Height>5000.0</Height>
+            <Rotation>0.0</Rotation>
+          </Rectangle>
+        </Boundary>
+      </KeepInZone>
+
+      <KeepOutZone Series="CMASI" Time="3.1e-15">
+        <ZoneID>335</ZoneID>
+        <MinAltitude>500</MinAltitude>
+        <MinAltitudeType>AGL</MinAltitudeType>
+        <MaxAltitude>5000</MaxAltitude>
+        <MaxAltitudeType>MSL</MaxAltitudeType>
+        <AffectedAircraft/>
+        <StartTime>0</StartTime>
+        <EndTime>0</EndTime>
+        <Padding>0.0</Padding>
+        <Label/>
+        <Boundary>
+          <Rectangle Series="CMASI">
+            <CenterPoint>
+              <Location3D Series="CMASI">
+                <Altitude>1000</Altitude><AltitudeType>MSL</AltitudeType>           
+                <Latitude>45.334407</Latitude>
+                <Longitude>-120.936179</Longitude>
+              </Location3D>
+            </CenterPoint>
+            <Width>300.0</Width>
+            <Height>300.0</Height>
+            <Rotation>0.0</Rotation>
+          </Rectangle>
+        </Boundary>
+      </KeepOutZone>
 
     </ScenarioEventList>
 
