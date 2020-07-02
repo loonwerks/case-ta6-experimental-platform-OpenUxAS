@@ -1,6 +1,8 @@
 <LineSearchTask Series="CMASI">
 	<PointList>
-		<Location3D Series="CMASI"><Altitude>0</Altitude><Longitude>-121.0083254511704</Longitude><Latitude>45.31010191362929</Latitude></Location3D>
+		<Location3D Series="CMASI"><Altitude>0</Altitude><Longitude>-120.9884</Longitude><Latitude>45.3164</Latitude></Location3D>
+		<Location3D Series="CMASI"><Altitude>0</Altitude><Longitude>-120.9629</Longitude><Latitude>45.3041</Latitude></Location3D>
+<!--
 		<Location3D Series="CMASI"><Altitude>0</Altitude><Longitude>-121.0073363873731</Longitude><Latitude>45.31014454653914</Latitude></Location3D>
 		<Location3D Series="CMASI"><Altitude>0</Altitude><Longitude>-121.0061471140418</Longitude><Latitude>45.30993640240653</Latitude></Location3D>
 		<Location3D Series="CMASI"><Altitude>0</Altitude><Longitude>-121.0049588506904</Longitude><Latitude>45.30953092852143</Latitude></Location3D>
@@ -90,6 +92,7 @@
 		<Location3D Series="CMASI"><Altitude>0</Altitude><Longitude>-180.9332043644707</Longitude><Latitude>45.33823373721766</Latitude></Location3D>
 		<Location3D Series="CMASI"><Altitude>0</Altitude><Longitude>-120.9352862310112</Longitude><Latitude>45.33968836356476</Latitude></Location3D>
 		<Location3D Series="CMASI"><Altitude>0</Altitude><Longitude>-120.9377622731235</Longitude><Latitude>45.34120895091226</Latitude></Location3D>
+-->
 	</PointList>
 	<ViewAngleList></ViewAngleList>
 	<UseInertialViewAngles>false</UseInertialViewAngles>
