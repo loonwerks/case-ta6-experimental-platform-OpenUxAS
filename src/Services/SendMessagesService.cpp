@@ -37,6 +37,11 @@
 #define STRING_XML_MESSAGE_SEND_NUMBER_TIMES "NumberTimesToSend"
 #define STRING_XML_MESSAGE_SEND_TIME_MS "SendTime_ms"
 
+// CASE Platform Assessment #1
+// The specific latitude and longitude of the tethered balloon.
+#define ATTESTATION_BALLOON_LATITUDE 45.311
+#define ATTESTATION_BALLOON_LONGITUDE -120.965
+
 namespace uxas
 {
 namespace service
@@ -113,6 +118,21 @@ SendMessagesService::configure(const pugi::xml_node& serviceXmlNode)
                         UXAS_LOG_INFORM(s_typeName(), "::configure created LMCP object from loaded XML");
                         newMessage->m_lmcpObjectPayload.reset(lmcpObj);
                         lmcpObj = nullptr;
+
+                        // If the message is a LineSearchTask, then modify all waypoints
+                        // to target the tethered balloon
+                        if(afrl::cmasi::isLineSearchTask(newMessage->m_lmcpObjectPayload)) {
+                            std::shared_ptr<afrl::cmasi::LineSearchTask> lineSearchTask;
+  
+                            lineSearchTask = std::static_pointer_cast<afrl::cmasi::LineSearchTask>(
+                                                 newMessage->m_lmcpObjectPayload);
+
+                            for (auto& location : lineSearchTask->getPointList()) {
+                                location->setLatitude(ATTESTATION_BALLOON_LATITUDE);
+                                location->setLongitude(ATTESTATION_BALLOON_LONGITUDE);
+                            }
+
+                        } 
 
                         if (uxas::messages::route::isGraphRegion(newMessage->m_lmcpObjectPayload))
                         {

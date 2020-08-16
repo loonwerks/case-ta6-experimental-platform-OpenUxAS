@@ -14,6 +14,8 @@
 
 #include "ServiceBase.h"
 
+#include "afrl/cmasi/LineSearchTask.h"
+
 namespace uxas
 {
 namespace service
